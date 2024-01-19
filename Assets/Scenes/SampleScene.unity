@@ -498,7 +498,7 @@ RectTransform:
   - {fileID: 1033686571}
   - {fileID: 401691424}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -953,7 +953,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1596408125
 GameObject:
@@ -1232,7 +1232,7 @@ GameObject:
   - component: {fileID: 1904632865}
   - component: {fileID: 1904632864}
   - component: {fileID: 1904632863}
-  - component: {fileID: 1904632867}
+  - component: {fileID: 1904632868}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1318,7 +1318,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1904632867
+--- !u!114 &1904632868
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1327,144 +1327,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1904632862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd57a4d9aa67bcc4b989f91eb11c9b5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 99045c550bbc4364b8f7d911062eeeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1033686572}
+  slider1: {fileID: 1033686572}
   slider2: {fileID: 401691425}
---- !u!1001 &2099924161
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1169019389771402, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_Name
-      value: Uduino
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720884688345560, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: ManagerState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: shouldReconnect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].pinMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].prevPin
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].pinMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].prevPin
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].currentPin
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].currentPin
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].arduinoName
-      value: uduinoBoard
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].isEditorPin
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].prevPinMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].arduinoName
-      value: uduinoBoard
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].isEditorPin
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].prevPinMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[0].lastReadValue
-      value: 197
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: pins.Array.data[1].lastReadValue
-      value: 866
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: presentExtentionsMap.keys.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
-      propertyPath: presentExtentionsMap.values.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
+  receivedstring: 
 --- !u!1 &2130788769
 GameObject:
   m_ObjectHideFlags: 0
