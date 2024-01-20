@@ -3,7 +3,7 @@ using System.IO.Ports;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PotentiometerWithoutUduino : MonoBehaviour
+public class ArduinoInput : MonoBehaviour
 {
     [SerializeField] Slider slider1, slider2;
     SerialPort data_stream = new SerialPort("COM3", 9600);
