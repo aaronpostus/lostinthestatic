@@ -55,7 +55,7 @@ public class CarController : SerializedMonoBehaviour
                 using (Draw.WithColor(forceColors[j]))
                 {
                     Draw.Ray(wTransform.position, forceDirections[j]);
-                    Draw.Label2D(wTransform.position + forceDirections[j], ((int)forces[j,i]).ToString(), 30f);
+                    Draw.Label2D(wTransform.position + forceDirections[j], ((int)forces[j,i]).ToString(), 20f);
                 }
             }
         }
@@ -90,11 +90,14 @@ public class CarController : SerializedMonoBehaviour
             forces[0, i] = force;
 
             //Power
-            float speed = Vector3.Dot(rb.velocity, transform.forward);
-            float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
-            force = power * powerScalar * inputState.moveDirection.y;
-            rb.AddForceAtPosition(force * wTransform.forward, wTransform.position);
-            forces[2, i] = force;
+            if (wheels[i].IsPowered)
+            {
+                float speed = Mathf.Abs(Vector3.Dot(rb.velocity, transform.forward));
+                float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
+                force = power * powerScalar * inputState.moveDirection.y;
+                rb.AddForceAtPosition(force * wTransform.forward, wTransform.position);
+                forces[2, i] = force;
+            }
         }
     }
 }
