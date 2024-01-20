@@ -10,7 +10,12 @@ public class PlayerInputSO : ScriptableObject, IInputProvider, IInputChain
 
     public ButtonAction OnJump { get { return jumpAction; } }
     public ButtonAction OnSprint { get { return sprintAction; } }
-    private ButtonAction jumpAction, sprintAction;
+
+    public ButtonAction OnInteract { get { return interactAction; } }
+
+    public ButtonAction OnExit { get { return exitAction; } }
+
+    private ButtonAction jumpAction, sprintAction, interactAction, exitAction;
 
     [SerializeField] private float lookSensitivity;
     private List<IInputModifier> modifiers;
@@ -22,11 +27,8 @@ public class PlayerInputSO : ScriptableObject, IInputProvider, IInputChain
 
         jumpAction = new ButtonAction(input.Game.Jump);
         sprintAction = new ButtonAction(input.Game.Sprint);
-        ButtonAction abilityPrimary = new ButtonAction(input.Game.Ability1);
-        ButtonAction abilitySecondary = new ButtonAction(input.Game.Ability2);
-        ButtonAction abilityUtility = new ButtonAction(input.Game.Ability3);
-        ButtonAction abilitySpecial = new ButtonAction(input.Game.Ability4);
-        abilityActions = new List<ButtonAction> { abilityPrimary, abilitySecondary, abilityUtility, abilitySpecial };
+        interactAction = new ButtonAction(input.Game.Interact);
+        exitAction = new ButtonAction(input.Game.Exit);
     }
 
     public InputState GetState()

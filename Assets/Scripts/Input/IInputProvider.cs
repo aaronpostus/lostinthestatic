@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public interface IInputProvider {
 
+
+public interface IInputProvider: IMoveInputProvider, IActionInputProvider
+{
+    
+}
+
+public interface IMoveInputProvider
+{
     public ButtonAction OnJump { get; }
-    public ButtonAction OnSprint { get; }  
-
-    public List<ButtonAction> Abilities { get; }
-
+    public ButtonAction OnSprint { get; }
     public InputState GetState();
+}
+
+public interface IActionInputProvider
+{
+    public ButtonAction OnInteract { get; }
+
+    public ButtonAction OnExit { get; }
 }
 
 public interface IInputChain

@@ -42,45 +42,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability 1",
-                    "type": "Button",
-                    "id": "b7c2f96e-a44d-428e-b389-0495cdbf479e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability 2",
-                    "type": "Button",
-                    "id": "be7836ae-9d1e-4098-847a-75aeb3f7faf1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability 3",
-                    "type": "Button",
-                    "id": "f77afb26-9873-4124-bb21-411ac577f45b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability 4",
-                    "type": "Button",
-                    "id": "1c45ad01-a711-4ee0-8259-06004ba9601f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Overlay",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "54983986-f6ea-4c19-a72e-a4af7c3a09c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Radio",
+                    "type": "Value",
+                    "id": "2e07a450-6bc0-4a00-b075-9b48cad6a620",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "f02ffb72-1d27-4dce-b229-f78d1114ab89",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -211,39 +193,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8ca7ee97-29c3-464e-b995-ce441832662a",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability 2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3adff720-f668-4595-adb6-333649743491",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability 3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7de9ff50-d908-4ab0-b748-7a6f3048dcb5",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability 4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c5b281c7-d0d3-4f2b-ad83-8a5a10670a9d",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -266,23 +215,78 @@
                 },
                 {
                     "name": "",
-                    "id": "ba717fa2-4055-43e6-a4b7-47e136e6c2a3",
-                    "path": "<Mouse>/leftButton",
+                    "id": "00b7761a-0f6d-477d-a0c8-94fa0ac6fdc0",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability 1",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "00b7761a-0f6d-477d-a0c8-94fa0ac6fdc0",
-                    "path": "<Keyboard>/tab",
+                    "name": "Arrow Keys",
+                    "id": "495e1e7f-3123-45ea-84b8-dc1e80be56b0",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Overlay",
+                    "action": "Radio",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "3aaa78d8-6be1-40f9-b17b-7325d1cc128e",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Radio",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "122c1dbf-95a0-4290-86bf-9d5f36e27a2b",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Radio",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "32f0799d-8e97-41a7-a199-0f7c8d67599f",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Radio",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "fbcb2f69-db96-4cfa-9f4b-60beba29917c",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Radio",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2a4c86c0-65e5-484d-b94b-c71a634e3a97",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

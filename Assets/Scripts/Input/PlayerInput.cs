@@ -64,45 +64,27 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Ability 1"",
-                    ""type"": ""Button"",
-                    ""id"": ""b7c2f96e-a44d-428e-b389-0495cdbf479e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Ability 2"",
-                    ""type"": ""Button"",
-                    ""id"": ""be7836ae-9d1e-4098-847a-75aeb3f7faf1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Ability 3"",
-                    ""type"": ""Button"",
-                    ""id"": ""f77afb26-9873-4124-bb21-411ac577f45b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Ability 4"",
-                    ""type"": ""Button"",
-                    ""id"": ""1c45ad01-a711-4ee0-8259-06004ba9601f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Overlay"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""54983986-f6ea-4c19-a72e-a4af7c3a09c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Radio"",
+                    ""type"": ""Value"",
+                    ""id"": ""2e07a450-6bc0-4a00-b075-9b48cad6a620"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f02ffb72-1d27-4dce-b229-f78d1114ab89"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -233,39 +215,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8ca7ee97-29c3-464e-b995-ce441832662a"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Ability 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3adff720-f668-4595-adb6-333649743491"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Ability 3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7de9ff50-d908-4ab0-b748-7a6f3048dcb5"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Ability 4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c5b281c7-d0d3-4f2b-ad83-8a5a10670a9d"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -288,23 +237,78 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ba717fa2-4055-43e6-a4b7-47e136e6c2a3"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""00b7761a-0f6d-477d-a0c8-94fa0ac6fdc0"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Ability 1"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""00b7761a-0f6d-477d-a0c8-94fa0ac6fdc0"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""495e1e7f-3123-45ea-84b8-dc1e80be56b0"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Overlay"",
+                    ""action"": ""Radio"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3aaa78d8-6be1-40f9-b17b-7325d1cc128e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Radio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""122c1dbf-95a0-4290-86bf-9d5f36e27a2b"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Radio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""32f0799d-8e97-41a7-a199-0f7c8d67599f"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Radio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fbcb2f69-db96-4cfa-9f4b-60beba29917c"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Radio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a4c86c0-65e5-484d-b94b-c71a634e3a97"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -319,11 +323,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Game_Look = m_Game.FindAction("Look", throwIfNotFound: true);
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         m_Game_Sprint = m_Game.FindAction("Sprint", throwIfNotFound: true);
-        m_Game_Ability1 = m_Game.FindAction("Ability 1", throwIfNotFound: true);
-        m_Game_Ability2 = m_Game.FindAction("Ability 2", throwIfNotFound: true);
-        m_Game_Ability3 = m_Game.FindAction("Ability 3", throwIfNotFound: true);
-        m_Game_Ability4 = m_Game.FindAction("Ability 4", throwIfNotFound: true);
-        m_Game_Overlay = m_Game.FindAction("Overlay", throwIfNotFound: true);
+        m_Game_Interact = m_Game.FindAction("Interact", throwIfNotFound: true);
+        m_Game_Radio = m_Game.FindAction("Radio", throwIfNotFound: true);
+        m_Game_Exit = m_Game.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -387,11 +389,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Look;
     private readonly InputAction m_Game_Jump;
     private readonly InputAction m_Game_Sprint;
-    private readonly InputAction m_Game_Ability1;
-    private readonly InputAction m_Game_Ability2;
-    private readonly InputAction m_Game_Ability3;
-    private readonly InputAction m_Game_Ability4;
-    private readonly InputAction m_Game_Overlay;
+    private readonly InputAction m_Game_Interact;
+    private readonly InputAction m_Game_Radio;
+    private readonly InputAction m_Game_Exit;
     public struct GameActions
     {
         private @PlayerInput m_Wrapper;
@@ -400,11 +400,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Game_Look;
         public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputAction @Sprint => m_Wrapper.m_Game_Sprint;
-        public InputAction @Ability1 => m_Wrapper.m_Game_Ability1;
-        public InputAction @Ability2 => m_Wrapper.m_Game_Ability2;
-        public InputAction @Ability3 => m_Wrapper.m_Game_Ability3;
-        public InputAction @Ability4 => m_Wrapper.m_Game_Ability4;
-        public InputAction @Overlay => m_Wrapper.m_Game_Overlay;
+        public InputAction @Interact => m_Wrapper.m_Game_Interact;
+        public InputAction @Radio => m_Wrapper.m_Game_Radio;
+        public InputAction @Exit => m_Wrapper.m_Game_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -426,21 +424,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSprint;
-                @Ability1.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility1;
-                @Ability1.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility1;
-                @Ability1.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility1;
-                @Ability2.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility2;
-                @Ability2.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility2;
-                @Ability2.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility2;
-                @Ability3.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility3;
-                @Ability3.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility3;
-                @Ability3.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility3;
-                @Ability4.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility4;
-                @Ability4.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility4;
-                @Ability4.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAbility4;
-                @Overlay.started -= m_Wrapper.m_GameActionsCallbackInterface.OnOverlay;
-                @Overlay.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnOverlay;
-                @Overlay.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnOverlay;
+                @Interact.started -= m_Wrapper.m_GameActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnInteract;
+                @Radio.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRadio;
+                @Radio.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRadio;
+                @Radio.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRadio;
+                @Exit.started -= m_Wrapper.m_GameActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -457,21 +449,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @Ability1.started += instance.OnAbility1;
-                @Ability1.performed += instance.OnAbility1;
-                @Ability1.canceled += instance.OnAbility1;
-                @Ability2.started += instance.OnAbility2;
-                @Ability2.performed += instance.OnAbility2;
-                @Ability2.canceled += instance.OnAbility2;
-                @Ability3.started += instance.OnAbility3;
-                @Ability3.performed += instance.OnAbility3;
-                @Ability3.canceled += instance.OnAbility3;
-                @Ability4.started += instance.OnAbility4;
-                @Ability4.performed += instance.OnAbility4;
-                @Ability4.canceled += instance.OnAbility4;
-                @Overlay.started += instance.OnOverlay;
-                @Overlay.performed += instance.OnOverlay;
-                @Overlay.canceled += instance.OnOverlay;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Radio.started += instance.OnRadio;
+                @Radio.performed += instance.OnRadio;
+                @Radio.canceled += instance.OnRadio;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
             }
         }
     }
@@ -482,10 +468,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnAbility1(InputAction.CallbackContext context);
-        void OnAbility2(InputAction.CallbackContext context);
-        void OnAbility3(InputAction.CallbackContext context);
-        void OnAbility4(InputAction.CallbackContext context);
-        void OnOverlay(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnRadio(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }
