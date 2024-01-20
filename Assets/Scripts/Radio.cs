@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Radio : MonoBehaviour
 {
-    // vol range is 0f -> 1f
+    // volume range is 0f -> 1f
     public void SetVolume(float vol) { 
         
     }
