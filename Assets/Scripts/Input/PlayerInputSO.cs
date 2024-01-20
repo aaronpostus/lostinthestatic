@@ -29,6 +29,7 @@ public class PlayerInputSO : ScriptableObject, IInputProvider, IInputChain
         sprintAction = new ButtonAction(input.Game.Sprint);
         interactAction = new ButtonAction(input.Game.Interact);
         exitAction = new ButtonAction(input.Game.Exit);
+        modifiers = new List<IInputModifier>();
     }
 
     public InputState GetState()
