@@ -20,7 +20,8 @@ public class ArduinoInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            string message = "#" + testMessages[Random.Range(0, testMessages.Count)] + "$";
+            Debug.Log("A");
+            string message = testMessages[Random.Range(0, testMessages.Count)] + "\n";
             data_stream.Write(message);
         }
     }
@@ -48,8 +49,8 @@ public class ArduinoInput : MonoBehaviour
     void ProcessMessage(string message)
     {
         string[] datas = message.Split(",");
-        slider1.value = (float)Mathf.RoundToInt(float.Parse(datas[0])) / 1000.0f;
-        slider2.value = (float)Mathf.RoundToInt(float.Parse(datas[1])) / 1000.0f;
+        //slider1.value = (float)Mathf.RoundToInt(float.Parse(datas[0])) / 1000.0f;
+        //slider2.value = (float)Mathf.RoundToInt(float.Parse(datas[1])) / 1000.0f;
         Debug.Log(message);
     }
 

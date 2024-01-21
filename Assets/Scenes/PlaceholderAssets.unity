@@ -2570,13 +2570,13 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!43 &402813585
+--- !u!43 &337852582
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5224
+  m_Name: pb_Mesh-5224(Clone)
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2810,8 +2810,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486493620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.00042971363, y: -0.9968804, z: 0.07872756, w: 0.0055892076}
+  m_LocalPosition: {x: 574.7739, y: 30.332148, z: 359.79623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6477,6 +6477,7 @@ GameObject:
   - component: {fileID: 1556843267}
   - component: {fileID: 1556843266}
   - component: {fileID: 1556843270}
+  - component: {fileID: 1556843271}
   m_Layer: 0
   m_Name: Radio
   m_TagString: Untagged
@@ -6546,7 +6547,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556843265}
-  m_Mesh: {fileID: 402813585}
+  m_Mesh: {fileID: 337852582}
 --- !u!4 &1556843269
 Transform:
   m_ObjectHideFlags: 0
@@ -6776,12 +6777,27 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
-  m_Mesh: {fileID: 402813585}
+  m_Mesh: {fileID: 337852582}
   m_VersionIndex: 511
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1556843271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556843265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99045c550bbc4364b8f7d911062eeeba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider1: {fileID: 0}
+  slider2: {fileID: 0}
+  receivedstring: 
 --- !u!1 &1604883404
 GameObject:
   m_ObjectHideFlags: 0
