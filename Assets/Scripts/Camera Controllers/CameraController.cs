@@ -6,22 +6,27 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
 {
     [Header("Input")]
     [OdinSerialize] private IInputProvider inputProvider;
-    [SerializeField] private InputState playerInputState;
+    [SerializeField] private InputState inputState;
 
     [Header("Camera Properties")]
     [SerializeField] private Transform target;
+    [SerializeField] private bool inheritTargetRotation;
     private Camera activeCamera;
     [SerializeField] private Vector2 cameraAngleLimit;
-    private Vector3 targetPosition;
+    private Vector3 targetPosition, localEulers;
 
     private void Awake()
     {
         activeCamera = GetComponentInChildren<Camera>();
+        localEulers = transform.localEulerAngles;
+    }
+    private void Start()
+    {
     }
 
     void LateUpdate()
     {
-        playerInputState = inputProvider.GetState();
+        inputState = inputProvider.GetState();
         UpdatePosition();
         UpdateRotation();
     }
@@ -31,18 +36,23 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
         transform.position = targetPosition;
     }
 
-
     private void UpdateRotation() {
-        Vector3 clampedLookEulers = playerInputState.lookEulers;
-        clampedLookEulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, clampedLookEulers.x), cameraAngleLimit.x,  cameraAngleLimit.y);
-        transform.localEulerAngles = clampedLookEulers;
+        Vector3 clampedLookEulers = inputState.lookEulers + localEulers;
+        clampedLookEulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, clampedLookEulers.x), cameraAngleLimit.x, cameraAngleLimit.y);
+        localEulers = clampedLookEulers;
+        transform.localEulerAngles = localEulers + (inheritTargetRotation? target.eulerAngles : Vector3.zero);
     }
 
     public InputState ModifyInput(InputState input)
     {
         //input.aimPoint = aimPoint;
-        input.lookEulers = input.lookEulers + transform.localEulerAngles;
-        input.moveDirection = Quaternion.Euler(0,transform.localEulerAngles.y,0) * new Vector3 (input.moveDirection.x, 0, input.moveDirection.y);
+        input.lookEulers = localEulers;
         return input;
+    }
+
+    public void ChangeTarget(Transform target, bool inheritTargetRotation)
+    {
+        this.target = target;
+        
     }
 }
