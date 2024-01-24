@@ -14,7 +14,9 @@ public class tr_sound : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             enter_sound.Play();
+            Debug.Log("entersound");
             stay_sound.Play();
+            Debug.Log("staysound");
         }
     }
 
@@ -23,6 +25,7 @@ public class tr_sound : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             exit_sound.Play();
+            Debug.Log("exitsound");
             stay_sound.Stop();
         }
     }
