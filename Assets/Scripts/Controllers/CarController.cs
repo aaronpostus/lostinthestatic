@@ -14,15 +14,12 @@ public class CarController : SerializedMonoBehaviour
     private Color[] forceColors;
     [OdinSerialize] LayerMask groundMask;
 
-    [Header("Engine Properties")]
     [SerializeField] private AnimationCurve powerCurve;
     [SerializeField] private float powerScalar, maxVelocity;
 
-    [Header("Wheel Properties")]
     [OdinSerialize] Wheel[] wheels;
     [SerializeField, Range(0,90)] private float maxSteerAngle, steerSpeed;
-    
-    [Header("Suspension Properties")]
+
     [OdinSerialize] private float suspensionRestDist;
     [OdinSerialize] private float springConst, springDamp;
     
@@ -65,37 +62,40 @@ public class CarController : SerializedMonoBehaviour
     {
         for (int i = 0; i < wheels.Length; i++)
         {
+
             Transform wTransform = wheels[i].transform;
             Vector3 tireVel = rb.GetPointVelocity(wTransform.position);
-
+            
             //Check if tire is on the ground
             Vector3 springDir = wTransform.up;
             if (!Physics.Raycast(wTransform.position, -springDir, out RaycastHit hit, suspensionRestDist, groundMask)) continue;
-
-            //Suspension
+            Vector3 groundPlane = hit.normal;
             
+            //Suspension
             float offset = suspensionRestDist - hit.distance;
             float vel = Vector3.Dot(springDir, tireVel);
             float force = (offset * springConst) - (vel * springDamp);
             rb.AddForceAtPosition(springDir * force, wTransform.position);
             forces[1, i] = force;
 
-            //Grip
-            Vector3 steerDir = wTransform.right;
-            float steerVel = tireVel.magnitude==0? 1:Vector3.Dot(tireVel, steerDir)/tireVel.magnitude;
-            float gripFactor = wheels[i].gripCurve.Evaluate(steerVel);
-            float steerAcc = gripFactor * -steerVel/Time.fixedDeltaTime;
-            force = wheels[i].mass * steerAcc*gripFactor;
-            rb.AddForceAtPosition(force*steerDir, wTransform.position);
-            forces[0, i] = force;
-
+            //Friction
+            Vector3 tireGroundVel = Vector3.ProjectOnPlane(tireVel, hit.normal);
+            if (tireGroundVel.magnitude > 0) {
+                Vector3 tireSlip = Vector3.Project(tireGroundVel, wTransform.right);
+                float slipRatio = Vector3.Dot(tireSlip, tireGroundVel);
+                float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
+                force = slipRatio * gripFactor / Time.fixedDeltaTime;
+                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, groundPlane), wTransform.position);
+                forces[0, i] = force;
+            }
+            
             //Power
             if (wheels[i].IsPowered)
             {
                 float speed = Mathf.Abs(Vector3.Dot(rb.velocity, transform.forward));
                 float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
                 force = power * powerScalar * inputState.moveDirection.y;
-                rb.AddForceAtPosition(force * wTransform.forward, wTransform.position);
+                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * wTransform.forward, groundPlane), wTransform.position);
                 forces[2, i] = force;
             }
         }

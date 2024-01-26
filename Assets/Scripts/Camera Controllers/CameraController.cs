@@ -13,15 +13,16 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
     [SerializeField] private bool inheritTargetRotation;
     private Camera activeCamera;
     [SerializeField] private Vector2 cameraAngleLimit;
+
+    [SerializeField] private float transitionTime, transitionSpeed, transitionLerp;
+    public bool IsTransitioning;
     private Vector3 targetPosition, localEulers;
 
     private void Awake()
     {
         activeCamera = GetComponentInChildren<Camera>();
         localEulers = transform.localEulerAngles;
-    }
-    private void Start()
-    {
+        IsTransitioning = false;
     }
 
     void LateUpdate()
