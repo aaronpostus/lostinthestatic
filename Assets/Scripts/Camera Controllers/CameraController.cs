@@ -65,7 +65,7 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
 
     public InputState ModifyInput(InputState input)
     {
-        //input.aimPoint = aimPoint;
+        input.moveDirection = Quaternion.AngleAxis(localEulers.y, Vector3.up) * input.moveDirection;
         input.lookEulers = localEulers;
         return input;
     }
