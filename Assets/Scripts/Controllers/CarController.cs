@@ -8,8 +8,6 @@ public class CarController : SerializedMonoBehaviour
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
 
-    
-    
     private float[,] forces;
     private Color[] forceColors;
     [OdinSerialize] LayerMask groundMask;
@@ -62,7 +60,6 @@ public class CarController : SerializedMonoBehaviour
     {
         for (int i = 0; i < wheels.Length; i++)
         {
-
             Transform wTransform = wheels[i].transform;
             Vector3 tireVel = rb.GetPointVelocity(wTransform.position);
             
