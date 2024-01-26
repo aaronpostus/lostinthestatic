@@ -69,7 +69,6 @@ public class CarController : SerializedMonoBehaviour
             //Check if tire is on the ground
             Vector3 springDir = wTransform.up;
             if (!Physics.Raycast(wTransform.position, -springDir, out RaycastHit hit, suspensionRestDist, groundMask)) continue;
-            Vector3 groundPlane = hit.normal;
             
             //Suspension
             float offset = suspensionRestDist - hit.distance;
@@ -85,7 +84,7 @@ public class CarController : SerializedMonoBehaviour
                 float slipRatio = Vector3.Dot(tireSlip, tireGroundVel);
                 float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
                 force = slipRatio * gripFactor / Time.fixedDeltaTime;
-                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, groundPlane), wTransform.position);
+                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, hit.normal), wTransform.position);
                 forces[0, i] = force;
             }
             
@@ -95,7 +94,7 @@ public class CarController : SerializedMonoBehaviour
                 float speed = Mathf.Abs(Vector3.Dot(rb.velocity, transform.forward));
                 float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
                 force = power * powerScalar * inputState.moveDirection.y;
-                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * wTransform.forward, groundPlane), wTransform.position);
+                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * wTransform.forward, hit.normal), wTransform.position);
                 forces[2, i] = force;
             }
         }
