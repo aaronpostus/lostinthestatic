@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System;
 using UnityEngine;
 
 public class CameraController : SerializedMonoBehaviour, IInputModifier
@@ -16,6 +17,17 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
         set { 
             positionTarget = value;
             inheritTargetRotation = value.Equals(CharTarget) ? false : true;
+            if (value.Equals(CarTarget) && !charMotor.BoundToCar)
+            {
+                charMotor.BindCar(CarTarget);
+                carController.Occupied = true;
+            }
+
+            else if (value.Equals(CharTarget) && charMotor.BoundToCar)
+            {
+                charMotor.UnBindCar();
+                carController.Occupied = false;
+            }
         } 
     }
     private Transform positionTarget;
@@ -24,20 +36,25 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
 
     public Transform CharTarget, CarTarget;
     [SerializeField] private Transform lookTarget;
+    [SerializeField] private float lookTargetSlerp;
     [SerializeField] private bool inheritTargetRotation;
     private Camera activeCamera;
     [SerializeField] private Vector2 cameraAngleLimit;
     public bool IsFree => !(IsTransitioning || IsFocused);
-    public bool IsTransitioning, IsFocused;
+    public bool IsFocused => lookTarget != null;
+    public bool IsTransitioning;
     private Vector3 targetPosition, localEulers;
+    private CharacterMotor charMotor;
+    private CarController carController;
 
     private void Awake()
     {
         activeCamera = GetComponentInChildren<Camera>();
-        PositionTarget = CharTarget;
+        charMotor = CharTarget.GetComponentInParent<CharacterMotor>();
+        carController = CarTarget.GetComponentInParent<CarController>();
         localEulers = transform.localEulerAngles;
         IsTransitioning = false;
-        
+        PositionTarget = CharTarget;
     }
    
 
@@ -46,7 +63,14 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
     {
         inputState = inputProvider.GetState();
         if(!IsTransitioning) UpdatePosition();
-        if(!IsFocused) UpdateRotation();
+        if (!IsFocused)
+        {
+            UpdateRotationInput();
+        }
+        else {
+            UpdateRotationTarget();
+        }
+        
     }
 
     private void UpdatePosition() {
@@ -54,13 +78,17 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
         transform.position = targetPosition;
     }
 
-    private void UpdateRotation() {
+    private void UpdateRotationInput() {
         Vector3 clampedLookEulers = inputState.lookEulers + localEulers;
         clampedLookEulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, clampedLookEulers.x), cameraAngleLimit.x, cameraAngleLimit.y);
         
         localEulers = clampedLookEulers;
         transform.localEulerAngles = localEulers + (inheritTargetRotation ? PositionTarget.eulerAngles : Vector3.zero);
-        
+    }
+    private void UpdateRotationTarget()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookTarget.position - transform.position, Vector3.up), lookTargetSlerp*Time.deltaTime);
+        localEulers = transform.localEulerAngles;
     }
 
     public InputState ModifyInput(InputState input)

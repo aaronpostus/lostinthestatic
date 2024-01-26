@@ -20,7 +20,9 @@ public class CarController : SerializedMonoBehaviour
 
     [OdinSerialize] private float suspensionRestDist;
     [OdinSerialize] private float springConst, springDamp;
-    
+    public bool Occupied;    
+
+
     private Rigidbody rb;
     private InputState inputState;
 
@@ -33,7 +35,7 @@ public class CarController : SerializedMonoBehaviour
 
     private void Update()
     {
-        inputState = inputProvider.GetState();
+        inputState = Occupied ? inputProvider.GetState() : new InputState();
 
         for(int i=0;i<wheels.Length;i++)
         {

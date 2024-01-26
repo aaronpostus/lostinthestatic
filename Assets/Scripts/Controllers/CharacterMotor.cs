@@ -3,6 +3,9 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Runtime.ConstrainedExecution;
 
 public enum PlayerMoveState {
     Default,
@@ -43,7 +46,7 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     [SerializeField] private int airJumps, groundContactCount;
     private bool shouldJump, isBoosting;
     private bool isGrounded => groundContactCount > 0;
-    public Vector3 velocity =>rb.velocity;
+    public Vector3 velocity => rb.velocity;
     private Vector3 projectedVelocity => ProjectOnContactPlane(velocity);
     private Vector3 targetVelocity;
     private Vector3 projectedTargetVelocity => ProjectOnContactPlane(targetVelocity);
@@ -53,13 +56,21 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     private bool previouslyGrounded;
     private Rigidbody rb;
     private ContactPoint[] contactBuffer = new ContactPoint[10];
-    
+    private List<Collider> colliders;
+
+    public bool BoundToCar => boundToCar;
+    private bool boundToCar;
+    private Vector3 carOffset;
+    private Transform car;
+
     void OnValidate() {
         slopeDotProduct = Mathf.Cos(maxSlope * Mathf.Deg2Rad);
     }
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
+        colliders = new List<Collider>();
+        transform.GetComponents(colliders);
         rb.maxAngularVelocity = 50;
         rb.sleepThreshold = 0.0f;
         OnValidate();
@@ -216,5 +227,25 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     public InputState ModifyInput(InputState input) {
         if (isBoosting) input.moveDirection = Vector2.up;
         return input;
+    }
+
+
+    public void BindCar(Transform target) {
+        car = target;
+        carOffset = car.InverseTransformPoint(transform.position);
+
+        boundToCar = true;
+        gameObject.SetActive(false);
+        UpdateTicker.Subscribe(KeepRelativeOffset);
+    }
+
+    public void UnBindCar() {
+        boundToCar = false;
+        gameObject.SetActive(true);
+        UpdateTicker.Unsubscribe(KeepRelativeOffset);
+    }
+
+    private void KeepRelativeOffset() {
+        transform.position = car.TransformPoint(carOffset);
     }
 }
