@@ -24,7 +24,7 @@ public class PlayerInputSO : ScriptableObject, IInputProvider, IInputChain
     {
         input = new PlayerInput();
         input.Enable();
-
+        modifiers = new List<IInputModifier>();
         jumpAction = new ButtonAction(input.Game.Jump);
         sprintAction = new ButtonAction(input.Game.Sprint);
         interactAction = new ButtonAction(input.Game.Interact);
@@ -38,7 +38,7 @@ public class PlayerInputSO : ScriptableObject, IInputProvider, IInputChain
         foreach (IInputModifier modifier in modifiers) {
             state = modifier.ModifyInput(state);
         }
-
+        
         return state;
     }
 
