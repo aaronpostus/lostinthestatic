@@ -15,7 +15,7 @@ public class CarController : SerializedMonoBehaviour
     [SerializeField] private AnimationCurve powerCurve;
     [SerializeField] private float powerScalar, maxVelocity;
 
-    [OdinSerialize] Wheel[] wheels;
+    [SerializeField] Wheel[] wheels;
     [SerializeField, Range(0,90)] private float maxSteerAngle, steerSpeed;
 
     [OdinSerialize] private float suspensionRestDist;
@@ -81,8 +81,8 @@ public class CarController : SerializedMonoBehaviour
             if (tireGroundVel.magnitude > 0) {
                 Vector3 tireSlip = Vector3.Project(tireGroundVel, wTransform.right);
                 float slipRatio = Vector3.Dot(tireSlip, tireGroundVel);
-                float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
-                force = slipRatio * gripFactor / Time.fixedDeltaTime;
+                float pacejkaFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
+                force = wheels[i].GripFactor * pacejkaFactor / Time.fixedDeltaTime;
                 rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, hit.normal), wTransform.position);
                 forces[0, i] = force;
             }

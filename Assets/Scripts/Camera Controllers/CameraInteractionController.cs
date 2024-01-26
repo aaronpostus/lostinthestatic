@@ -1,10 +1,4 @@
-using Sirenix.Utilities;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Json;
-using UnityEditorInternal;
 using UnityEngine;
-using static System.TimeZoneInfo;
 
 
 [RequireComponent(typeof(CameraController))]
