@@ -1,17 +1,26 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Radio : MonoBehaviour
 {
+    [Tooltip("Attach the module that feeds the radio input from an arduino. If no module is attached or no arduino is connected, we rely on keyboard input.")]
     [SerializeField] ArduinoCommunicationModule arduino;
-    [SerializeField] Slider volumeSlider, frequencySlider;
-    public const int maxRadioFreq = 103, minRadioFreq = 93, minVol = 0, maxVol = 38;
+    [Tooltip("How many presets can you create? These will bind to (n) number inputs starting at 1 and the save button will be the (n+1) number key.")]
+    [SerializeField] int numberOfPresetButtons;
+    [SerializeField] TextMeshPro freq;
+    enum RadioState { DEFAULT, AWAITING_SAVE_SELECTION }
+    private RadioState state;
+    private KeyCode savePresetKey;
+    private const int maxRadioFreq = 100, minRadioFreq = 95, minVol = 0, maxVol = 38;
     private int freqRange, volRange;
     private float frequency = 100, volume = 15;
     public Radio() {
         freqRange = maxRadioFreq - minRadioFreq;
         volRange = (maxVol - minVol) + 1;
+        state = RadioState.DEFAULT;
+        savePresetKey = KeyCode.Alpha0 + numberOfPresetButtons;
     }
+
     // volume range is 0f -> 1f
     public void TuneVolume(float value)
     {
@@ -27,17 +36,28 @@ public class Radio : MonoBehaviour
         // Ensure the input value is between 0 and 1
         value = Mathf.Max(0, Mathf.Min(1, value));
         // Map the input value to the output range
-        float freq = minRadioFreq + value * freqRange;
+        float freq = Mathf.Round((minRadioFreq + value * freqRange)*10)/10;
         SetFrequency(freq);
     }
+    public void ButtonPress(int buttonIndex) { 
+        //if(button)
+    }
+
     // set radio to an exact frequency (i.e. 99.5f)
     private void SetFrequency(float freq) {
         // don't do anything if the frequency hasn't actually changed
         if (this.frequency == freq) {
             return;
         }
+        if (this.state == RadioState.AWAITING_SAVE_SELECTION) { 
+        
+        }
         this.frequency = freq;
         RefreshFrequencyLCD();
+    }
+    private void CancelPresetSaving() {
+        RefreshFrequencyLCD();
+        state = RadioState.DEFAULT;
     }
     // set radio to an exact frequency (i.e. 99.5f)
     private void SetVolume(float vol)
@@ -51,17 +71,30 @@ public class Radio : MonoBehaviour
     }
     // updates the controller LCD
     private void RefreshFrequencyLCD() {
+        if (!arduino) {
+            return;
+        }
         arduino.SendToLCD(frequency + "");
+        freq.text = frequency + "";
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+
+        for (KeyCode keyCode = KeyCode.Alpha0; keyCode <= savePresetKey; keyCode++)
+        {
+            if (!Input.GetKeyDown(keyCode))
+            {
+                continue;
+            }
+            if (keyCode == savePresetKey)
+            {
+                // save
+            }
+            else { 
+                // select preset
+            }
+            break;
+        }
     }
 }

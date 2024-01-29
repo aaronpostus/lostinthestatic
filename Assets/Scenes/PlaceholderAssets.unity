@@ -6983,8 +6983,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arduino: {fileID: 1556843271}
-  volumeSlider: {fileID: 0}
-  frequencySlider: {fileID: 0}
+  numberOfPresetButtons: 0
+  freq: {fileID: 13323813}
 --- !u!1 &1604883404
 GameObject:
   m_ObjectHideFlags: 0
