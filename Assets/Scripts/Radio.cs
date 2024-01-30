@@ -21,7 +21,7 @@ public class Radio : MonoBehaviour
         savePresetKey = KeyCode.Alpha0 + numberOfPresetButtons;
     }
 
-    // volume range is 0f -> 1f
+    // tune radio volume based on a float value 0f -> 1f
     public void TuneVolume(float value)
     {
         // Ensure the input value is between 0 and 1
@@ -30,7 +30,7 @@ public class Radio : MonoBehaviour
         int result = minVol + (int)(value * volRange);
         SetVolume(result);
     }
-    // tune to an appropriate station from input between 0f - 1f
+    // tune radio station based on a float value 0f -> 1f
     public void TuneRadio(float value)
     {
         // Ensure the input value is between 0 and 1
@@ -80,7 +80,6 @@ public class Radio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         for (KeyCode keyCode = KeyCode.Alpha0; keyCode <= savePresetKey; keyCode++)
         {
             if (!Input.GetKeyDown(keyCode))

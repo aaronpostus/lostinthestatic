@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using UnityEngine;
@@ -11,9 +12,15 @@ public class ArduinoCommunicationModule : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        data_stream.Open();
-        data_stream.ReadTimeout = 25;
-        InvokeRepeating("Serial_Data_Reading", 0f, 0.1f);
+        try
+        {
+            data_stream.Open();
+            data_stream.ReadTimeout = 25;
+            InvokeRepeating("Serial_Data_Reading", 0f, 0.1f);
+        }
+        catch {
+            Debug.Log("Failed to establish a connection to the arduino.");
+        }
     }
     public void SendToLCD(string message) {
         data_stream.Write(message + "\n");
@@ -31,13 +38,20 @@ public class ArduinoCommunicationModule : MonoBehaviour
     {
         Debug.Log(message);
         message = message.Replace("?", "");
-        string[] datas = message.Split(new char[] { ',', '\n' });
-        if (datas.Length % 7 != 0) {
+        string[] input = message.Split(new char[] { ',', '\n' });
+        if (input.Length % 7 != 0) {
             return;
         }
-        //Debug.Log("Tuning to equivalent of input: " + datas[datas.Length-7]);
-        radio.TuneRadio(float.Parse(datas[datas.Length - 7]) / 1000.0f);
-        //radio.TuneVolume(float.Parse(datas[1]) / 1000.0f);
+        radio.TuneRadio(float.Parse(input[input.Length - 7]) / 1000.0f);
+        radio.TuneVolume(float.Parse(input[input.Length - 6]) / 1000.0f);
+        for (int i = 5; i > 0; i--) {
+            if (Int32.Parse(input[input.Length - i]) == 0)
+            {
+                radio.ButtonPress(i - 1);
+            }
+        }
+        receivedBuffer = "";
+        //data_stream.
     }
     private void OnDestroy()
     {
