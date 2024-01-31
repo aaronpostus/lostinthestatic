@@ -56,15 +56,18 @@ using System.Collections.Generic;
 
 // If you get error CS0234 on this line, see troubleshooting section above
 using System.IO.Ports;
+using Unity.VisualScripting;
 
 public class Serial : MonoBehaviour
 {
-
-	/// <summary>
-	/// Enable notification of data as it arrives
-	/// Sends OnSerialData(string data) message
-	/// </summary>
-	public bool NotifyData = false;
+    [Tooltip("Are we using the physical controller?")]
+    [SerializeField] bool usingPhysicalController = false;
+	public static bool usingPhysical;
+    /// <summary>
+    /// Enable notification of data as it arrives
+    /// Sends OnSerialData(string data) message
+    /// </summary>
+    public bool NotifyData = false;
 
 	/// <summary>
 	/// Discard all received data until first line.
@@ -172,8 +175,9 @@ public class Serial : MonoBehaviour
 	void OnEnable ()
 	{
 		s_instances.Add (this);
+		usingPhysical = this.usingPhysicalController;
 
-		if (GetConfig ().logDebugInfos && !s_debug) {
+        if (GetConfig ().logDebugInfos && !s_debug) {
 			Debug.LogWarning ("Serial debug informations enabled by " + GetConfig ());
 			s_debug = true;
 		}
@@ -415,7 +419,9 @@ public class Serial : MonoBehaviour
 	/// <param name="portSpeed">Port speed.</param>
 	public static bool CheckOpen ()
 	{
-
+		if (!usingPhysical) {
+			return false;
+		}
 		if (s_serial == null) {
 
 			int portSpeed = GetConfig ().speed;
@@ -467,12 +473,11 @@ public class Serial : MonoBehaviour
 				}
 			}
 		}
-
 		return s_serial.IsOpen;
-	}
+    }
 
-	// Data has been received, do what this instance has to do with it
-	protected void ReceivedData (string data)
+    // Data has been received, do what this instance has to do with it
+    protected void ReceivedData (string data)
 	{
 
 		if (NotifyData) {

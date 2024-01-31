@@ -15,7 +15,6 @@ public class Radio : MonoBehaviour
     [SerializeField] float volumeSpeed = 5f, radioSpeed = 1.5f;
     [Tooltip("How long should we allow the radio to stay in the save state before just returning to the normal state?")]
     [SerializeField] float saveStateMaxLength = 2f;
-
     enum RadioState { DEFAULT, AWAITING_SAVE_SELECTION, IDLING_AT_PRESET }
     private RadioState state;
 
@@ -32,7 +31,6 @@ public class Radio : MonoBehaviour
     private float prettyFrequency, prettyVolume;
     // timer for save state to expire
     private float remainingSaveStateTime;
-
 
     public Radio() {
         freqRange = maxRadioFreq - minRadioFreq;

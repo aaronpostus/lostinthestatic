@@ -9,10 +9,9 @@ using UnityEngine.UI;
 public class ArduinoCommunicationModule : MonoBehaviour
 {
     [SerializeField] Radio radio;
-    [SerializeField] bool enabled = true;
     void OnSerialLine(string line)
     {
-        if (!enabled) return;
+        if (!Serial.usingPhysical) return;
         Debug.Log(line);
         string[] input = line.Split(new char[] { ',', '\n' });
         if (input.Length % 7 != 0)

@@ -6738,6 +6738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c2cce04c1f4a21a3287582dde7774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingPhysicalController: 0
   NotifyData: 0
   SkipFirstLine: 0
   NotifyLines: 1
@@ -6776,7 +6777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radio: {fileID: 1556843277}
-  enabled: 0
 --- !u!114 &1556843277
 MonoBehaviour:
   m_ObjectHideFlags: 0
