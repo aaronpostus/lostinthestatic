@@ -159,9 +159,9 @@ public class Radio : MonoBehaviour
     // updates the controller LCD and in-game elements
     private void RefreshFrequency() {
         string freq = this.prettyFrequency + "";
-        if (Serial.CheckOpen())
+        if (Serial.Instance.SerialPort.IsOpen)
         {
-            Serial.WriteLn(freq);
+            Serial.Instance.SerialPort.WriteLn(freq);
         }
         this.freq.text = freq;
     }

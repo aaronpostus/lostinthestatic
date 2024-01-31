@@ -1,621 +1,869 @@
-/* 
- * Version 0.4.0, 2018-04-13, Pierre Rossel
- * 
- * This component helps sending and receiving data from a serial port. 
- * It detects line breaks and notifies the attached gameObject of new lines as they arrive.
- * 
- * Usage 1: Receive data when you expect line breaks
- * -------
- * 
- * - drop this script to a gameObject
- * - select "Notify Lines" checkbox on Serial script
- * - create a script on the same gameObject to receive new line notifications
- * - add the OnSerialLine() function, here is an example
- * 
- * 	void OnSerialLine(string line) {
- *		Debug.Log ("Got a line: " + line);
- *	}
- * 
- * Usage 2: Receive data (when you don't expect line breaks)
- * -------
- * 
- * - drop this script to a gameObject
- * - from any script, use the static props ReceivedBytesCount, ReceivedBytes 
- *   and don't forget to call ClearReceivedBytes() to avoid overflowing the buffer
- * 
- * Usage 3: Send data
- * -------
- * 
- * - from any script, call the static functions Serial.Write() or Serial.WriteLn()
- * - if not not already, the serial port will be opened automatically.
- * 
- * Configuration
- * -------------
- * 
- * Drop the SerialConfig component to an empty GameObject in your scene and configure:
- * 
- * - the preferred ports
- * - the speed
- * - whether you wand debug informations in console
- * 
- * 
- * Troubleshooting
- * ---------------
- * 
- * You may get the following error:
- *     error CS0234: The type or namespace name `Ports' does not exist in the namespace `System.IO'. 
- *     Are you missing an assembly reference?
- * Solution: 
- *     Menu Edit | Project Settings | Player | Other Settings | API Compatibility Level: .Net 2.0
- * 
- */
-
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 // If you get error CS0234 on this line, see troubleshooting section above
 using System.IO.Ports;
+using System;
+using TMPro;
+using System.Threading;
 
 public class Serial : MonoBehaviour
-{
-
-	/// <summary>
-	/// Enable notification of data as it arrives
-	/// Sends OnSerialData(string data) message
-	/// </summary>
-	public bool NotifyData = false;
-
-	/// <summary>
-	/// Discard all received data until first line.
-	/// Do not enable if you do not expect a \n as 
-	/// this would prevent the notification of any line or value.
-	/// Data notification is not impacted by this parameter.
-	/// </summary>
-	public bool SkipFirstLine = false;
-
-	/// <summary>
-	/// Enable line detection and notification on received data.
-	/// Message OnSerialLine(string line) is sent for every received line
-	/// </summary>
-	public bool NotifyLines = false;
-
-	/// <summary>
-	/// Maximum number of lines to remember. Get them with GetLines() or GetLastLine()
-	/// </summary>
-	public int RememberLines = 0;
-
-	/// <summary>
-	/// Enable lines detection, values separation and notification.
-	/// Each line is split with the value separator (TAB by default)
-	/// Sends Message OnSerialValues(string [] values)
-	/// </summary>
-	public bool NotifyValues = false;
-
-	/// <summary>
-	/// The values separator.
-	/// </summary>
-	public char ValuesSeparator = '\t';
-
-	/// <summary>
-	/// The first line has been received.
-	/// </summary>
-	bool FirstLineReceived = false;
-
-	//string serialOut = "";
-	private List<string> linesIn = new List<string> ();
-
-	/// <summary>
-	/// Gets the received bytes count.
-	/// </summary>
-	/// <value>The received bytes count.</value>
-	public int ReceivedBytesCount { get { return BufferIn.Length; } }
-
-	/// <summary>
-	/// Gets the received bytes.
-	/// </summary>
-	/// <value>The received bytes.</value>
-	public string ReceivedBytes { get { return BufferIn; } }
-
-	/// <summary>
-	/// Clears the received bytes. 
-	/// Warning: This prevents line detection and notification. 
-	/// To be used when no \n is expected to avoid keeping unnecessary big amount of data in memory
-	/// You should normally not call this function if \n are expected.
-	/// </summary>
-	public void ClearReceivedBytes ()
-	{
-		BufferIn = "";
-	}
-
-	/// <summary>
-	/// Gets the lines count.
-	/// </summary>
-	/// <value>The lines count.</value>
-	public int linesCount { get { return linesIn.Count; } }
-
-	#region Private vars
-
-	// buffer data as they arrive, until a new line is received
-	private string BufferIn = "";
-
-	// flag to detect whether coroutine is still running to workaround coroutine being stopped after saving scripts while running in Unity
-	private int nCoroutineRunning = 0;
-
-	#endregion
-
-	#region Static vars
-
-	// Serial configuration
-	private static SerialConfig s_config = null;
-
-	// Only one serial port shared among all instances and living after all instances have been destroyed
-	private static SerialPort s_serial;
-
-	// All instances of this component
-	private static List<Serial> s_instances = new List<Serial> ();
-
-	// Enable debug info. Do not change here. Use parameter on SerialConfig component
-	private static bool s_debug = false;
-
-	private static float s_lastDataIn = 0;
-	private static float s_lastDataCheck = 0;
-
-	#endregion
-
-	void OnValidate ()
-	{
-		if (RememberLines < 0)
-			RememberLines = 0;
-	}
-
-	void OnEnable ()
-	{
-		s_instances.Add (this);
-
-		if (GetConfig ().logDebugInfos && !s_debug) {
-			Debug.LogWarning ("Serial debug informations enabled by " + GetConfig ());
-			s_debug = true;
-		}
-
-		CheckOpen ();
-	}
-
-	void OnDisable ()
-	{
-		s_instances.Remove (this);
-	}
-
-	public void OnApplicationQuit ()
-	{
-		if (s_serial != null) {
-			if (s_serial.IsOpen) {
-				if (s_debug) {
-					Debug.Log ("closing serial port");
-				}
-				s_serial.Close ();
-			}
-
-			s_serial = null;
-		}
-	}
-
-	void Update ()
-	{
-		if (s_serial != null) {
-
-			// Will (re)open if device disconnected and reconnected (or Leonardo reset)
-			CheckOpen ();
-
-			if (nCoroutineRunning == 0) {
-
-				//Debug.Log ("starting ReadSerialLoop* coroutine from " + this.name);
-
-				switch (Application.platform) {
-
-				case RuntimePlatform.WindowsEditor:
-				case RuntimePlatform.WindowsPlayer:
-                        //				case RuntimePlatform.OSXEditor:
-                        //				case RuntimePlatform.OSXPlayer:
-
-                        // Each instance has its own coroutine but only one will be active
-					StartCoroutine (ReadSerialLoopWin ());
-					break;
-
-				default:
-                        // Each instance has its own coroutine but only one will be active
-					StartCoroutine (ReadSerialLoop ());
-					break;
-
-				}
-			} else {
-				if (nCoroutineRunning > 1) {
-					if (s_debug) {
-						Debug.Log (nCoroutineRunning + " coroutines in " + name);
-					}
-				}
-
-				nCoroutineRunning = 0;
-			}
-		}
-	}
-
-	public IEnumerator ReadSerialLoop ()
-	{
-
-		while (true) {
-
-			if (!enabled) {
-				if (s_debug) {
-					Debug.Log ("behaviour not enabled, stopping coroutine");
-				}
-				yield break;
-			}
-
-			//Debug.Log("ReadSerialLoop ");
-			nCoroutineRunning++;
-
-			s_lastDataCheck = Time.time;
-			try {
-				while (s_serial.BytesToRead > 0) {  // BytesToRead crashes on Windows -> use ReadLine or ReadByte in a Thread or Coroutine
-
-					string serialIn = s_serial.ReadExisting ();
-
-					//Debug.Log("just read some data: " + serialIn);
-
-					// Dispatch new data to each instance
-					foreach (Serial inst in s_instances) {
-						inst.ReceivedData (serialIn);
-					}
-
-					s_lastDataIn = s_lastDataCheck;
-				}
-
-			} catch (System.Exception e) {
-				if (s_debug) {
-					Debug.LogError ("System.Exception in serial.ReadExisting: " + e.ToString ());
-					//Debug.Log ("isOpen: " + s_serial.IsOpen);
-				}
-			}
-
-			if (s_serial.IsOpen && s_serial.BytesToRead == -1) {
-				// This happens when Leonardo is reset
-				// Close the serial port here, it will be reopened later when available
-				s_serial.Close ();
-			}
-
-			yield return null;
-		}
-
-	}
-
-	public IEnumerator ReadSerialLoopWin ()
-	{
-		if (s_debug) {
-			Debug.Log ("Start listening on com port: " + s_serial.PortName);
-		}
-
-		while (true) {
-
-			if (!enabled) {
-				Debug.Log ("behaviour not enabled, stopping coroutine");
-				yield break;
-			}
-
-			//Debug.Log ("ReadSerialLoopWin ");
-			nCoroutineRunning++;
-			//Debug.Log ("nCoroutineRunning: " + nCoroutineRunning);
-			//Debug.Log ("Still listening on com port: " + s_serial.PortName + " open (" + s_serial.IsOpen + ") with coroutine from " + this);
-
-			string serialIn = "";
-			s_lastDataCheck = Time.time;
-			try {
-				s_serial.ReadTimeout = 1;
-				//Debug.Log ("isOpen: " + s_serial.IsOpen);
-
-				while (s_serial.IsOpen) {  // BytesToRead crashes on Windows -> use ReadLine or ReadByte in a Thread or Coroutine
-					char c = (char)s_serial.ReadByte (); // ReadByte crashes on mac if device is removed (or Leonardo reset)
-					serialIn += c;
-				}
-			} catch (System.TimeoutException) {
-				//Debug.Log ("System.TimeoutException in serial.ReadByte: " + e.ToString ());
-			} catch (System.IO.IOException e) {
-				Debug.LogError (e);
-				// may happen when device is reset or disconnected. Close the port to attempt reopening later
-				s_serial.Close ();
-			} catch (System.Exception e) {
-				Debug.LogError ("System.Exception in serial.ReadByte: " + e.ToString ());
-			}
-
-			if (serialIn.Length > 0) {
-
-				//Debug.Log("just read some data: " + serialIn);
-
-				// Dispatch new data to each instance
-				foreach (Serial inst in s_instances) {
-					inst.ReceivedData (serialIn);
-				}
-				s_lastDataIn = s_lastDataCheck;
-			}
-
-			yield return null;
-		}
-
-	}
-
-	/// return all received lines and clear them
-	/// Useful if you need to process all the received lines, even if there are several since last call
-	public List<string> GetLines (bool keepLines = false)
-	{
-
-		List<string> lines = new List<string> (linesIn);
-
-		if (!keepLines)
-			linesIn.Clear ();
-
-		return lines;
-	}
-
-	/// return only the last received line and clear them all
-	/// Useful when you need only the last received values and can ignore older ones
-	public string GetLastLine (bool keepLines = false)
-	{
-
-		string line = "";
-		if (linesIn.Count > 0)
-			line = linesIn [linesIn.Count - 1];
-
-		if (!keepLines)
-			linesIn.Clear ();
-
-		return line;
-	}
-
-	/// <summary>
-	/// Send data to the serial port.
-	/// </summary>
-	public static void Write (string message)
-	{
-		if (CheckOpen ())
-			s_serial.Write (message);
-	}
-
-	/// <summary>
-	/// Send data to the serial port and append a new line character (\n)
-	/// </summary>
-	public static void WriteLn (string message = "")
-	{
-		s_serial.Write (message + "\n");
-	}
-
-	/// <summary>
-	/// Act as if the serial port has received data followed by a new line.
-	/// </summary>
-	public void SimulateDataReceptionLn (float data)
-	{
-		foreach (Serial inst in s_instances) {
-			inst.ReceivedData (data + "\n");
-		}
-	}
-
-	/// <summary>
-	/// Act as if the serial port has received data followed by a new line.
-	/// </summary>
-	public void SimulateDataReceptionLn (string data)
-	{
-		foreach (Serial inst in s_instances) {
-			inst.ReceivedData (data + "\n");
-		}
-	}
-
-	/// <summary>
-	/// Verify if the serial port is opened and opens it if necessary
-	/// </summary>
-	/// <returns><c>true</c>, if port is opened, <c>false</c> otherwise.</returns>
-	/// <param name="portSpeed">Port speed.</param>
-	public static bool CheckOpen ()
-	{
-
-		if (s_serial == null) {
-
-			int portSpeed = GetConfig ().speed;
-			string portName = GetPortName ();
-			if (portName == "") {
-				if (s_debug) {
-					Debug.Log ("Error: Couldn't find serial port.");
-				}
-				return false;
-			} else {
-
-				switch (Application.platform) {
-				case RuntimePlatform.WindowsEditor:
-				case RuntimePlatform.WindowsPlayer:
-                        // Needed to open port above COM9 on Windows
-                        // Note: only possible with new SerialPort(). Changing portName of an existing SerialPort will throw a ArgumentException: value
-					portName = @"\\.\" + portName;
-					break;
-				}
-
-				if (s_debug) {
-					Debug.Log ("Opening serial port: " + portName + " at " + portSpeed + " bauds");
-				}
-			}
-
-			if (s_serial != null && s_serial.IsOpen) {
-				s_serial.Close ();
-			}
-
-			s_serial = new SerialPort (portName, portSpeed);
-		}
-
-		if (!s_serial.IsOpen) {
-
-			try {
-
-				s_serial.Open ();
-				s_serial.DtrEnable = true;
-
-				//Debug.Log ("default ReadTimeout: " + s_serial.ReadTimeout);
-				//s_serial.ReadTimeout = 10;
-
-				// clear input buffer from previous garbage
-				s_serial.DiscardInBuffer ();
-
-			} catch (System.Exception e) {
-				if (s_debug) {
-					Debug.LogError ("System.Exception in serial.Open(): " + e.ToString ());
-				}
-			}
-		}
-
-		return s_serial.IsOpen;
-	}
-
-	// Data has been received, do what this instance has to do with it
-	protected void ReceivedData (string data)
-	{
-
-		if (NotifyData) {
-			SendMessage ("OnSerialData", data);
-		}
-
-		// Detect lines
-		if (NotifyLines || NotifyValues) {
-
-			// prepend pending buffer to received data and split by line
-			string[] lines = (BufferIn + data).Split ('\n');
-
-			// If last line is not empty, it means the line is not complete (new line did not arrive yet), 
-			// We keep it in buffer for next data.
-			int nLines = lines.Length;
-			BufferIn = lines [nLines - 1];
-
-			// Loop until the penultimate line (don't use the last one: either it is empty or it has already been saved for later)
-			for (int iLine = 0; iLine < nLines - 1; iLine++) {
-				string line = lines [iLine];
-				//Debug.Log ("Received a line: " + line);
-
-				// skip first line 
-				if (!FirstLineReceived) {
-					FirstLineReceived = true;
-
-					if (SkipFirstLine) {
-						if (s_debug) {
-							Debug.Log ("First line skipped: " + line);
-						}
-						continue;
-					}
-				}
-
-				// Buffer line
-				if (RememberLines > 0) {
-					linesIn.Add (line);
-
-					// trim lines buffer
-					int overflow = linesIn.Count - RememberLines;
-					if (overflow > 0) {
-						Debug.Log ("Serial removing " + overflow + " lines from lines buffer. Either consume lines before they are lost or set RememberLines to 0.");
-						linesIn.RemoveRange (0, overflow);
-					}
-				}
-
-				// notify new line
-				if (NotifyLines) {
-					SendMessage ("OnSerialLine", line);
-				}
-
-				// Notify values
-				if (NotifyValues) {
-					string[] values = line.Split (ValuesSeparator);
-					SendMessage ("OnSerialValues", values);
-				}
-
-			}
-		}
-	}
-
-	static string GetPortName ()
-	{
-		SerialConfig config = GetConfig ();
-
-		if (s_debug) {
-			Debug.Log ("Prefered port names:\n" + string.Join ("\n", config.portNames));
-		}
-
-		List<string> portNames = new List<string> ();
-
-		switch (Application.platform) {
-
-		case RuntimePlatform.OSXPlayer:
-		case RuntimePlatform.OSXEditor:
-		case RuntimePlatform.LinuxEditor:
-		case RuntimePlatform.LinuxPlayer:
-
-			portNames.AddRange (System.IO.Ports.SerialPort.GetPortNames ());
-
-			if (portNames.Count == 0) {
-				portNames.AddRange (System.IO.Directory.GetFiles ("/dev/", "cu.*"));
-			}
-			break;
-
-		case RuntimePlatform.WindowsEditor:
-		case RuntimePlatform.WindowsPlayer:
-		default:
-
-			portNames.AddRange (System.IO.Ports.SerialPort.GetPortNames ());
-			break;
-		}
-
-		if (s_debug) {
-			Debug.Log (portNames.Count + "available ports: \n" + string.Join ("\n", portNames.ToArray ()));
-		}
-
-		// Looking for preferred names in config
-		foreach (string name in config.portNames) {
-
-			string foundName = portNames.Find (s => s.Contains (name));
-			if (foundName != null) {
-				if (s_debug) {
-					Debug.Log ("Found port " + foundName);
-				}
-				return foundName;
-			}
-		}
-
-		// Defaults to last port in list (most chance to be an Arduino port)
-		if (portNames.Count > 0)
-			return portNames [portNames.Count - 1];
-		else
-			return "";
-	}
-
-
-	static SerialConfig GetConfig ()
-	{
-
-		if (s_config == null) {
-			s_config = GameObject.FindObjectOfType<SerialConfig> ();
-			if (!s_config) {
-				Debug.LogWarning ("Serial configuration not found. Using default values. To configure the prefered port names and speed, add the SerialConfig component to an empty GameObject", s_config);
-
-				// Provide a default config compatible with old version of UnitySerial
-				GameObject goConfig = new GameObject ("Serial configuration");
-				s_config = goConfig.AddComponent<SerialConfig> ();
-			}
-			DontDestroyOnLoad (s_config.gameObject);
-		}
-
-		return s_config;
-	}
-
-
-	void OnGUI ()
-	{
-
-		// Show debug only if enabled and by the first instance to avoid overwrite same data
-		if (s_debug && this == s_instances [0]) {
-			GUILayout.Label ("Serial last data: " + s_lastDataIn + " (last check: " + s_lastDataCheck + ")");
-		}
-	}
+{    // Init a static reference if script is to be accessed by others when used in a 
+    // none static nature eg. its dropped onto a gameObject. The use of "Instance"
+    // allows access to public vars as such as those available to the unity editor.
 
+    public static Serial Instance;
+
+    #region Properties
+
+    // The serial port
+
+    public SerialPort SerialPort;
+
+    // Thread for thread version of port
+    Thread SerialLoopThread;
+
+    [Header("SerialPort")]
+
+    // Current com port and set of default
+    public string ComPort = "COM5";
+
+    // Current baud rate and set of default
+    // 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200
+    public int BaudRate = 9600;
+
+    // The parity-checking protocol.
+    public Parity Parity = Parity.None;
+
+    // The standard number of stopbits per byte.
+    public StopBits StopBits = StopBits.One;
+
+    // The standard length of data bits per byte.
+    public int DataBits = 8;
+
+    // The state of the Data Terminal Ready(DTR) signal during serial communication.
+    public bool DtrEnable;
+
+    // Whether or not the Request to Send(RTS) signal is enabled during serial communication.
+    public bool RtsEnable;
+
+    // Holder for status report information
+
+    private string portStatus = "";
+    public string PortStatus
+    {
+        get { return portStatus; }
+        set { portStatus = value; }
+    }
+
+    // Read and write timeouts
+
+    public int ReadTimeout = 10;
+    public int WriteTimeout = 10;
+
+    // Property used to run/keep alive the serial thread loop
+
+    private bool isRunning = false;
+    public bool IsRunning
+    {
+        get { return isRunning; }
+        set { isRunning = value; }
+    }
+
+    // Set the gui to show ready
+
+    private string rawData = "Ready";
+    public string RawData
+    {
+        get { return rawData; }
+        set { rawData = value; }
+    }
+
+    // Storage for parsed incoming data
+
+    private string[] chunkData;
+    public string[] ChunkData
+    {
+        get { return chunkData; }
+        set { chunkData = value; }
+    }
+
+    [Header("GUI Fields")]
+
+    // Refs populated by the editor inspector for default gui
+    // functionality if script is to be used in a non-static
+    // context.
+
+    public TMP_Text ComStatusText;
+    public TMP_Text RawDataText;
+    public TMP_Text StatusMsgBox;
+
+    // public TMP_InputField OutputString;
+
+    // Define a delegate for our event to use. Delegates 
+    // encapsulate both an object instance and a method 
+    // and are similar to c++ pointers.
+
+    public delegate void SerialDataParseEventHandler(string[] data, string rawData);
+
+    // Define the event that utilizes the delegate to
+    // fire off a notification to all registered objs 
+
+    public static event SerialDataParseEventHandler SerialDataParseEvent;
+
+    // Delegate and event for serialport open notification
+
+    public delegate void SerialPortOpenEventHandler();
+    public static event SerialPortOpenEventHandler SerialPortOpenEvent;
+
+    // Delegate and event for serialport close notification
+
+    public delegate void SerialPortCloseEventHandler();
+    public static event SerialPortCloseEventHandler SerialPortCloseEvent;
+
+    // Delegate and event for serialport sentData notification
+
+    public delegate void SerialPortSentDataEventHandler(string data);
+    public static event SerialPortSentDataEventHandler SerialPortSentDataEvent;
+
+    // Delegate and event for serialport sentLineData notification
+
+    public delegate void SerialPortSentLineDataEventHandler(string data);
+    public static event SerialPortSentLineDataEventHandler SerialPortSentLineDataEvent;
+
+    public enum LoopMethods
+    { Threading, Coroutine }
+
+    [Header("Options")]
+    [SerializeField]
+    public LoopMethods LoopMethod =
+        LoopMethods.Coroutine;
+
+    // If set to true then open the port when the start
+    // event is called.
+
+    public bool OpenPortOnStart = false;
+    public bool ShowDebugs = true;
+
+    // List of all com ports available on the system
+
+    private ArrayList comPorts =
+        new ArrayList();
+
+    [Header("Misc")]
+    public List<string> ComPorts =
+        new List<string>();
+
+    [Header("Data Read")]
+
+    public ReadMethod ReadDataMethod =
+        ReadMethod.ReadLine;
+    public enum ReadMethod
+    {
+        ReadLine,
+        ReadToChar
+    }
+
+    public string Delimiter;
+    public char Separator;
+
+
+
+
+    #endregion Properties
+
+    #region Unity Frame Events
+
+    /// <summary>
+    /// The awake call is used to populate refs to the gui elements used in this 
+    /// example. These can be removed or replaced if needed with bespoke elements.
+    /// This will not affect the functionality of the system. If we are using awake
+    /// then the script is being run non staticaly ie. its initiated and run by 
+    /// being dropped onto a gameObject, thus enabling the game loop events to be 
+    /// called e.g. start, update etc.
+    /// </summary>
+    void Awake()
+    {
+        // Define the script Instance
+
+        Instance = this;
+
+        // If we have used the editor inspector to populate any included gui
+        // elements then lets initiate them and set some default values.
+
+        // Details if the port is open or closed
+
+        if (ComStatusText != null)
+        { ComStatusText.text = "ComStatus: Closed"; }
+    }
+
+    /// <summary>
+    /// The start call is used to populate a list of available com ports on the
+    /// system. The correct port can then be selected via the respective guitext
+    /// or a call to UpdateComPort();
+    /// </summary>
+    void Start()
+    {
+        // Register for a notification of the open port event
+
+        SerialPortOpenEvent +=
+            new SerialPortOpenEventHandler(UnitySerialPort_SerialPortOpenEvent);
+
+        // Register for a notification of the close port event
+
+        SerialPortCloseEvent +=
+            new SerialPortCloseEventHandler(UnitySerialPort_SerialPortCloseEvent);
+
+        // Register for a notification of data sent
+
+        SerialPortSentDataEvent +=
+            new SerialPortSentDataEventHandler(UnitySerialPort_SerialPortSentDataEvent);
+
+        // Register for a notification of data sent
+
+        SerialPortSentLineDataEvent +=
+            new SerialPortSentLineDataEventHandler(UnitySerialPort_SerialPortSentLineDataEvent);
+
+        // Register for a notification of the SerialDataParseEvent
+
+        SerialDataParseEvent +=
+            new SerialDataParseEventHandler(UnitySerialPort_SerialDataParseEvent);
+
+        // Population of comport list via system.io.ports
+
+        PopulateComPorts();
+
+        // If set to true then open the port. You must 
+        // ensure that the port is valid etc. for this! 
+
+        if (OpenPortOnStart) { OpenSerialPort(); }
+    }
+
+    /// <summary>
+    /// This function is called when the MonoBehaviour will be destroyed.
+    /// OnDestroy will only be called on game objects that have previously
+    /// been active.
+    /// </summary>
+    void OnDestroy()
+    {
+        // If we are registered for a notification of the 
+        // SerialPort events then remove the registration
+
+        if (SerialDataParseEvent != null)
+            SerialDataParseEvent -= UnitySerialPort_SerialDataParseEvent;
+
+        if (SerialPortOpenEvent != null)
+            SerialPortOpenEvent -= UnitySerialPort_SerialPortOpenEvent;
+
+        if (SerialPortCloseEvent != null)
+            SerialPortCloseEvent -= UnitySerialPort_SerialPortCloseEvent;
+
+        if (SerialPortSentDataEvent != null)
+            SerialPortSentDataEvent -= UnitySerialPort_SerialPortSentDataEvent;
+
+        if (SerialPortSentLineDataEvent != null)
+            SerialPortSentLineDataEvent -= UnitySerialPort_SerialPortSentLineDataEvent;
+    }
+
+    /// <summary>
+    /// The update frame call is used to provide caps for sending data to the arduino
+    /// triggered via keypress. This can be replaced via use of the static functions
+    /// SendSerialData() & SendSerialDataAsLine(). Additionaly this update uses the
+    /// RawData property to update the gui. Again this can be removed etc.
+    /// </summary>
+    void Update()
+    {
+        // Check if the serial port exists and is open
+        if (SerialPort == null || SerialPort.IsOpen == false) { return; }
+
+        // Example calls from system to the arduino. For more detail on the
+        // structure of the calls see:
+        // http://www.dyadica.co.uk/journal/simple-serial-string-parsing/
+
+        //try
+        //{
+        //    // Here we have some sample usage scenarios that
+        //    // demo the operation of the UnitySerialPort. In
+        //    // order to use these you must first ensure that
+        //    // the custom inputs are defined via:
+
+        //    // Edit > Project Settings > Input
+
+        //    if (Input.GetButtonDown("SendData"))
+        //    { SendSerialDataAsLine(OutputString.text); }
+
+        //    // Example of sending key 1 press event to arduino.
+        //    // The "A,1" string will call functionA and pass a
+        //    // char value of 1
+        //    if (Input.GetButtonDown("Key1"))
+        //    { SendSerialDataAsLine("A,1"); }
+
+        //    // Example of sending key 1 press event to arduino.
+        //    // The "A,2" string will call functionA and pass a
+        //    // char value of 2
+        //    if (Input.GetButtonDown("Key2"))
+        //    { SendSerialDataAsLine("A,2"); }
+
+        //    // Example of sending space press event to arduino
+        //    if (Input.GetButtonDown("Key3"))
+        //    { SendSerialDataAsLine(""); }
+        //}
+        //catch (Exception ex)
+        //{
+        //    // Failed to send serial data
+        //    Debug.Log("Error 6: " + ex.Message.ToString());
+        //}
+
+        try
+        {
+            // If we have set a GUI Text object then update it. This can only be
+            // run on the thread that initialised the object thus cnnot be run
+            // in the ParseSerialData() call below... Unless run as a coroutine!
+
+            // I have also included other raw data examples in GUIManager.cs         
+
+            // RawDataText is null/none by default for examples (see GUIManager.cs)
+            if (RawDataText != null)
+                RawDataText.text = RawData;
+        }
+        catch (Exception ex)
+        {
+            // Failed to update serial data
+            Debug.Log("Error 7: " + ex.Message.ToString());
+        }
+    }
+
+    /// <summary>
+    /// Clean up the thread and close the port on application close event.
+    /// </summary>
+    void OnApplicationQuit()
+    {
+        // Call to cloase the serial port
+        CloseSerialPort();
+
+        Thread.Sleep(100);
+
+        if (LoopMethod == LoopMethods.Coroutine)
+            StopSerialCoroutine();
+
+        if (LoopMethod == LoopMethods.Threading)
+            StopSerialThreading();
+
+        Thread.Sleep(100);
+    }
+
+    #endregion Unity Frame Events
+
+    #region Notification Events
+
+    /// <summary>
+    /// Data parsed serialport notification event
+    /// </summary>
+    /// <param name="Data">string</param>
+    /// <param name="RawData">string[]</param>
+    void UnitySerialPort_SerialDataParseEvent(string[] Data, string RawData)
+    {
+        // Not fired via portStatus to avoid hiding other messages from the GUI
+        if (ShowDebugs)
+            print("Data Recieved via port: " + RawData);
+    }
+
+    /// <summary>
+    /// Open serialport notification event
+    /// </summary>
+    void UnitySerialPort_SerialPortOpenEvent()
+    {
+        portStatus = "The serialport:" + ComPort + " is now open!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    /// <summary>
+    /// Close serialport notification event
+    /// </summary>
+    void UnitySerialPort_SerialPortCloseEvent()
+    {
+        portStatus = "The serialport:" + ComPort + " is now closed!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    /// <summary>
+    /// Send data serialport notification event
+    /// </summary>
+    /// <param name="Data">string</param>
+    void UnitySerialPort_SerialPortSentDataEvent(string Data)
+    {
+        portStatus = "Sent data: " + Data;
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    /// <summary>
+    /// Send data with "\n" serialport notification event
+    /// </summary>
+    /// <param name="Data">string</param>
+    void UnitySerialPort_SerialPortSentLineDataEvent(string Data)
+    {
+        portStatus = "Sent data as line: " + Data;
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    #endregion Notification Events
+
+    #region Object Serial Port
+
+    /// <summary>
+    /// Opens the defined serial port and starts the serial thread used
+    /// to catch and deal with serial events.
+    /// </summary>
+    public void OpenSerialPort()
+    {
+        try
+        {
+            // Initialise the serial port
+            SerialPort = new SerialPort(ComPort, BaudRate, Parity, DataBits, StopBits);
+
+            SerialPort.ReadTimeout = ReadTimeout;
+            SerialPort.WriteTimeout = WriteTimeout;
+
+            SerialPort.DtrEnable = DtrEnable;
+            SerialPort.RtsEnable = RtsEnable;
+
+            // Open the serial port
+            SerialPort.Open();
+
+            // Update the gui if applicable
+            if (Instance != null && Instance.ComStatusText != null)
+            { Instance.ComStatusText.text = "ComStatus: Open"; }
+
+            if (LoopMethod == LoopMethods.Coroutine)
+            {
+                if (isRunning)
+                {
+                    // TCoroutine is already running so kill it!?
+                    StopSerialCoroutine();
+                }
+
+                // Restart it once more
+                StartSerialCoroutine();
+            }
+
+            if (LoopMethod == LoopMethods.Threading)
+            {
+                if (isRunning)
+                {
+                    // Thread is already running so kill it!?
+                    StopSerialThreading();
+                }
+
+                // Restart it once more
+                StartSerialThread();
+            }
+
+            portStatus = "The serialport is now open!";
+
+            if (ShowDebugs)
+                ShowDebugMessages(portStatus);
+        }
+        catch (Exception ex)
+        {
+            // Failed to open com port or start serial thread
+            Debug.Log("Error 1: " + ex.Message.ToString());
+        }
+
+        if (SerialPortOpenEvent != null)
+            SerialPortOpenEvent();
+    }
+
+    /// <summary>
+    /// Cloases the serial port so that changes can be made or communication
+    /// ended.
+    /// </summary>
+    public void CloseSerialPort()
+    {
+        try
+        {
+            // Close the serial port
+            SerialPort.Close();
+
+            // Update the gui if applicable
+            if (Instance.ComStatusText != null)
+            { Instance.ComStatusText.text = "ComStatus: Closed"; }
+        }
+        catch (Exception ex)
+        {
+            if (SerialPort == null || SerialPort.IsOpen == false)
+            {
+                // Failed to close the serial port. Uncomment if
+                // you wish but this is triggered as the port is
+                // already closed and or null.
+
+                // Debug.Log("Error 2A: " + "Port already closed!");
+            }
+            else
+            {
+                // Failed to close the serial port
+                Debug.Log("Error 2B: " + ex.Message.ToString());
+            }
+        }
+
+        if (LoopMethod == LoopMethods.Coroutine)
+            StopSerialCoroutine();
+
+        if (LoopMethod == LoopMethods.Threading)
+            StopSerialThreading();
+
+        portStatus = "Serial port closed!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+
+        // Trigger a port closed notification
+
+        if (SerialPortCloseEvent != null)
+            SerialPortCloseEvent();
+    }
+
+    #endregion Object Serial Port
+
+    #region Serial Threading
+
+    void StartSerialThread()
+    {
+        isRunning = true;
+
+        SerialLoopThread = new Thread(SerialThreadLoop);
+        SerialLoopThread.Start();
+    }
+
+    void SerialThreadLoop()
+    {
+        while (isRunning)
+        {
+            if (isRunning == false)
+                break;
+
+            // Run the generic loop
+            GenericSerialLoop();
+        }
+
+        portStatus = "Ending Serial Thread!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    /// <summary>
+    /// Function used to stop the thread and "over" kill
+    /// off any instance
+    /// </summary>
+    public void StopSerialThreading()
+    {
+        isRunning = false;
+
+        // this should timeout the thread
+
+        Thread.Sleep(100);
+
+        // otherwise...
+
+        if (SerialLoopThread != null && SerialLoopThread.IsAlive)
+            SerialLoopThread.Abort();
+
+        Thread.Sleep(100);
+
+        if (SerialLoopThread != null)
+            SerialLoopThread = null;
+
+        // Reset the serial port to null
+
+        if (SerialPort != null)
+        { SerialPort = null; }
+
+        // Update the port status... just in case :)
+
+        portStatus = "Ended Serial Loop Thread!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    #endregion Serial Threading
+
+    #region Serial Coroutine
+
+    /// <summary>
+    /// Function used to start coroutine for reading serial 
+    /// data.
+    /// </summary>
+    public void StartSerialCoroutine()
+    {
+        isRunning = true;
+
+        StartCoroutine("SerialCoroutineLoop");
+    }
+
+    /// <summary>
+    /// A Coroutine used to recieve serial data thus not 
+    /// affecting generic unity playback etc.
+    /// </summary>
+    public IEnumerator SerialCoroutineLoop()
+    {
+        while (isRunning)
+        {
+            GenericSerialLoop();
+            yield return null;
+        }
+
+        portStatus = "Ending Coroutine!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    /// <summary>
+    /// Function used to stop the coroutine and kill
+    /// off any instance
+    /// </summary>
+    public void StopSerialCoroutine()
+    {
+        isRunning = false;
+
+        Thread.Sleep(100);
+
+        try
+        {
+            StopCoroutine("SerialCoroutineLoop");
+        }
+        catch (Exception ex)
+        {
+            portStatus = "Error 2A: " + ex.Message.ToString();
+
+            if (ShowDebugs)
+                ShowDebugMessages(portStatus);
+        }
+
+        // Reset the serial port to null
+        if (SerialPort != null)
+        { SerialPort = null; }
+
+        // Update the port status... just in case :)
+        portStatus = "Ended Serial Loop Coroutine!";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    #endregion Serial Coroutine
+
+    /// <summary>
+    /// The serial thread loop & the coroutine loop both utilise
+    /// the same code with the exception of the null return on 
+    /// the coroutine, so we share it here.
+    /// </summary>
+    private void GenericSerialLoop()
+    {
+        try
+        {
+            // Check that the port is open. If not skip and do nothing
+            if (SerialPort.IsOpen)
+            {
+                // Read serial data until...
+
+                string rData = string.Empty;
+
+                // swap between the ReadLine or ReadTo
+                switch (ReadDataMethod)
+                {
+                    case ReadMethod.ReadLine:
+                        rData = SerialPort.ReadLine();
+                        break;
+                    case ReadMethod.ReadToChar:
+                        rData = SerialPort.ReadTo(Delimiter);
+                        break;
+                }
+
+                // If the data is valid then do something with it
+                if (rData != null && rData != "")
+                {
+                    // Store the raw data
+                    RawData = rData;
+                    // split the raw data into chunks via ',' and store it
+                    // into a string array
+                    ChunkData = RawData.Split(Separator);
+
+                    // Or you could call a function to do something with
+                    // data e.g.
+                    ParseSerialData(ChunkData, RawData);
+                }
+            }
+        }
+        catch (TimeoutException)
+        {
+            // This will be triggered lots with the coroutine method
+        }
+        catch (Exception ex)
+        {
+            // This could be thrown if we close the port whilst the thread 
+            // is reading data. So check if this is the case!
+            if (SerialPort.IsOpen)
+            {
+                // Something has gone wrong!
+                Debug.Log("Error 4: " + ex.Message.ToString());
+            }
+            else
+            {
+                // Error caused by closing the port whilst in use! This is 
+                // not really an error but uncomment if you wish.
+
+                Debug.Log("Error 5: Port Closed Exception!");
+            }
+        }
+    }
+
+    #region Methods
+
+    /// <summary>
+    /// Function used to send string data over serial with
+    /// an included line return
+    /// </summary>
+    /// <param name="data">string</param>
+    public void SendSerialDataAsLine(string data)
+    {
+        if (SerialPort != null)
+        { SerialPort.WriteLine(data); }
+
+        portStatus = "Sent data: " + data;
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+
+        // throw a sent data notification
+
+        if (SerialPortSentLineDataEvent != null)
+            SerialPortSentLineDataEvent(data);
+    }
+
+    /// <summary>
+    /// Function used to send string data over serial without
+    /// a line return included.
+    /// </summary>
+    /// <param name="data"></param>
+    public void SendSerialData(string data)
+    {
+        if (SerialPort != null)
+        { SerialPort.Write(data); }
+
+        portStatus = "Sent data: " + data;
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+
+        // throw a sent data notification
+
+        if (SerialPortSentDataEvent != null)
+            SerialPortSentDataEvent(data);
+    }
+
+    /// <summary>
+    /// Function used to filter and act upon the data recieved. You can add
+    /// bespoke functionality here.
+    /// </summary>
+    /// <param name="data">string[] of raw data seperated into chunks via ','</param>
+    /// <param name="rawData">string of raw data</param>
+    private void ParseSerialData(string[] data, string rawData)
+    {
+
+        // Fire a notification to all registered objects. Before we do
+        // this however, first double check that we have some valid
+        // data here so this only has to be performed once and not on
+        // each object notified.
+
+        if (data != null && rawData != string.Empty)
+        {
+            if (SerialDataParseEvent != null)
+                SerialDataParseEvent(data, rawData);
+        }
+    }
+
+    /// <summary>
+    /// Function that utilises system.io.ports.getportnames() to populate
+    /// a list of com ports available on the system.
+    /// </summary>
+    public void PopulateComPorts()
+    {
+        // Loop through all available ports and add them to the list
+        foreach (string cPort in SerialPort.GetPortNames())
+        {
+            ComPorts.Add(cPort);
+
+            comPorts.Add(cPort);
+
+            // Debug.Log(cPort.ToString());
+        }
+
+        // Update the port status just in case :)
+        portStatus = "ComPort list population complete";
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+    }
+
+    /// <summary>
+    /// Function used to update the current selected com port
+    /// </summary>
+    public string UpdateComPort()
+    {
+        // If open close the existing port
+        if (SerialPort != null && SerialPort.IsOpen)
+        { CloseSerialPort(); }
+
+        // Find the current id of the existing port within the
+        // list of available ports
+        int currentComPort = comPorts.IndexOf(ComPort);
+
+        // check against the list of ports and get the next one.
+        // If we have reached the end of the list then reset to zero.
+        if (currentComPort + 1 <= comPorts.Count - 1)
+        {
+            // Inc the port by 1 to get the next port
+            ComPort = (string)comPorts[currentComPort + 1];
+        }
+        else
+        {
+            // We have reached the end of the list reset to the
+            // first available port.
+            ComPort = (string)comPorts[0];
+        }
+
+        // Update the port status just in case :)
+        portStatus = "ComPort set to: " + ComPort.ToString();
+
+        if (ShowDebugs)
+            ShowDebugMessages(portStatus);
+
+        // Return the new ComPort just in case
+        return ComPort;
+    }
+
+    /// <summary>
+    /// What it says on the tin!
+    /// </summary>
+    /// <param name="portStatus">string</param>
+    public void ShowDebugMessages(string portStatus)
+    {
+        if (StatusMsgBox != null)
+            StatusMsgBox.text = portStatus;
+
+        print(portStatus);
+    }
+
+    #endregion Methods
 }
