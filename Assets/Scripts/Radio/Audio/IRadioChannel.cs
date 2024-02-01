@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class RadioChannel
+public interface IRadioChannel
 {
-
+    public void SeekTo();
+    public void SeekAwayFrom();
 }
