@@ -64,6 +64,7 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
         rb.maxAngularVelocity = 50;
         rb.sleepThreshold = 0.0f;
         OnValidate();
+        GameManager.Instance.Player = this;
     }
 
     private void OnEnable() {
