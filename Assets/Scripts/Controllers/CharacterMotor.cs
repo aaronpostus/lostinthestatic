@@ -11,13 +11,14 @@ public enum PlayerMoveState {
 }
 
 [RequireComponent(typeof(Rigidbody))]
-public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
+public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical, ICameraTargetable
 {
     public event Action<bool> UpdateGroundStatus, UpdateSprintStatus;
 
     [Header("Input Source")]
     [OdinSerialize] private IInputProvider inputProvider;
-
+    [SerializeField] private Transform cameraTarget;
+        
     public int priority => 5;
     private InputState inputState;
     [Header("Physical Properties")]
@@ -216,5 +217,10 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     public InputState ModifyInput(InputState input) {
         if (isBoosting) input.moveDirection = Vector2.up;
         return input;
+    }
+
+    public Transform GetTarget()
+    {
+        return cameraTarget;
     }
 }
