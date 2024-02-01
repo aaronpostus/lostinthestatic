@@ -4,10 +4,12 @@ using Drawing;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CarController : SerializedMonoBehaviour
+public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
-
+    [SerializeField] private Transform cameraTarget;
+    
+    
     private float[,] forces;
     private Color[] forceColors;
     [OdinSerialize] LayerMask groundMask;
@@ -15,14 +17,12 @@ public class CarController : SerializedMonoBehaviour
     [SerializeField] private AnimationCurve powerCurve;
     [SerializeField] private float powerScalar, maxVelocity;
 
-    [SerializeField] Wheel[] wheels;
+    [OdinSerialize] Wheel[] wheels;
     [SerializeField, Range(0,90)] private float maxSteerAngle, steerSpeed;
 
     [OdinSerialize] private float suspensionRestDist;
     [OdinSerialize] private float springConst, springDamp;
-    public bool Occupied;    
-
-
+    
     private Rigidbody rb;
     private InputState inputState;
 
@@ -35,7 +35,7 @@ public class CarController : SerializedMonoBehaviour
 
     private void Update()
     {
-        inputState = Occupied ? inputProvider.GetState() : new InputState();
+        inputState = inputProvider.GetState();
 
         for(int i=0;i<wheels.Length;i++)
         {
@@ -62,6 +62,7 @@ public class CarController : SerializedMonoBehaviour
     {
         for (int i = 0; i < wheels.Length; i++)
         {
+
             Transform wTransform = wheels[i].transform;
             Vector3 tireVel = rb.GetPointVelocity(wTransform.position);
             
@@ -81,8 +82,8 @@ public class CarController : SerializedMonoBehaviour
             if (tireGroundVel.magnitude > 0) {
                 Vector3 tireSlip = Vector3.Project(tireGroundVel, wTransform.right);
                 float slipRatio = Vector3.Dot(tireSlip, tireGroundVel);
-                float pacejkaFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
-                force = wheels[i].GripFactor * pacejkaFactor / Time.fixedDeltaTime;
+                float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
+                force = slipRatio * gripFactor / Time.fixedDeltaTime;
                 rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, hit.normal), wTransform.position);
                 forces[0, i] = force;
             }
@@ -97,5 +98,10 @@ public class CarController : SerializedMonoBehaviour
                 forces[2, i] = force;
             }
         }
+    }
+
+    public Transform GetTarget()
+    {
+        return cameraTarget;
     }
 }
