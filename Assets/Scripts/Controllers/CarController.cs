@@ -4,10 +4,10 @@ using Drawing;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CarController : SerializedMonoBehaviour
+public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
-
+    [SerializeField] private Transform cameraTarget;
     
     
     private float[,] forces;
@@ -98,5 +98,10 @@ public class CarController : SerializedMonoBehaviour
                 forces[2, i] = force;
             }
         }
+    }
+
+    public Transform GetTarget()
+    {
+        return cameraTarget;
     }
 }
