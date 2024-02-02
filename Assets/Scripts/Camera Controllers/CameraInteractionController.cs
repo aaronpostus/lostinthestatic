@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 using UnityEngine;
 
 
@@ -8,37 +11,24 @@ public class CameraInteractionController : MonoBehaviour
 
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private float interactionDistance;
-    [SerializeField] private Vector2 screenPivot = new Vector2(0.5f,0.5f);
-    [SerializeField] private StringReference interactionString;
+    [SerializeField] private Vector2 screenPivot;
     private Camera c;
-    private Transform interactTarget;
 
-    private void OnEnable()
+    void Start()
     {
         cc = GetComponent<CameraController>();
         c = Camera.main;
-        cc.inputProvider.OnInteract.started += TryInteract;
-    }
-
-    private void OnDisable()
-    {
-        cc.inputProvider.OnInteract.started -= TryInteract;
     }
 
     void Update()
     {
-        interactTarget = null;
-        //if (interactionString != null) interactionString.Value = interactTarget != null ? "" : ;
-        if (!cc.IsFree || !Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask)) return;
-
-        interactTarget = hit.collider.transform;
+        if (!Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask)) return;
+        if (hit.collider.TryGetComponent(out IInteractable interactable)) interactable.Interact();
+        if (hit.collider.TryGetComponent(out InspectableItem item)) InteractInspectable(item);
+        else if (hit.collider.TryGetComponent(out Monument mon)) InteractMonument(mon);
     }
 
-    private void TryInteract()
-    {
-        if (interactTarget == null) return;
-        IInteractable interactable = interactTarget.GetComponent<IInteractable>();
-        if (interactable == null) return;
-        interactable.Interact();
-    }
+    private void InteractMonument(Monument mon) {}
+    private void InteractInspectable(InspectableItem item) {}
+
 }

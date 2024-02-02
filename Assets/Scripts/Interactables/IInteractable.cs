@@ -13,6 +13,5 @@ public enum InteractionType {
     Inspect,
     Open,
     Close,
-    Play,
-    Use
+    Play
 }

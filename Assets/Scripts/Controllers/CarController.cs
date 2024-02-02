@@ -8,7 +8,8 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
     [SerializeField] private Transform cameraTarget;
-
+    
+    
     private float[,] forces;
     private Color[] forceColors;
     [OdinSerialize] LayerMask groundMask;
@@ -17,33 +18,19 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
     [SerializeField] private float powerScalar, maxVelocity;
 
     [OdinSerialize] Wheel[] wheels;
-    [SerializeField, Range(0, 90)] private float maxSteerAngle, steerSpeed;
+    [SerializeField, Range(0,90)] private float maxSteerAngle, steerSpeed;
 
     [OdinSerialize] private float suspensionRestDist;
     [OdinSerialize] private float springConst, springDamp;
-
+    
     private Rigidbody rb;
     private InputState inputState;
 
-    void Awake() {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
-        forces = new float[3, wheels.Length];
+        forces = new float[3,wheels.Length];
         forceColors = new Color[3] { Color.red, Color.green, Color.blue };
-        GameManager.Instance.Car = this;
-    }
-
-    private void OnEnable()
-    {
-        GameManager.PlayerStateChanged += HandleStateChange;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.PlayerStateChanged -= HandleStateChange;
-    }
-
-    private void HandleStateChange (PlayerState state){
-        rb.isKinematic = state != PlayerState.InCar;
     }
 
     private void Update()
@@ -75,6 +62,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
     {
         for (int i = 0; i < wheels.Length; i++)
         {
+
             Transform wTransform = wheels[i].transform;
             Vector3 tireVel = rb.GetPointVelocity(wTransform.position);
             
@@ -112,5 +100,8 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         }
     }
 
-    public Transform GetTarget() => cameraTarget;
+    public Transform GetTarget()
+    {
+        return cameraTarget;
+    }
 }

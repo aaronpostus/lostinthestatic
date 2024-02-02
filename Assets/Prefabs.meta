@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/Sirenix/Odin Inspector/Config/Resources/Sirenix.meta
 guid: 82f3e836836e2524c993819fa19c6464
+========
+guid: ebd8786f77d9f0542ba7a807eaa3c802
+>>>>>>>> radio-controller:Assets/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
