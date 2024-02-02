@@ -4,9 +4,9 @@ using UnityEngine;
 public class LoopingChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
-    public LoopingChannel(string fmodEventDir, Transform transform) { 
+    public LoopingChannel(string fmodEventDir, GameObject attentuationObject) { 
         this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventDir);
-        Update(transform);
+        this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
     }
     public void SeekTo() {
         Debug.Log("Seek to looping channel");
@@ -15,8 +15,5 @@ public class LoopingChannel : IRadioChannel
     public void SeekAwayFrom() {
         Debug.Log("Seek away from looping channel");
         loopEventInstance.stop(STOP_MODE.IMMEDIATE);
-    }
-    public void Update(Transform transform) {
-        this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
     }
 }

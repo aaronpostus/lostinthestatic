@@ -10,31 +10,18 @@ public class RadioAudioComponent : MonoBehaviour
     private void CreateChannels() {
         this.radioChannels = new Dictionary<float, IRadioChannel>();
         foreach (RadioChannelData channelData in data.channels) {
-            IRadioChannel channel;
-            switch (channelData.channelType) {
-                // change later to include classes for the other types of channels
-                case RadioChannelType.LOOPING:
-                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
-                    break;
-                case RadioChannelType.STANDARD:
-                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
-                    break;
-                case RadioChannelType.INVISIBLE_MAZE:
-                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
-                    break;
-                default:
-                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
-                    break;
-            }
-            radioChannels.Add(channelData.channelFrequency, channel);
+            radioChannels.Add(channelData.channelFrequency, CreateChannel(channelData));
         }
     }
-    private void Update()
-    {
-        if (currentRadioChannel == null) {
-            return;
-        }
-        currentRadioChannel.Update(this.transform);
+    private IRadioChannel CreateChannel(RadioChannelData channelData) {
+        return channelData.channelType switch
+        {
+            // change later to include classes for the other types of channels
+            RadioChannelType.STANDARD => new LoopingChannel(channelData.fmodEventDir, gameObject),
+            RadioChannelType.INVISIBLE_MAZE => new LoopingChannel(channelData.fmodEventDir, gameObject),
+            RadioChannelType.LOOPING => new LoopingChannel(channelData.fmodEventDir, gameObject),
+            _ => throw new System.NotImplementedException(),
+        };
     }
     public void Seek(float radioChannel) {
         if (this.radioChannels == null) {
