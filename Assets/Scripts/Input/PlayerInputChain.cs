@@ -19,7 +19,7 @@ public class PlayerInputChain : SerializedMonoBehaviour, IInputProvider
     public InputState GetState()
     {
         InputState input = inputProvider.GetState();
-        input.moveDirection = new Vector3(input.moveDirection.x, 0, input.moveDirection.y);
+        input.moveDirection = new Vector3(input.moveDirection.x, 0, input.moveDirection.y).normalized;
         for(int i=0; i<inputChain.Count; i++)
         {
             input = inputChain[i].ModifyInput(input);

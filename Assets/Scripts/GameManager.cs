@@ -10,25 +10,26 @@ public enum PlayerState{
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager Instance {
+    public static GameManager Instance {
         get {
             if (instance == null) instance = new GameObject("[Game Mmnager]").AddComponent<GameManager>();
-        
             return Instance;
         }
     }
+    private static GameManager instance;
 
-
-
-
-    private GameManager instance;
     public PlayerState ActivePlayerState;
-    public Transform Player, Car;
-    public Transform PlayerCameraTarget, CarCameraTarget;
 
+    public CharacterMotor Player;
+    public CarController Car;
 
-    private void Awake()
-    {
-        
+    public Transform CameraHolder;
+    private Transform cameraTarget;
+
+    public void TransitionPlayer(bool isEnter) {
+        if (ActivePlayerState == PlayerState.Transition) return;
+        if ((isEnter && ActivePlayerState == PlayerState.InCar) && (!isEnter && ActivePlayerState == PlayerState.OnFoot)) return;
+        cameraTarget = isEnter ? Car.GetTarget() : Player.GetTarget();
+
     }
 }

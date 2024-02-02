@@ -26,11 +26,11 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
     private Rigidbody rb;
     private InputState inputState;
 
-    void Start()
-    {
+    void Awake() {
         rb = GetComponent<Rigidbody>();
-        forces = new float[3,wheels.Length];
+        forces = new float[3, wheels.Length];
         forceColors = new Color[3] { Color.red, Color.green, Color.blue };
+        GameManager.Instance.Car = this;
     }
 
     private void Update()

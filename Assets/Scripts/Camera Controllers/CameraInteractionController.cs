@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Json;
 using UnityEngine;
 
 
@@ -11,24 +8,65 @@ public class CameraInteractionController : MonoBehaviour
 
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private float interactionDistance;
-    [SerializeField] private Vector2 screenPivot;
+    [SerializeField] private Vector2 screenPivot = new Vector2(0.5f,0.5f);
     private Camera c;
+    [SerializeField] private float transitionTime;
+    [SerializeField] private AnimationCurve transitionCurve;
+    [SerializeField] private float transitionTimer;
+    private Transform oldTarget;
+    private Transform interactTarget;
 
-    void Start()
+    private void OnEnable()
     {
         cc = GetComponent<CameraController>();
         c = Camera.main;
+        cc.inputProvider.OnInteract.started += TryInteract;
+    }
+
+
+    private void OnDisable()
+    {
+        cc.inputProvider.OnInteract.started -= TryInteract;
     }
 
     void Update()
     {
-        if (!Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask)) return;
-        if (hit.collider.TryGetComponent(out IInteractable interactable)) interactable.Interact();
-        if (hit.collider.TryGetComponent(out InspectableItem item)) InteractInspectable(item);
-        else if (hit.collider.TryGetComponent(out Monument mon)) InteractMonument(mon);
+        interactTarget = null;
+        if (!(cc.IsFree && Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask))) return;
+        interactTarget = hit.collider.transform;
+        Debug.Log(interactTarget.name);
+    }
+
+    private void TryInteract()
+    {
+        
+        if (interactTarget == null) return;
+
+        if (interactTarget.TryGetComponent(out IInteractable interactable)) interactable.Interact();
+        
+        if (interactTarget.TryGetComponent(out InspectableItem item)) InteractInspectable(item);
+        else if (interactTarget.TryGetComponent(out Monument mon)) InteractMonument(mon);
+        else if (interactTarget.TryGetComponent(out CarHandle carHandle)) InteractCarHandle(carHandle);
     }
 
     private void InteractMonument(Monument mon) {}
     private void InteractInspectable(InspectableItem item) {}
 
+    private void InteractCarHandle(CarHandle carHandle) {
+        oldTarget = cc.PositionTarget;
+        cc.PositionTarget = carHandle.IsEnter ? cc.CarTarget : cc.CharTarget;
+        cc.IsTransitioning = true;
+        transitionTimer = 0;
+        UpdateTicker.Subscribe(TransitionCameraTarget);
+    }
+
+    private void TransitionCameraTarget() {
+        transitionTimer += Time.deltaTime;
+        cc.transform.position = Vector3.Lerp(oldTarget.position, cc.PositionTarget.position, transitionCurve.Evaluate(transitionTimer / transitionTime));
+
+        if (transitionTimer > transitionTime) {
+            UpdateTicker.Unsubscribe(TransitionCameraTarget);
+            cc.IsTransitioning = false;
+        }
+    }
 }
