@@ -4,17 +4,14 @@ using TMPro;
 using UnityEngine;
 public class Radio : MonoBehaviour
 {
-    [Tooltip("Attach the module that feeds the radio input from an arduino.")]
-    [SerializeField] ArduinoCommunicationModule arduino;
-    [Tooltip("How many presets can you create? These will bind to (n) number inputs starting at 1 and the save button will be the (n+1) number key.")]
-    [SerializeField] int numberOfPresetButtons;
-    [Tooltip("Add all button text here for the preset channels")]
-    [SerializeField ] List<TextMeshPro> buttonTexts;
+
+    [Header("Attach the module that feeds the radio input from an arduino.")] public ArduinoCommunicationModule arduino;
+    [Header("How many presets can you create?")] public int numberOfPresetButtons;
+    [Header("Add all button text here for the preset channels")] public List<TextMeshPro> buttonTexts;
     [SerializeField] TextMeshPro freq, vol;
-    [Tooltip("Speed modifiers for keyboard controls for tuning dials")]
-    [SerializeField] float volumeSpeed = 5f, radioSpeed = 1.5f;
-    [Tooltip("How long should we allow the radio to stay in the save state before just returning to the normal state?")]
-    [SerializeField] float saveStateMaxLength = 2f;
+    [Header("Speed modifiers for keyboard controls for tuning dials")] public float volumeSpeed = 5f, radioSpeed = 1.5f;
+    [Header("How long should we allow the radio to idle in the save state?")] public float saveStateMaxLength = 2f;
+    [SerializeField] RadioData data;
     enum RadioState { DEFAULT, AWAITING_SAVE_SELECTION, IDLING_AT_PRESET }
     private RadioState state;
 
@@ -26,9 +23,9 @@ public class Radio : MonoBehaviour
     // constants calculated at runtime
     private int freqRange, volRange;
     // raw floating point numbers that wont look how the user wants
-    private float rawFrequency = 100, rawVolume = 15;
+    private float rawFrequency = 99, rawVolume = 15;
     // the actual numbers required for functionality and visual components
-    private float prettyFrequency, prettyVolume;
+    private float prettyFrequency = 99, prettyVolume = 15;
     // timer for save state to expire
     private float remainingSaveStateTime;
 
@@ -37,7 +34,6 @@ public class Radio : MonoBehaviour
         volRange = (maxVol - minVol) + 1;
         state = RadioState.DEFAULT;
         savePresetKey = KeyCode.Alpha1 + numberOfPresetButtons;
-
     }
     public void Awake()
     {
@@ -47,8 +43,12 @@ public class Radio : MonoBehaviour
             buttons.Add(new PresetButton(this, buttonTexts[i]));
         }
         buttons.Add(new SavePresetButton(this));
+        CreateChannels();
         RefreshFrequency();
         RefreshVolume();
+    }
+    public void CreateChannels() { 
+    
     }
     public void JumpToPreset(float frequency) {
         this.state = RadioState.IDLING_AT_PRESET;

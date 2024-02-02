@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 public class LoopingChannel : IRadioChannel
 {
+
+    public LoopingChannel() { 
+    
+    }
     public void SeekTo() { 
     
     }

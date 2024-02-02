@@ -30,10 +30,6 @@ public class RadioInput : MonoBehaviour
             { KeyCode.Alpha4, radio.ButtonInteraction },
             { KeyCode.Alpha5, radio.ButtonInteraction } 
         };
-
-        /*for (KeyCode keyCode = KeyCode.Alpha1; keyCode <= radio.GetPresetKey(); keyCode++) {
-                keyPressAndReleaseInputActions.Add(keyCode, radio.ButtonInteraction);
-        }*/
     }
     private void Update()
     {
