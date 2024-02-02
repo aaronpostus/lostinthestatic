@@ -7,11 +7,8 @@ public class RadioAudioComponent : MonoBehaviour
     [SerializeField] RadioData data;
     private Dictionary<float, IRadioChannel> radioChannels;
     private IRadioChannel currentRadioChannel = null;
-    void Awake() {
-        this.radioChannels = new Dictionary<float, IRadioChannel>();
-        CreateChannels();
-    }
     private void CreateChannels() {
+        this.radioChannels = new Dictionary<float, IRadioChannel>();
         foreach (RadioChannelData channelData in data.channels) {
             IRadioChannel channel;
             switch (channelData.channelType) {
@@ -40,11 +37,16 @@ public class RadioAudioComponent : MonoBehaviour
         currentRadioChannel.Update(this.transform);
     }
     public void Seek(float radioChannel) {
+        if (this.radioChannels == null) {
+            CreateChannels();
+        }
+
         if (this.currentRadioChannel != null) {
             currentRadioChannel.SeekAwayFrom();
         }
         if (this.radioChannels.ContainsKey(radioChannel)) {
             this.currentRadioChannel = this.radioChannels[radioChannel];
+            this.currentRadioChannel.SeekTo();
         }
         else {
             this.currentRadioChannel = null;

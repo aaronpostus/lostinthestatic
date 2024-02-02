@@ -38,7 +38,6 @@ public class RadioInput : MonoBehaviour
         }
         foreach (KeyCode keyCode in keyPressAndReleaseInputActions.Keys)
         {
-            Debug.Log((int)(keyCode - 49) + "Keycode");
             keyPressAndReleaseInputActions[keyCode].Invoke((int)(keyCode - 49), Input.GetKey(keyCode));
         }
     }
