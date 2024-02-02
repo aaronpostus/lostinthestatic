@@ -6831,7 +6831,7 @@ MonoBehaviour:
   volumeSpeed: 10.11
   radioSpeed: 1.64
   saveStateMaxLength: 2
-  data: {fileID: 11400000, guid: 568e6bcff114d774eb861184c1555ef8, type: 2}
+  audioComponent: {fileID: 1556843279}
 --- !u!114 &1556843278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6857,6 +6857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a6f4c3daed9c74ea4a8499891f10be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 568e6bcff114d774eb861184c1555ef8, type: 2}
 --- !u!114 &1563222824 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2054566925764591344, guid: 0565241aa1db16c43a8c3d52362069a8, type: 3}

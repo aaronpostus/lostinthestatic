@@ -8,7 +8,7 @@ public class RadioData : ScriptableObject
     public enum RadioChannelType { LOOPING, STANDARD, INVISIBLE_MAZE }
 
     [Serializable]
-    public class RadioChannel
+    public class RadioChannelData
     {
         public string channelName;
         public float channelFrequency;
@@ -16,5 +16,5 @@ public class RadioData : ScriptableObject
         public RadioChannelType channelType;
     }
 
-    public List<RadioChannel> channels;
+    public List<RadioChannelData> channels;
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 
 public interface IRadioChannel
 {
     public void SeekTo();
     public void SeekAwayFrom();
+    public void Update(Transform transform);
 }

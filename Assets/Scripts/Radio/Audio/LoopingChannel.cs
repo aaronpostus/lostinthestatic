@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FMOD.Studio;
+using UnityEngine;
 
 public class LoopingChannel : IRadioChannel
 {
-
-    public LoopingChannel() { 
-    
+    EventInstance loopEventInstance;
+    public LoopingChannel(string fmodEventDir, Transform transform) { 
+        this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventDir);
+        Update(transform);
     }
-    public void SeekTo() { 
-    
+    public void SeekTo() {
+        loopEventInstance.start();
     }
-    public void SeekAwayFrom() { 
-    
+    public void SeekAwayFrom() {
+        loopEventInstance.stop(STOP_MODE.IMMEDIATE);
+    }
+    public void Update(Transform transform) {
+        this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
     }
 }

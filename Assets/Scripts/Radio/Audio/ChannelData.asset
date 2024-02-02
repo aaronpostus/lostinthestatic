@@ -14,22 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channels:
   - channelName: 
-    channelFrequency: 0
-    fmodEventDir: 
-    channelType: 0
-  - channelName: 
-    channelFrequency: 0
-    fmodEventDir: 
-    channelType: 0
-  - channelName: 
-    channelFrequency: 0
-    fmodEventDir: 
-    channelType: 0
-  - channelName: 
-    channelFrequency: 0
-    fmodEventDir: 
-    channelType: 0
-  - channelName: 
-    channelFrequency: 0
-    fmodEventDir: 
+    channelFrequency: 99.7
+    fmodEventDir: event:/RADIO_CHANNEL_95.6
     channelType: 0

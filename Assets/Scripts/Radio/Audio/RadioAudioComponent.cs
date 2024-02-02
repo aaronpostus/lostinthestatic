@@ -1,42 +1,54 @@
-﻿using FMOD.Studio;
-using FMODUnity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using static RadioData;
 
 public class RadioAudioComponent : MonoBehaviour
 {
+    [SerializeField] RadioData data;
     private Dictionary<float, IRadioChannel> radioChannels;
-    private float currentRadioChannel;
-
-    //[SerializeField] FMODUnity.EventReference oneShotEventPath;
-    //EventInstance loopEventInstance;
-
+    private IRadioChannel currentRadioChannel = null;
     void Awake() {
         this.radioChannels = new Dictionary<float, IRadioChannel>();
-        radioChannels.Add(99.5f, new LoopingChannel());
-        /**loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(oneShotEventPath);
-        loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
-        loopEventInstance.start(); **/
+        CreateChannels();
+    }
+    private void CreateChannels() {
+        foreach (RadioChannelData channelData in data.channels) {
+            IRadioChannel channel;
+            switch (channelData.channelType) {
+                // change later to include classes for the other types of channels
+                case RadioChannelType.LOOPING:
+                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
+                    break;
+                case RadioChannelType.STANDARD:
+                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
+                    break;
+                case RadioChannelType.INVISIBLE_MAZE:
+                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
+                    break;
+                default:
+                    channel = new LoopingChannel(channelData.fmodEventDir, this.transform);
+                    break;
+            }
+            radioChannels.Add(channelData.channelFrequency, channel);
+        }
     }
     private void Update()
     {
-        //loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform.position));
+        if (currentRadioChannel == null) {
+            return;
+        }
+        currentRadioChannel.Update(this.transform);
     }
     public void Seek(float radioChannel) {
-        if (radioChannels.ContainsKey(currentRadioChannel)) {
-            radioChannels[currentRadioChannel].SeekAwayFrom();
+        if (this.currentRadioChannel != null) {
+            currentRadioChannel.SeekAwayFrom();
         }
-        this.currentRadioChannel = radioChannel;
-        if (radioChannels.ContainsKey(currentRadioChannel))
-        {
-            radioChannels[currentRadioChannel].SeekTo();
+        if (this.radioChannels.ContainsKey(radioChannel)) {
+            this.currentRadioChannel = this.radioChannels[radioChannel];
         }
-        else { 
-            // static time wooooooooooooooooooooooo
+        else {
+            this.currentRadioChannel = null;
+            // static time woooooooooooooooooooo
         }
     }
 }

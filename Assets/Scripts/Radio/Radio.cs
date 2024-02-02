@@ -11,7 +11,7 @@ public class Radio : MonoBehaviour
     [SerializeField] TextMeshPro freq, vol;
     [Header("Speed modifiers for keyboard controls for tuning dials")] public float volumeSpeed = 5f, radioSpeed = 1.5f;
     [Header("How long should we allow the radio to idle in the save state?")] public float saveStateMaxLength = 2f;
-    [SerializeField] RadioData data;
+    [SerializeField] RadioAudioComponent audioComponent;
     enum RadioState { DEFAULT, AWAITING_SAVE_SELECTION, IDLING_AT_PRESET }
     private RadioState state;
 
@@ -43,13 +43,10 @@ public class Radio : MonoBehaviour
             buttons.Add(new PresetButton(this, buttonTexts[i]));
         }
         buttons.Add(new SavePresetButton(this));
-        CreateChannels();
         RefreshFrequency();
         RefreshVolume();
     }
-    public void CreateChannels() { 
-    
-    }
+
     public void JumpToPreset(float frequency) {
         this.state = RadioState.IDLING_AT_PRESET;
         this.prettyFrequency = frequency;
@@ -161,6 +158,7 @@ public class Radio : MonoBehaviour
         {
             Serial.WriteLn(freq);
         }
+        this.audioComponent.Seek(this.prettyFrequency);
         this.freq.text = freq;
     }
     // updates the in-game elements
