@@ -17,3 +17,10 @@ MonoBehaviour:
     channelFrequency: 99.7
     fmodEventDir: event:/RADIO_CHANNEL_95.6
     channelType: 0
+  radioSeekNoise:
+    Guid:
+      Data1: -163713300
+      Data2: 1261531995
+      Data3: 596468131
+      Data4: 1244528306
+    Path: event:/RADIO_CLICK

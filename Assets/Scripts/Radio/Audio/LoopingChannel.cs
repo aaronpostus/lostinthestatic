@@ -13,7 +13,34 @@ public class LoopingChannel : IRadioChannel
         loopEventInstance.start();
     }
     public void SeekAwayFrom() {
+        //loopEventInstance.
         Debug.Log("Seek away from looping channel");
         loopEventInstance.stop(STOP_MODE.IMMEDIATE);
     }
+    public void Update()
+    {
+        // Check if the sound has reached the end
+        if (IsSoundPlaying() && !IsSoundPlayingInLoop())
+        {
+            // Restart the sound to loop it
+            loopEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            loopEventInstance.start();
+        }
+    }
+
+    bool IsSoundPlaying()
+    {
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        loopEventInstance.getPlaybackState(out playbackState);
+        return playbackState == FMOD.Studio.PLAYBACK_STATE.PLAYING;
+    }
+
+    bool IsSoundPlayingInLoop()
+    {
+        //bool isLooping;
+        //loopEventInstance.get3DAttributes(out isLooping);
+        // return isLooping;
+        return true;
+    }
+
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using FMOD.Studio;
+using System.Collections.Generic;
+
 using UnityEngine;
 using static RadioData;
 
@@ -24,10 +26,10 @@ public class RadioAudioComponent : MonoBehaviour
         };
     }
     public void Seek(float radioChannel) {
+        FMODUnity.RuntimeManager.PlayOneShot(data.radioSeekNoise, transform.position);
         if (this.radioChannels == null) {
             CreateChannels();
         }
-
         if (this.currentRadioChannel != null) {
             currentRadioChannel.SeekAwayFrom();
         }

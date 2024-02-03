@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FMODUnity;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,4 +18,5 @@ public class RadioData : ScriptableObject
     }
 
     public List<RadioChannelData> channels;
+    public EventReference radioSeekNoise;
 }

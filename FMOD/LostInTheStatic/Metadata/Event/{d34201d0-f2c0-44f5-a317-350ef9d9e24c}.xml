@@ -83,6 +83,9 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{eb5084af-0cfe-4083-ad28-5c46faed4974}">
+		<property name="playbackMode">
+			<value>1</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{4ea40ee9-0a31-4557-a99e-5c03dcc8f14d}</destination>
 		</relationship>
@@ -101,6 +104,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{6cab789e-9af9-48c1-8a5f-1c7fb0aef9aa}" />
 	<object class="SingleSound" id="{4ea40ee9-0a31-4557-a99e-5c03dcc8f14d}">
+		<property name="color">
+			<value>Cyan Light 2</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{c04ab9d5-95d7-405e-bd2f-7bf48df0bb00}</destination>
 		</relationship>

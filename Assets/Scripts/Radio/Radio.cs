@@ -18,7 +18,7 @@ public class Radio : MonoBehaviour
     private List<IButton> buttons;
 
     private KeyCode savePresetKey;
-    private const int maxRadioFreq = 100, minRadioFreq = 95, minVol = 0, maxVol = 38;
+    private const int maxRadioFreq = 100, minRadioFreq = 97, minVol = 0, maxVol = 38;
 
     // constants calculated at runtime
     private int freqRange, volRange;
@@ -131,8 +131,12 @@ public class Radio : MonoBehaviour
             this.state = RadioState.DEFAULT;
         }
         this.rawFrequency = freq;
+        float oldPrettyFreq = this.prettyFrequency;
         RefreshPrettyRadioFrequency();
-        RefreshFrequency();
+        if (oldPrettyFreq != this.prettyFrequency)
+        {
+            RefreshFrequency();
+        }
     }
     // set radio to an exact frequency (i.e. 99.5f)
     private void SetVolume(float vol)

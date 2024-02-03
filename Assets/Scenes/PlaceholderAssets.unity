@@ -6829,7 +6829,7 @@ MonoBehaviour:
   freq: {fileID: 13323813}
   vol: {fileID: 1269002746}
   volumeSpeed: 10.11
-  radioSpeed: 1.64
+  radioSpeed: 0.96
   saveStateMaxLength: 2
   audioComponent: {fileID: 1556843279}
 --- !u!114 &1556843278
