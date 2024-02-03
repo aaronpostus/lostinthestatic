@@ -5190,7 +5190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PuzzleState: 0
   TargetState: 1
-  ActiveState: 1
+  activeState: 0
   Player: {fileID: 1699913333}
   Car: {fileID: 188627071}
   Camera: {fileID: 2031087259}
@@ -9637,6 +9637,7 @@ GameObject:
   - component: {fileID: 1699913334}
   - component: {fileID: 1699913335}
   - component: {fileID: 1699913333}
+  - component: {fileID: 1699913336}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9826,6 +9827,18 @@ MonoBehaviour:
     - Name: inputProvider
       Entry: 10
       Data: 1
+--- !u!114 &1699913336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699913328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3f414b56e6b2945888d383e6f989ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1718536587
 GameObject:
   m_ObjectHideFlags: 0
@@ -12840,6 +12853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionTime: 1
+  transitionTimer: 0
   transitionCurve:
     serializedVersion: 2
     m_Curve:
