@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Physics Materials.meta
 guid: e06fe025004ccf64e98d8e29d82b0a5a
-========
-guid: cde454390e4c81242bbf23f3ef237013
->>>>>>>> radio-controller:Assets/Plugins/Sirenix/Odin Inspector/Config/Resources.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
