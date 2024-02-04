@@ -36540,7 +36540,7 @@ PrefabInstance:
     - target: {fileID: 705369643675858280, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 1937769533}
+      objectReference: {fileID: 1991722640}
     - target: {fileID: 705369643675858281, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -36591,37 +36591,26 @@ PrefabInstance:
       objectReference: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
     - target: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"inputChain","length":1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"inputChain.[0]","value":null'
+      value: '"path":"inputChain.[0]","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1788664344}
     - target: {fileID: 705369643675858285, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
---- !u!114 &1937769533 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
-  m_PrefabInstance: {fileID: 1937769532}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4f9b601bc241b4e887a80cd9432021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1937769540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 705369643675858280, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
@@ -38500,6 +38489,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1991722640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
+  m_PrefabInstance: {fileID: 1937769532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4f9b601bc241b4e887a80cd9432021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1999941223
 PrefabInstance:
   m_ObjectHideFlags: 0
