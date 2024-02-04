@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{a47c3dca-1cf0-4218-8591-1e597a87f248}">
+		<property name="name">
+			<value>LOOP</value>
+		</property>
+		<relationship name="folder">
+			<destination>{7c98e3f1-0a1c-4c63-96ba-f3ecd210d7ef}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0b70892d-de92-45ef-9a1f-75015252b75b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0b70892d-de92-45ef-9a1f-75015252b75b}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>LOOPING</value>
+			<value>NOTLOOPING</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+		<relationship name="automators">
+			<destination>{920603fa-1f03-4ec2-b09a-4413163063d3}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{920603fa-1f03-4ec2-b09a-4413163063d3}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>cursorPosition</value>
+		</property>
+		<relationship name="automationCurves">
+			<destination>{416ed2b6-3e41-481d-8371-a81831aa2acf}</destination>
+		</relationship>
+	</object>
+	<object class="AutomationCurve" id="{416ed2b6-3e41-481d-8371-a81831aa2acf}">
+		<relationship name="parameter">
+			<destination>{05b082e3-0e2d-448b-aa01-3979186ae77a}</destination>
+		</relationship>
+		<relationship name="automationPoints">
+			<destination>{b5db9c3a-93d0-49d4-9f4b-197685051e90}</destination>
+			<destination>{2f885185-02aa-4602-90ac-eafbb29b2187}</destination>
+			<destination>{698396e7-5e89-44d3-af8d-03242fe490e2}</destination>
+			<destination>{3349f516-0763-47d4-87dc-7e0b613f97fb}</destination>
+			<destination>{5c39d03c-4526-4778-a2ce-125d71bc0131}</destination>
+		</relationship>
+	</object>
+	<object class="AutomationPoint" id="{b5db9c3a-93d0-49d4-9f4b-197685051e90}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{2f885185-02aa-4602-90ac-eafbb29b2187}">
+		<property name="position">
+			<value>0.5</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{698396e7-5e89-44d3-af8d-03242fe490e2}">
+		<property name="position">
+			<value>1</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{3349f516-0763-47d4-87dc-7e0b613f97fb}">
+		<property name="position">
+			<value>0.50002083333333336</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{5c39d03c-4526-4778-a2ce-125d71bc0131}">
+		<property name="position">
+			<value>0.25</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
