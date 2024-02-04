@@ -1,47 +1,59 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System;
 using UnityEngine;
 
 public class CameraController : SerializedMonoBehaviour, IInputModifier
 {
-    [Header("Input")]
-    [OdinSerialize] private IInputProvider inputProvider;
+    [Header("Input Provider")]
+    [OdinSerialize] public IInputProvider inputProvider;
     [SerializeField] private InputState inputState;
 
-    [Header("Camera Properties")]
-    [SerializeField] private Transform target;
-    [SerializeField] private bool inheritTargetRotation;
-    private Camera activeCamera;
-    [SerializeField] private Vector2 cameraAngleLimit;
+    public Transform PositionTarget { get { return positionTarget; } 
+        set {
+            InheritTargetRotation = value == GameManager.Instance.Player.GetTarget() ? true : false;
+            positionTarget = value;
+        }
+    }
 
-    [SerializeField] private float transitionTime, transitionSpeed, transitionLerp;
-    public bool IsTransitioning;
-    private Vector3 targetPosition, localEulers;
+    [SerializeField] private Transform positionTarget;
+    [SerializeField] private Transform lookTarget;
+    [SerializeField] private float lookTargetSlerp;
+    public bool InheritTargetRotation;
+    [SerializeField] private Vector2 cameraAngleLimit;
+    public bool IsFree => PositionTarget != null && !IsFocused;
+    public bool IsFocused => lookTarget != null;
+    private Vector3 localEulers;
 
     private void Awake()
     {
-        activeCamera = GetComponentInChildren<Camera>();
         localEulers = transform.localEulerAngles;
-        IsTransitioning = false;
     }
 
     void LateUpdate()
     {
         inputState = inputProvider.GetState();
-        UpdatePosition();
-        UpdateRotation();
+        if(PositionTarget != null) UpdatePosition();
+        if (!IsFocused)  UpdateRotationInput();
+        else UpdateRotationTarget();
     }
 
     private void UpdatePosition() {
-        targetPosition = target.position;
-        transform.position = targetPosition;
+        transform.position = PositionTarget.position;
     }
 
-    private void UpdateRotation() {
+    private void UpdateRotationInput() {
         Vector3 clampedLookEulers = inputState.lookEulers + localEulers;
         clampedLookEulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, clampedLookEulers.x), cameraAngleLimit.x, cameraAngleLimit.y);
+        
         localEulers = clampedLookEulers;
-        transform.localEulerAngles = localEulers + (inheritTargetRotation? target.eulerAngles : Vector3.zero);
+        transform.localEulerAngles = localEulers + (InheritTargetRotation ? PositionTarget.eulerAngles : Vector3.zero);
+    }
+
+    private void UpdateRotationTarget()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookTarget.position - transform.position, Vector3.up), lookTargetSlerp*Time.deltaTime);
+        localEulers = transform.localEulerAngles;
     }
 
     public InputState ModifyInput(InputState input)
@@ -49,11 +61,5 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
         input.moveDirection = Quaternion.AngleAxis(localEulers.y, Vector3.up) * input.moveDirection;
         input.lookEulers = localEulers;
         return input;
-    }
-
-    public void ChangeTarget(Transform target, bool inheritTargetRotation)
-    {
-        this.target = target;
-        
     }
 }
