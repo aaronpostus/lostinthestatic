@@ -1,6 +1,6 @@
+using Drawing;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using Drawing;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -60,15 +60,10 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
                 wheels[i].transform.localEulerAngles = wheelEulers;
             }
 
-            Vector3[] forceDirections = new Vector3[3] { wTransform.right, wTransform.up, wTransform.forward };
-            for (int j = 0; j< forces.GetLength(0); j++) {
-                using (Draw.WithColor(forceColors[j]))
-                {
-                    Draw.Ray(wTransform.position, forceDirections[j]);
-                    Draw.Label2D(wTransform.position + forceDirections[j], ((int)forces[j,i]).ToString(), 20f);
-                }
-            }
+            Draw.Arrow(wheels[i].transform.position, wheels[i].transform.position + rb.GetPointVelocity(wheels[i].transform.position));
         }
+
+        Draw.Arrow(transform.position, transform.position+rb.velocity);
     }
 
     void FixedUpdate()
@@ -88,18 +83,22 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             float force = (offset * springConst) - (vel * springDamp);
             rb.AddForceAtPosition(springDir * force, wTransform.position);
             forces[1, i] = force;
-
+            
             //Friction
             Vector3 tireGroundVel = Vector3.ProjectOnPlane(tireVel, hit.normal);
             if (tireGroundVel.magnitude > 0) {
-                Vector3 tireSlip = Vector3.Project(tireGroundVel, wTransform.right);
-                float slipRatio = Vector3.Dot(tireSlip, tireGroundVel);
+                
+                float slipRatio = 1 - Mathf.Abs(Vector3.Dot(tireGroundVel.normalized, wTransform.forward));
                 float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
-                force = slipRatio * gripFactor / Time.fixedDeltaTime;
-                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, hit.normal), wTransform.position);
-                forces[0, i] = force;
+                Vector3 friction = Vector3.Project(-tireGroundVel, wTransform.right);
+                float additionalFriction = tireGroundVel.magnitude/maxVelocity;
+
+                Vector3 frictionForce = Vector3.ClampMagnitude(friction, (slipRatio + additionalFriction) * gripFactor  * Time.fixedDeltaTime);
+                Draw.Ray(wTransform.position, frictionForce.normalized, Color.cyan);
+                rb.AddForceAtPosition(frictionForce, wTransform.position, ForceMode.VelocityChange);
+                //forces[0, i] = force;
             }
-            
+
             //Power
             if (wheels[i].IsPowered)
             {
