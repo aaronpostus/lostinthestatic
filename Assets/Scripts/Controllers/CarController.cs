@@ -1,6 +1,8 @@
+using Drawing;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using Drawing;
+using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,7 +11,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
     [OdinSerialize] private IMoveInputProvider inputProvider;
     [SerializeField] private Transform cameraTarget;
 
-    private float[,] forces;
+    private Vector3[,] wheelForces;
     private Color[] forceColors;
     [OdinSerialize] LayerMask groundMask;
 
@@ -27,7 +29,8 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
-        forces = new float[3, wheels.Length];
+        rb.centerOfMass = Vector3.down * 2;
+        wheelForces = new Vector3[3, wheels.Length];
         forceColors = new Color[3] { Color.red, Color.green, Color.blue };
         GameManager.Instance.Car = this;
     }
@@ -60,23 +63,24 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
                 wheels[i].transform.localEulerAngles = wheelEulers;
             }
 
-            Vector3[] forceDirections = new Vector3[3] { wTransform.right, wTransform.up, wTransform.forward };
-            for (int j = 0; j< forces.GetLength(0); j++) {
+            for(int j=0; j<forceColors.Length;j++)
+            {
                 using (Draw.WithColor(forceColors[j]))
                 {
-                    Draw.Ray(wTransform.position, forceDirections[j]);
-                    Draw.Label2D(wTransform.position + forceDirections[j], ((int)forces[j,i]).ToString(), 20f);
+                    Draw.Arrow(wheels[i].transform.position, wheels[i].transform.position + wheelForces[j, i].normalized);
                 }
             }
         }
+        Draw.Arrow(transform.position, transform.position+rb.velocity, Color.yellow);
     }
 
     void FixedUpdate()
     {
+        Vector3 forceToApply;
         for (int i = 0; i < wheels.Length; i++)
         {
             Transform wTransform = wheels[i].transform;
-            Vector3 tireVel = rb.GetPointVelocity(wTransform.position);
+            Vector3 velocity = rb.GetPointVelocity(wTransform.position);
             
             //Check if tire is on the ground
             Vector3 springDir = wTransform.up;
@@ -84,31 +88,42 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             
             //Suspension
             float offset = suspensionRestDist - hit.distance;
-            float vel = Vector3.Dot(springDir, tireVel);
-            float force = (offset * springConst) - (vel * springDamp);
-            rb.AddForceAtPosition(springDir * force, wTransform.position);
-            forces[1, i] = force;
-
-            //Friction
-            Vector3 tireGroundVel = Vector3.ProjectOnPlane(tireVel, hit.normal);
-            if (tireGroundVel.magnitude > 0) {
-                Vector3 tireSlip = Vector3.Project(tireGroundVel, wTransform.right);
-                float slipRatio = Vector3.Dot(tireSlip, tireGroundVel);
-                float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
-                force = slipRatio * gripFactor / Time.fixedDeltaTime;
-                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * -tireSlip, hit.normal), wTransform.position);
-                forces[0, i] = force;
-            }
+            float springVelocity = Vector3.Dot(springDir, velocity);
+            float force = (offset * springConst) - (springVelocity * springDamp);
+            forceToApply = springDir * force;
+            rb.AddForceAtPosition(forceToApply, wTransform.position);
+            wheelForces[1, i] = forceToApply;
             
-            //Power
-            if (wheels[i].IsPowered)
-            {
-                float speed = Mathf.Abs(Vector3.Dot(rb.velocity, transform.forward));
-                float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
-                force = power * powerScalar * inputState.moveDirection.y;
-                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * wTransform.forward, hit.normal), wTransform.position);
-                forces[2, i] = force;
+            //Friction
+            Vector3 groundVelocity = Vector3.ProjectOnPlane(velocity, hit.normal);
+            if (groundVelocity.magnitude > 0) {
+                
+                float slipRatio = 1 - Mathf.Abs(Vector3.Dot(groundVelocity.normalized, wTransform.forward));
+                float gripFactor = wheels[i].Data.PacejkaCurve.Evaluate(slipRatio)*wheels[i].Data.GripFactor;
+                Vector3 friction = Vector3.Project(-groundVelocity, wTransform.right);
+                float additionalFriction = groundVelocity.magnitude/maxVelocity;
+
+                forceToApply = Vector3.ClampMagnitude(friction, (slipRatio + additionalFriction) * gripFactor  * Time.fixedDeltaTime);
+                
+                rb.AddForceAtPosition(forceToApply, wTransform.position, ForceMode.VelocityChange);
+                wheelForces[0, i] = forceToApply;
             }
+            //Power
+
+            Vector3 forwardVelocity = Vector3.Project(groundVelocity, wTransform.forward);
+            float speed = forwardVelocity.magnitude;
+            if (wheels[i].IsPowered && inputState.moveDirection.y != 0)
+            {
+                float power = powerCurve.Evaluate(speed/maxVelocity);
+                force = power * powerScalar * inputState.moveDirection.y;
+                forceToApply = Vector3.ProjectOnPlane(force * wTransform.forward, hit.normal);
+                rb.AddForceAtPosition(forceToApply, wTransform.position);
+            } else {
+                float resistance = wheels[i].Data.RollResistance.Evaluate(speed / maxVelocity)* wheels[i].Data.RollResistanceScalar;
+                forceToApply = Vector3.ClampMagnitude(-forwardVelocity, speed * resistance * Time.fixedDeltaTime);
+                rb.AddForceAtPosition(forceToApply, wTransform.position, ForceMode.Impulse);
+            }
+            wheelForces[2, i] = forceToApply;
         }
     }
 
