@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705369643307259308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 705369643675858283}
   - component: {fileID: 705369643675858282}
   - component: {fileID: 705369643675858280}
+  - component: {fileID: 2539403608121529739}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -215,25 +216,34 @@ MonoBehaviour:
     - Name: inputProvider
       Entry: 10
       Data: 0
+  cameraTarget: {fileID: 0}
   gravity: 15
   terminalVelocity: 10
   friction: 10
   airFriction: 2
   maxSpeed: 8
-  sprintSpeedScalar: 1.5
   groundAccelerationScalar: 2
   airAccelerationScalar: 0.25
   rotationLerp: 0.4
   maxSlope: 60
   slopeJumpBias: 0.5
   jumpHeight: 3
-  jumpBufferTime: 0
-  maxAirJumps: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 1
   contactNormal: {x: 0, y: 0, z: 0}
   steepContactNormal: {x: 0, y: 0, z: 0}
-  airJumps: 0
   groundContactCount: 0
   targetRotationAngle: 0
+--- !u!114 &2539403608121529739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705369643675858285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3f414b56e6b2945888d383e6f989ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

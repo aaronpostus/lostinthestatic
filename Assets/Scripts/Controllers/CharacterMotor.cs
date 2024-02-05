@@ -4,17 +4,9 @@ using Sirenix.Serialization;
 using System;
 using UnityEngine;
 
-public enum PlayerMoveState {
-    Default,
-    Dash,
-    Boost
-}
-
 [RequireComponent(typeof(Rigidbody))]
-public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical, ICameraTargetable
+public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargetable
 {
-    public event Action<bool> UpdateGroundStatus, UpdateSprintStatus;
-
     [Header("Input Source")]
     [OdinSerialize] private IInputProvider inputProvider;
     [SerializeField] private Transform cameraTarget;
@@ -26,14 +18,13 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     [SerializeField] private float terminalVelocity, friction, airFriction;
     [Header("Movement Properties")]
     [SerializeField] private float maxSpeed;
-    [SerializeField] private float sprintSpeedScalar, groundAccelerationScalar, airAccelerationScalar;
+    [SerializeField] private float groundAccelerationScalar, airAccelerationScalar;
     [SerializeField, Range(0, 1)] private float rotationLerp;
     private float currentMaxSpeed;
     [SerializeField, Range(0, 90)] private float maxSlope;
     [SerializeField, Range(0, 1)] private float slopeJumpBias;
     private float slopeDotProduct;
-    [SerializeField, Range(0, 10)] private float jumpHeight, jumpBufferTime;
-    [SerializeField, Range(0, 10)] private int maxAirJumps;
+    [SerializeField, Range(0, 10)] private float jumpHeight;
     [SerializeField] LayerMask groundMask;
     public Vector3 getNormal { get; private set; }
     public Vector3 getSteepNormal { get; private set; }
@@ -41,13 +32,11 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     [Header("Read Only")]
     [SerializeField] private Vector3 contactNormal; 
     [SerializeField] private Vector3 steepContactNormal;
-    [SerializeField] private int airJumps, groundContactCount;
-    private bool shouldJump, isBoosting;
+    [SerializeField] private int groundContactCount;
+    private bool shouldJump;
     private bool isGrounded => groundContactCount > 0;
     public Vector3 velocity =>rb.velocity;
-    private Vector3 projectedVelocity => ProjectOnContactPlane(velocity);
     private Vector3 targetVelocity;
-    private Vector3 projectedTargetVelocity => ProjectOnContactPlane(targetVelocity);
     public Vector3 position => transform.position;
 
     [SerializeField] private float targetRotationAngle;
@@ -63,15 +52,17 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 50;
         rb.sleepThreshold = 0.0f;
-        OnValidate();
-    }
-
-    private void OnEnable() {
         currentMaxSpeed = maxSpeed;
-        inputProvider.OnJump.started += TryJump;
+        OnValidate();
+        GameManager.Instance.Player = this;
     }
 
-    void Update() {
+    private void OnEnable() => inputProvider.OnJump.started += TryJump;
+
+    private void OnDisable() => inputProvider.OnJump.started -= TryJump;
+
+    void Update()
+    {
         inputState = inputProvider.GetState();
     }
 
@@ -92,14 +83,10 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     void FixedUpdate() {
         contactNormal = getNormal = isGrounded ? contactNormal.normalized : Vector3.up;
         getSteepNormal = steepContactNormal.normalized;
-        
-        if (isGrounded != previouslyGrounded) UpdateGroundStatus?.Invoke(isGrounded);
-        if (isGrounded) airJumps = maxAirJumps;
  
-        
         UpdateTargetsFromInput();
         ApplyGravity();
-        RotatePlayer();
+        //RotatePlayer();
         MovePlayer();
         ApplyFriction();
 
@@ -125,17 +112,12 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
 
     private void MovePlayer() {
         if (!isGrounded && targetVelocity.magnitude < 0.01f) return;
-        float maxAcceleration = maxSpeed*(isGrounded ? groundAccelerationScalar : airAccelerationScalar);
+        float maxAcceleration = maxSpeed * (isGrounded ? groundAccelerationScalar : airAccelerationScalar);
         if (getSteepNormal.magnitude > 0 && Vector3.Dot(targetVelocity, getSteepNormal) < 0) targetVelocity = Vector3.ProjectOnPlane(targetVelocity, getSteepNormal);
         rb.AddForce(Vector3.ClampMagnitude(ProjectOnContactPlane(targetVelocity - velocity), maxAcceleration * Time.fixedDeltaTime), ForceMode.VelocityChange);
     }
 
     private void RotatePlayer() {
-        if (inputState.shouldLookAtAim)
-        {
-            //targetRotationAngle = Vector3.ProjectOnPlane(inputState.aimPoint - transform.position, Vector3.up);
-        }
-
         float velocityToNext = Mathf.DeltaAngle(transform.eulerAngles.y, targetRotationAngle) * Mathf.Deg2Rad/Time.fixedDeltaTime*rotationLerp;
         rb.AddTorque(Vector3.up * (velocityToNext - rb.angularVelocity.y), ForceMode.VelocityChange);
     }
@@ -156,38 +138,13 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
     }
 
     private void TryJump() {
-        if (isGrounded)
-        {
-            shouldJump = true;
-        }
-        else if (airJumps > 0)
-        {
-            shouldJump = true;
-            airJumps--;
-        }
+        if (isGrounded) shouldJump = true;
     }
 
     private void Jump() {
         float jumpSpeed = Mathf.Sqrt(2f * gravity * jumpHeight);
         if (velocity.y != 0) rb.AddForce(new Vector3(0, -velocity.y, 0), ForceMode.VelocityChange);
         rb.AddForce(Vector3.Lerp(Vector3.up, getNormal, slopeJumpBias) * jumpSpeed, ForceMode.VelocityChange);
-    }
-
-    private void EndSprint() {
-        UpdateTicker.Unsubscribe(TryBoost);
-        isBoosting = false;
-        currentMaxSpeed = maxSpeed;
-        UpdateSprintStatus?.Invoke(false);
-    }
-
-    private void TryStartSprint() {
-        isBoosting = true;
-        currentMaxSpeed = maxSpeed*sprintSpeedScalar;
-        UpdateSprintStatus?.Invoke(true);
-        UpdateTicker.Subscribe(TryBoost);
-    }
-
-    private void TryBoost() {
     }
 
     private void OnCollisionEnter(Collision collision) => EvaluateGroundCollision(collision);
@@ -214,13 +171,5 @@ public class CharacterMotor : SerializedMonoBehaviour, IInputModifier, IPhysical
         return vector - contactNormal * Vector3.Dot(vector, contactNormal);
     }
 
-    public InputState ModifyInput(InputState input) {
-        if (isBoosting) input.moveDirection = Vector2.up;
-        return input;
-    }
-
-    public Transform GetTarget()
-    {
-        return cameraTarget;
-    }
+    public Transform GetTarget() => cameraTarget;
 }
