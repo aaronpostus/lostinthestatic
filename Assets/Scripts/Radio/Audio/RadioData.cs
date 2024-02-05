@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class RadioData : ScriptableObject
 {
-    public enum RadioChannelType { LOOPING, STANDARD, INVISIBLE_MAZE }
+    public enum RadioChannelType { DIALOGUE, MUSIC, GEOGRAPHIC_SKIPPING_MUSIC, INVISIBLE_MAZE }
 
     [Serializable]
     public class RadioChannelData

@@ -2,15 +2,15 @@
 using FMODUnity;
 using UnityEngine;
 
-// A looping channel will start from the beginning the first time the user seeks to it.
+// A dialogue will start from the beginning the first time the user seeks to it.
 // Then, while they are selected on that station, it will continue looping.
 // If the user seeks away, it will continue to the end of the audio file then wait for the user to seek back before restarting.
 // 
 // This channel is intended to be used for narrative heavy channels rather than something like music.
-public class LoopingChannel : IRadioChannel
+public class DialogueChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
-    public LoopingChannel(EventReference fmodEventRef, GameObject attentuationObject) { 
+    public DialogueChannel(EventReference fmodEventRef, GameObject attentuationObject) { 
         this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventRef);
         this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
 
