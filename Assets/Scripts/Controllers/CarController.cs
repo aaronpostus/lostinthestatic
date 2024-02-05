@@ -99,7 +99,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             if (groundVelocity.magnitude > 0) {
                 
                 float slipRatio = 1 - Mathf.Abs(Vector3.Dot(groundVelocity.normalized, wTransform.forward));
-                float gripFactor = wheels[i].Data.PacejkaCurve.Evaluate(slipRatio);
+                float gripFactor = wheels[i].Data.PacejkaCurve.Evaluate(slipRatio)*wheels[i].Data.GripFactor;
                 Vector3 friction = Vector3.Project(-groundVelocity, wTransform.right);
                 float additionalFriction = groundVelocity.magnitude/maxVelocity;
 
@@ -114,12 +114,12 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             float speed = forwardVelocity.magnitude;
             if (wheels[i].IsPowered && inputState.moveDirection.y != 0)
             {
-                float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
+                float power = powerCurve.Evaluate(speed/maxVelocity);
                 force = power * powerScalar * inputState.moveDirection.y;
                 forceToApply = Vector3.ProjectOnPlane(force * wTransform.forward, hit.normal);
                 rb.AddForceAtPosition(forceToApply, wTransform.position);
             } else {
-                float resistance = wheels[i].Data.RollResistance.Evaluate(speed / maxVelocity);
+                float resistance = wheels[i].Data.RollResistance.Evaluate(speed / maxVelocity)* wheels[i].Data.RollResistanceScalar;
                 forceToApply = Vector3.ClampMagnitude(-forwardVelocity, speed * resistance * Time.fixedDeltaTime);
                 rb.AddForceAtPosition(forceToApply, wTransform.position, ForceMode.Impulse);
             }

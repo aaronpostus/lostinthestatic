@@ -7,4 +7,5 @@ public class WheelData : ScriptableObject
     public AnimationCurve PacejkaCurve = new AnimationCurve();
     public float GripFactor;
     public AnimationCurve RollResistance;
+    public float RollResistanceScalar;
 }

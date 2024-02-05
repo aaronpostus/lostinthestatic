@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b4ee8fff85455419de61cf11be6844, type: 3}
   m_Name: Rear Wheels
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  IsPowered: 0
-  IsSteerable: 0
   PacejkaCurve:
     serializedVersion: 2
     m_Curve:
@@ -57,7 +54,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  GripFactor: 0
+  GripFactor: 0.75
   RollResistance:
     serializedVersion: 2
     m_Curve:
