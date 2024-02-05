@@ -15,7 +15,13 @@ MonoBehaviour:
   channels:
   - channelName: 
     channelFrequency: 99.7
-    fmodEventDir: event:/RADIO_CHANNEL_95.6
+    FMODEventRef:
+      Guid:
+        Data1: 601018704
+        Data2: 1213103099
+        Data3: -1509056101
+        Data4: 1317793662
+      Path: event:/RADIO_CHANNEL_99.7
     channelType: 0
   radioSeekNoise:
     Guid:

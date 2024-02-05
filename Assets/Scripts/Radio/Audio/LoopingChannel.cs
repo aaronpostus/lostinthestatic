@@ -1,4 +1,5 @@
 ﻿using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 // A looping channel will start from the beginning the first time the user seeks to it.
@@ -9,8 +10,8 @@ using UnityEngine;
 public class LoopingChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
-    public LoopingChannel(string fmodEventDir, GameObject attentuationObject) { 
-        this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventDir);
+    public LoopingChannel(EventReference fmodEventRef, GameObject attentuationObject) { 
+        this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventRef);
         this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
 
     }
@@ -27,7 +28,7 @@ public class LoopingChannel : IRadioChannel
             loopEventInstance.start();
             // You can perform any additional actions or logic here
         }
-        loopEventInstance.setParameterByName("LOOP",0f);
+        loopEventInstance.setParameterByName("LOOP",1);
         loopEventInstance.getParameterByName("LOOP", out var value);
         Debug.Log("LOOP:"+value);
     }

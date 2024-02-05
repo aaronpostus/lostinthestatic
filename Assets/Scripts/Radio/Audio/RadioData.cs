@@ -13,7 +13,7 @@ public class RadioData : ScriptableObject
     {
         public string channelName;
         public float channelFrequency;
-        public string fmodEventDir;
+        public EventReference FMODEventRef;
         public RadioChannelType channelType;
     }
 

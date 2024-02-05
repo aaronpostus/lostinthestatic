@@ -19,12 +19,13 @@ public class RadioAudioComponent : MonoBehaviour
         return channelData.channelType switch
         {
             // change later to include classes for the other types of channels
-            RadioChannelType.STANDARD => new LoopingChannel(channelData.fmodEventDir, gameObject),
-            RadioChannelType.INVISIBLE_MAZE => new LoopingChannel(channelData.fmodEventDir, gameObject),
-            RadioChannelType.LOOPING => new LoopingChannel(channelData.fmodEventDir, gameObject),
+            RadioChannelType.STANDARD => new LoopingChannel(channelData.FMODEventRef, gameObject),
+            RadioChannelType.INVISIBLE_MAZE => new LoopingChannel(channelData.FMODEventRef, gameObject),
+            RadioChannelType.LOOPING => new LoopingChannel(channelData.FMODEventRef, gameObject),
             _ => throw new System.NotImplementedException(),
         };
     }
+
     public void Seek(float radioChannel) {
         FMODUnity.RuntimeManager.PlayOneShot(data.radioSeekNoise, transform.position);
         if (this.radioChannels == null) {
