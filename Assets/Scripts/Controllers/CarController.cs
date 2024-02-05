@@ -1,6 +1,8 @@
 using Drawing;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,7 +11,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
     [OdinSerialize] private IMoveInputProvider inputProvider;
     [SerializeField] private Transform cameraTarget;
 
-    private float[,] forces;
+    private Vector3[,] wheelForces;
     private Color[] forceColors;
     [OdinSerialize] LayerMask groundMask;
 
@@ -27,7 +29,8 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
-        forces = new float[3, wheels.Length];
+        rb.centerOfMass = Vector3.down * 2;
+        wheelForces = new Vector3[3, wheels.Length];
         forceColors = new Color[3] { Color.red, Color.green, Color.blue };
         GameManager.Instance.Car = this;
     }
@@ -60,18 +63,24 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
                 wheels[i].transform.localEulerAngles = wheelEulers;
             }
 
-            Draw.Arrow(wheels[i].transform.position, wheels[i].transform.position + rb.GetPointVelocity(wheels[i].transform.position));
+            for(int j=0; j<forceColors.Length;j++)
+            {
+                using (Draw.WithColor(forceColors[j]))
+                {
+                    Draw.Arrow(wheels[i].transform.position, wheels[i].transform.position + wheelForces[j, i].normalized);
+                }
+            }
         }
-
-        Draw.Arrow(transform.position, transform.position+rb.velocity);
+        Draw.Arrow(transform.position, transform.position+rb.velocity, Color.yellow);
     }
 
     void FixedUpdate()
     {
+        Vector3 forceToApply;
         for (int i = 0; i < wheels.Length; i++)
         {
             Transform wTransform = wheels[i].transform;
-            Vector3 tireVel = rb.GetPointVelocity(wTransform.position);
+            Vector3 velocity = rb.GetPointVelocity(wTransform.position);
             
             //Check if tire is on the ground
             Vector3 springDir = wTransform.up;
@@ -79,35 +88,42 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             
             //Suspension
             float offset = suspensionRestDist - hit.distance;
-            float vel = Vector3.Dot(springDir, tireVel);
-            float force = (offset * springConst) - (vel * springDamp);
-            rb.AddForceAtPosition(springDir * force, wTransform.position);
-            forces[1, i] = force;
+            float springVelocity = Vector3.Dot(springDir, velocity);
+            float force = (offset * springConst) - (springVelocity * springDamp);
+            forceToApply = springDir * force;
+            rb.AddForceAtPosition(forceToApply, wTransform.position);
+            wheelForces[1, i] = forceToApply;
             
             //Friction
-            Vector3 tireGroundVel = Vector3.ProjectOnPlane(tireVel, hit.normal);
-            if (tireGroundVel.magnitude > 0) {
+            Vector3 groundVelocity = Vector3.ProjectOnPlane(velocity, hit.normal);
+            if (groundVelocity.magnitude > 0) {
                 
-                float slipRatio = 1 - Mathf.Abs(Vector3.Dot(tireGroundVel.normalized, wTransform.forward));
-                float gripFactor = wheels[i].PacejkaCurve.Evaluate(slipRatio);
-                Vector3 friction = Vector3.Project(-tireGroundVel, wTransform.right);
-                float additionalFriction = tireGroundVel.magnitude/maxVelocity;
+                float slipRatio = 1 - Mathf.Abs(Vector3.Dot(groundVelocity.normalized, wTransform.forward));
+                float gripFactor = wheels[i].Data.PacejkaCurve.Evaluate(slipRatio);
+                Vector3 friction = Vector3.Project(-groundVelocity, wTransform.right);
+                float additionalFriction = groundVelocity.magnitude/maxVelocity;
 
-                Vector3 frictionForce = Vector3.ClampMagnitude(friction, (slipRatio + additionalFriction) * gripFactor  * Time.fixedDeltaTime);
-                Draw.Ray(wTransform.position, frictionForce.normalized, Color.cyan);
-                rb.AddForceAtPosition(frictionForce, wTransform.position, ForceMode.VelocityChange);
-                //forces[0, i] = force;
+                forceToApply = Vector3.ClampMagnitude(friction, (slipRatio + additionalFriction) * gripFactor  * Time.fixedDeltaTime);
+                
+                rb.AddForceAtPosition(forceToApply, wTransform.position, ForceMode.VelocityChange);
+                wheelForces[0, i] = forceToApply;
             }
-
             //Power
-            if (wheels[i].IsPowered)
+
+            Vector3 forwardVelocity = Vector3.Project(groundVelocity, wTransform.forward);
+            float speed = forwardVelocity.magnitude;
+            if (wheels[i].IsPowered && inputState.moveDirection.y != 0)
             {
-                float speed = Mathf.Abs(Vector3.Dot(rb.velocity, transform.forward));
                 float power = powerCurve.Evaluate(Mathf.InverseLerp(0, maxVelocity, speed));
                 force = power * powerScalar * inputState.moveDirection.y;
-                rb.AddForceAtPosition(Vector3.ProjectOnPlane(force * wTransform.forward, hit.normal), wTransform.position);
-                forces[2, i] = force;
+                forceToApply = Vector3.ProjectOnPlane(force * wTransform.forward, hit.normal);
+                rb.AddForceAtPosition(forceToApply, wTransform.position);
+            } else {
+                float resistance = wheels[i].Data.RollResistance.Evaluate(speed / maxVelocity);
+                forceToApply = Vector3.ClampMagnitude(-forwardVelocity, speed * resistance * Time.fixedDeltaTime);
+                rb.AddForceAtPosition(forceToApply, wTransform.position, ForceMode.Impulse);
             }
+            wheelForces[2, i] = forceToApply;
         }
     }
 

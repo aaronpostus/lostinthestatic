@@ -670,10 +670,10 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 37aece8534e9af647bd4a8079898b49f, type: 2}
-    - {fileID: 6356070184438304137}
-    - {fileID: 3853115526313978271}
-    - {fileID: 6061269681252173912}
-    - {fileID: 1953924102193455303}
+    - {fileID: 4767065100856785316}
+    - {fileID: 3414938478337842610}
+    - {fileID: 5620700086246767733}
+    - {fileID: 72325624660743402}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -698,701 +698,17 @@ MonoBehaviour:
       Entry: 12
       Data: 4
     - Name: 
-      Entry: 7
-      Data: 1|Wheel, Assembly-CSharp
-    - Name: transform
       Entry: 10
       Data: 1
-    - Name: IsPowered
-      Entry: 5
-      Data: true
-    - Name: IsSteerable
-      Entry: 5
-      Data: true
-    - Name: PacejkaCurve
-      Entry: 7
-      Data: 2|UnityEngine.AnimationCurve, UnityEngine.CoreModule
     - Name: 
-      Entry: 7
-      Data: 3|UnityEngine.Keyframe[], UnityEngine.CoreModule
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0
-    - Name: m_Value
-      Entry: 4
-      Data: 0
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.049999997
-    - Name: m_Value
-      Entry: 4
-      Data: 1.00000083
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.799999952
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499991119
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 1
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499999285
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: GripFactor
-      Entry: 4
-      Data: 750
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 4|Wheel, Assembly-CSharp
-    - Name: transform
       Entry: 10
       Data: 2
-    - Name: IsPowered
-      Entry: 5
-      Data: true
-    - Name: IsSteerable
-      Entry: 5
-      Data: true
-    - Name: PacejkaCurve
-      Entry: 7
-      Data: 5|UnityEngine.AnimationCurve, UnityEngine.CoreModule
     - Name: 
-      Entry: 7
-      Data: 6|UnityEngine.Keyframe[], UnityEngine.CoreModule
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0
-    - Name: m_Value
-      Entry: 4
-      Data: 0
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.049999997
-    - Name: m_Value
-      Entry: 4
-      Data: 1.00000083
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.799999952
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499991119
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 1
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499999285
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: GripFactor
-      Entry: 4
-      Data: 750
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|Wheel, Assembly-CSharp
-    - Name: transform
       Entry: 10
       Data: 3
-    - Name: IsPowered
-      Entry: 5
-      Data: false
-    - Name: IsSteerable
-      Entry: 5
-      Data: false
-    - Name: PacejkaCurve
-      Entry: 7
-      Data: 8|UnityEngine.AnimationCurve, UnityEngine.CoreModule
     - Name: 
-      Entry: 7
-      Data: 9|UnityEngine.Keyframe[], UnityEngine.CoreModule
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0
-    - Name: m_Value
-      Entry: 4
-      Data: 0
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.049999997
-    - Name: m_Value
-      Entry: 4
-      Data: 1.00000083
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.799999952
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499991119
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 1
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499999285
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: GripFactor
-      Entry: 4
-      Data: 750
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 10|Wheel, Assembly-CSharp
-    - Name: transform
       Entry: 10
       Data: 4
-    - Name: IsPowered
-      Entry: 5
-      Data: false
-    - Name: IsSteerable
-      Entry: 5
-      Data: false
-    - Name: PacejkaCurve
-      Entry: 7
-      Data: 11|UnityEngine.AnimationCurve, UnityEngine.CoreModule
-    - Name: 
-      Entry: 7
-      Data: 12|UnityEngine.Keyframe[], UnityEngine.CoreModule
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0
-    - Name: m_Value
-      Entry: 4
-      Data: 0
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.049999997
-    - Name: m_Value
-      Entry: 4
-      Data: 1.00000083
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 0.799999952
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499991119
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: UnityEngine.Keyframe, UnityEngine.CoreModule
-    - Name: ver
-      Entry: 3
-      Data: 1
-    - Name: m_Time
-      Entry: 4
-      Data: 1
-    - Name: m_Value
-      Entry: 4
-      Data: 0.499999285
-    - Name: m_InTangent
-      Entry: 4
-      Data: 0
-    - Name: m_OutTangent
-      Entry: 4
-      Data: 0
-    - Name: m_TangentMode
-      Entry: 3
-      Data: 0
-    - Name: m_WeightedMode
-      Entry: 3
-      Data: 0
-    - Name: m_InWeight
-      Entry: 4
-      Data: 0.333333343
-    - Name: m_OutWeight
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 3
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: GripFactor
-      Entry: 4
-      Data: 750
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -2254,8 +1570,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: WheelB.L
       objectReference: {fileID: 0}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: Data
+      value: 
+      objectReference: {fileID: 11400000, guid: efed512e429ed4045b4ccc84b773eadb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+--- !u!114 &5620700086246767733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+  m_PrefabInstance: {fileID: 3831199246097557148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6061269681252173912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7005019106260954820, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
@@ -2316,8 +1647,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: WheelF.L
       objectReference: {fileID: 0}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: Data
+      value: 
+      objectReference: {fileID: 11400000, guid: fcf0b5abb82040e488e0615df1eb519e, type: 2}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: IsPowered
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: IsSteerable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+--- !u!114 &4767065100856785316 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+  m_PrefabInstance: {fileID: 4108303118761435981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6356070184438304137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7005019106260954820, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
@@ -2378,8 +1732,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: WheelF.R
       objectReference: {fileID: 0}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: Data
+      value: 
+      objectReference: {fileID: 11400000, guid: fcf0b5abb82040e488e0615df1eb519e, type: 2}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: IsPowered
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: IsSteerable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+--- !u!114 &3414938478337842610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+  m_PrefabInstance: {fileID: 6075311827770574683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3853115526313978271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7005019106260954820, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
@@ -2440,8 +1817,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: WheelB.R
       objectReference: {fileID: 0}
+    - target: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+      propertyPath: Data
+      value: 
+      objectReference: {fileID: 11400000, guid: efed512e429ed4045b4ccc84b773eadb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+--- !u!114 &72325624660743402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8875358570801879785, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}
+  m_PrefabInstance: {fileID: 8803244645482139139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1953924102193455303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7005019106260954820, guid: 807be8d6c96cae140a5c962b25ddeafa, type: 3}

@@ -737,6 +737,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &33332144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5620700086246767733, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+  m_PrefabInstance: {fileID: 1491687437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!850595691 &43956231
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -3306,11 +3317,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &408050393 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6356070184438304137, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
-  m_PrefabInstance: {fileID: 1491687437}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &507324069
 Mesh:
   m_ObjectHideFlags: 0
@@ -4268,6 +4274,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &659941582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4767065100856785316, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+  m_PrefabInstance: {fileID: 1491687437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &803437550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6012,11 +6029,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 906e02be37b33ef4e84e79f096063b7b, type: 3}
---- !u!4 &1079031167 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3853115526313978271, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+--- !u!114 &1079031168 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3414938478337842610, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
   m_PrefabInstance: {fileID: 1491687437}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1094994176
 GameObject:
   m_ObjectHideFlags: 0
@@ -7483,64 +7506,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 6356070184044198486, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+      propertyPath: powerScalar
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"wheels.[0].PacejkaCurve","value":{"$id":0,"$type":"UnityEngine.AnimationCurve,
-        UnityEngine.CoreModule",{"$id":1,"$type":"UnityEngine.Keyframe[], UnityEngine.CoreModule","$rlength":4,"$rcontent":[{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":0,"m_Value":0,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0,"m_OutWeight":0.333333343},{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":0.049999997,"m_Value":1.00000083,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0.333333343,"m_OutWeight":0.333333343},{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":0.799999952,"m_Value":0.499991119,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0.333333343,"m_OutWeight":0.333333343},{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":1,"m_Value":0.499999285,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0.333333343,"m_OutWeight":0}]},8,8}'
+      value: '"path":"wheels.[0]","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"wheels.[0].transform","value":$eref:0'
+      value: '"path":"wheels.[1]","value":$eref:1'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"wheels.[1].PacejkaCurve","value":{"$id":0,"$type":"UnityEngine.AnimationCurve,
-        UnityEngine.CoreModule",{"$id":1,"$type":"UnityEngine.Keyframe[], UnityEngine.CoreModule","$rlength":4,"$rcontent":[{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":0,"m_Value":0,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0,"m_OutWeight":0.333333343},{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":0.049999997,"m_Value":1.00000083,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0.333333343,"m_OutWeight":0.333333343},{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":0.799999952,"m_Value":0.499991119,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0.333333343,"m_OutWeight":0.333333343},{"$type":"UnityEngine.Keyframe,
-        UnityEngine.CoreModule","ver":1,"m_Time":1,"m_Value":0.499999285,"m_InTangent":0,"m_OutTangent":0,"m_TangentMode":0,"m_WeightedMode":0,"m_InWeight":0.333333343,"m_OutWeight":0}]},8,8}'
+      value: '"path":"wheels.[2]","value":$eref:2'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"wheels.[1].transform","value":$eref:1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"wheels.[2].transform","value":$eref:2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"wheels.[3].transform","value":$eref:2'
+      value: '"path":"wheels.[3]","value":$eref:3'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 408050393}
+      objectReference: {fileID: 659941582}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 1079031167}
+      objectReference: {fileID: 1079031168}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[2]
       value: 
-      objectReference: {fileID: 1848085727}
+      objectReference: {fileID: 33332144}
+    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 1848085728}
     - target: {fileID: 6356070184430693745, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11015,11 +11032,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!4 &1848085727 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1953924102193455303, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+--- !u!114 &1848085728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 72325624660743402, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
   m_PrefabInstance: {fileID: 1491687437}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1848243742
 GameObject:
   m_ObjectHideFlags: 0
