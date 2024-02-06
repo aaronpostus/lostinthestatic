@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0221bc33-acef-4f3b-9142-b98df35da04a}">
+		<property name="assetPath">
+			<value>Deer_Station_DRAFT1.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>157.34399999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{094ab35d-17fa-4645-b4da-0ad9f83c9a79}</destination>
+		</relationship>
+	</object>
+</objects>

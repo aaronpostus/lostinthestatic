@@ -30,10 +30,6 @@ public class RadioInput : MonoBehaviour
             { KeyCode.Alpha4, radio.ButtonInteraction },
             { KeyCode.Alpha5, radio.ButtonInteraction } 
         };
-
-        /*for (KeyCode keyCode = KeyCode.Alpha1; keyCode <= radio.GetPresetKey(); keyCode++) {
-                keyPressAndReleaseInputActions.Add(keyCode, radio.ButtonInteraction);
-        }*/
     }
     private void Update()
     {
@@ -42,7 +38,6 @@ public class RadioInput : MonoBehaviour
         }
         foreach (KeyCode keyCode in keyPressAndReleaseInputActions.Keys)
         {
-            Debug.Log((int)(keyCode - 49) + "Keycode");
             keyPressAndReleaseInputActions[keyCode].Invoke((int)(keyCode - 49), Input.GetKey(keyCode));
         }
     }

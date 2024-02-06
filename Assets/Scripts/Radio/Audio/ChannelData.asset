@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a306936a8b93932489b588a0a721632e, type: 3}
+  m_Name: ChannelData
+  m_EditorClassIdentifier: 
+  channels:
+  - channelName: Shotgun!
+    channelFrequency: 99.7
+    FMODEventRef:
+      Guid:
+        Data1: 601018704
+        Data2: 1213103099
+        Data3: -1509056101
+        Data4: 1317793662
+      Path: event:/RADIO_CHANNEL_99.7
+    channelType: 0
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Arise and become light
+    channelFrequency: 97.6
+    FMODEventRef:
+      Guid:
+        Data1: -750648880
+        Data2: 1156969152
+        Data3: 238360483
+        Data4: 1289935353
+      Path: event:/RADIO_CHANNEL_97.6
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 1
+  radioSeekNoise:
+    Guid:
+      Data1: -163713300
+      Data2: 1261531995
+      Data3: 596468131
+      Data4: 1244528306
+    Path: event:/RADIO_CLICK
