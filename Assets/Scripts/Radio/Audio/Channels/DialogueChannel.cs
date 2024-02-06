@@ -35,6 +35,8 @@ public class DialogueChannel : IRadioChannel
     public void SeekAwayFrom() {
         loopEventInstance.setVolume(0.0f);
         loopEventInstance.setParameterByName("LOOP", 0f);
+        loopEventInstance.getParameterByName("LOOP", out var value);
+        Debug.Log("LOOP:" + value);
     }
 
     public void InitializeAudioTrigger()

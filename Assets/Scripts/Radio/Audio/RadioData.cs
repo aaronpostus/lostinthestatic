@@ -16,6 +16,7 @@ public class RadioData : ScriptableObject
         public EventReference FMODEventRef;
         public RadioChannelType channelType;
         public AudioTrigger trigger;
+        public bool hasAudioTrigger = false;
     }
 
     public List<RadioChannelData> channels;

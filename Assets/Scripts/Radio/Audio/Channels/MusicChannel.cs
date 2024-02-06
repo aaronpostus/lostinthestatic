@@ -7,27 +7,20 @@ using static RadioData;
 public class MusicChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
-    RadioChannelData radioData;
-    bool started = false;
-    private GameObject attentuationObject;
     public MusicChannel(RadioChannelData radioData, GameObject attentuationObject)
     {
         loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
-        this.attentuationObject = attentuationObject;
-        this.radioData = radioData;
+        loopEventInstance.start();
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
+        loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
+        if (radioData.hasAudioTrigger)
+        {
+            radioData.trigger.AssignEventInstance(loopEventInstance);
+        }
+        loopEventInstance.setVolume(0.0f);
 
     }
     public void SeekTo() {
-        if (!started) {
-            loopEventInstance.start();
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
-            loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
-            if (radioData.trigger)
-            {
-                radioData.trigger.AssignEventInstance(loopEventInstance);
-            }
-            started = true;
-        }
         loopEventInstance.setVolume(1.0f);
     }
     public void SeekAwayFrom() {

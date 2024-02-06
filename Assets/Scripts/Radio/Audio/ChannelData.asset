@@ -24,6 +24,7 @@ MonoBehaviour:
       Path: event:/RADIO_CHANNEL_99.7
     channelType: 0
     trigger: {fileID: 0}
+    hasAudioTrigger: 0
   - channelName: Arise and become light
     channelFrequency: 97.6
     FMODEventRef:
@@ -35,6 +36,7 @@ MonoBehaviour:
       Path: event:/RADIO_CHANNEL_97.6
     channelType: 1
     trigger: {fileID: 0}
+    hasAudioTrigger: 1
   radioSeekNoise:
     Guid:
       Data1: -163713300

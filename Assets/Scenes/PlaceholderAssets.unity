@@ -8342,7 +8342,7 @@ GameObject:
   - component: {fileID: 1683632816}
   - component: {fileID: 1683632817}
   m_Layer: 26
-  m_Name: Cube
+  m_Name: GlassPuzzleAudioTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
