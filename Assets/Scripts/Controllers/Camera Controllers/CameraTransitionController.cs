@@ -15,7 +15,7 @@ public class CameraTransitionController : MonoBehaviour
     private Transform fromTarget, toTarget;
     private Transform playerTarget;
     private Transform carTarget;
-
+    private Vector3 startEulers, endEulers;
     private void Start()
     {
         cc = GameManager.Instance.Camera;
@@ -36,13 +36,14 @@ public class CameraTransitionController : MonoBehaviour
 
     public void TransitionTarget(PlayerState targetState)
     {
-        
         if (targetState == GameManager.Instance.ActiveState) return;
         GameManager.Instance.TargetState = targetState;
         fromTarget = targetState == PlayerState.OnFoot ? carTarget : playerTarget;
         toTarget = targetState == PlayerState.InCar ? carTarget : playerTarget;
         cc.PositionTarget = null;
         transitionTimer = 0;
+        startEulers = fromTarget.eulerAngles;
+        endEulers = toTarget.eulerAngles;
         UpdateTicker.Subscribe(IncrementTransition);
     }
 
@@ -50,6 +51,7 @@ public class CameraTransitionController : MonoBehaviour
     {
         transitionTimer += Time.deltaTime;
         transform.position = Vector3.Lerp(fromTarget.position, toTarget.position, transitionCurve.Evaluate(transitionTimer / transitionTime));
+        transform.eulerAngles = Vector3.Slerp(fromTarget.position, toTarget.position, transitionCurve.Evaluate(transitionTimer / transitionTime));
         if (transitionTimer > transitionTime)
         {
             cc.PositionTarget = toTarget;
