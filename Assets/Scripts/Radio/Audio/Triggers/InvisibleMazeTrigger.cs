@@ -1,25 +1,22 @@
-﻿using FMOD.Studio;
-using FMODUnity;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class InvisibleMazeTrigger : AudioTrigger
 {
-    private EventInstance eventRef;
-    private GameObject playerGameObj;
+    private InvisibleMazeChannel channel;
     [SerializeField] RadioAudioComponent audioComponent;
+    [SerializeField] InvisibleMazeController controller;
     [SerializeField] float channelNumber;
     public void Start()
     {
-        this.eventRef = audioComponent.GetEventInstance(channelNumber);
+        channel = (InvisibleMazeChannel) audioComponent.GetRadioChannel(channelNumber);
     }
     public override void EnterAudioZone(GameObject gameObject)
     {
-        this.playerGameObj = gameObject;
-        eventRef.setVolume(1);
+        channel.EnterMaze();
+        controller.StartTrackingPlayer();
     }
-
     public override void ExitAudioZone()
     {
-        eventRef.setVolume(0);
+        channel.ExitMaze();
+        controller.StopTrackingPlayer();
     }
 }

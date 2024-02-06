@@ -37,6 +37,18 @@ MonoBehaviour:
     channelType: 1
     trigger: {fileID: 0}
     hasAudioTrigger: 1
+  - channelName: Invisible Maze
+    channelFrequency: 98.3
+    FMODEventRef:
+      Guid:
+        Data1: 1724772533
+        Data2: 1289187405
+        Data3: 452940174
+        Data4: 1985861258
+      Path: event:/RADIO_CHANNEL_98.3
+    channelType: 3
+    trigger: {fileID: 0}
+    hasAudioTrigger: 1
   radioSeekNoise:
     Guid:
       Data1: -163713300
