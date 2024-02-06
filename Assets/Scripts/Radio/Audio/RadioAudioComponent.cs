@@ -7,10 +7,11 @@ using static RadioData;
 public class RadioAudioComponent : MonoBehaviour
 {
     [SerializeField] RadioData data;
+    [SerializeField] Collider playerCollider;
     private Dictionary<float, IRadioChannel> radioChannels;
     private IRadioChannel currentRadioChannel = null;
     private void CreateChannels() {
-        this.radioChannels = new Dictionary<float, IRadioChannel>();
+        radioChannels = new Dictionary<float, IRadioChannel>();
         foreach (RadioChannelData channelData in data.channels) {
             radioChannels.Add(channelData.channelFrequency, CreateChannel(channelData));
         }
@@ -28,15 +29,13 @@ public class RadioAudioComponent : MonoBehaviour
 
     public void Seek(float radioChannel) {
         FMODUnity.RuntimeManager.PlayOneShot(data.radioSeekNoise, transform.position);
-        if (this.radioChannels == null) {
+        if (radioChannels == null) {
             CreateChannels();
         }
-        if (this.currentRadioChannel != null) {
-            currentRadioChannel.SeekAwayFrom();
-        }
-        if (this.radioChannels.ContainsKey(radioChannel)) {
-            this.currentRadioChannel = this.radioChannels[radioChannel];
-            this.currentRadioChannel.SeekTo();
+        currentRadioChannel?.SeekAwayFrom();
+        if (radioChannels.ContainsKey(radioChannel)) {
+            currentRadioChannel = this.radioChannels[radioChannel];
+            currentRadioChannel.SeekTo();
         }
         else {
             this.currentRadioChannel = null;

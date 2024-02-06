@@ -361,7 +361,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &67692973
 Mesh:
@@ -1845,7 +1845,6 @@ MonoBehaviour:
     RefIds:
     - rid: 3146778537100312599
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &173617670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5093,7 +5092,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &970432648 stripped
 Transform:
@@ -5263,7 +5262,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1039156922
 PrefabInstance:
@@ -6520,7 +6519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556843265}
   m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.25, y: 1, z: 0.000000014901161}
+  m_LocalPosition: {x: 1.25, y: 1, z: 0}
   m_LocalScale: {x: 0.11612, y: 0.11612, z: 0.11612}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6537,7 +6536,7 @@ Transform:
   - {fileID: 84066526}
   - {fileID: 1994762043}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1556843270
 MonoBehaviour:
@@ -6981,7 +6980,6 @@ MonoBehaviour:
     RefIds:
     - rid: 3146778537100312583
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1604883409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9054,7 +9052,6 @@ MonoBehaviour:
     RefIds:
     - rid: 3146778537100312586
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &6286016733597466391
 MonoBehaviour:
   m_ObjectHideFlags: 0
