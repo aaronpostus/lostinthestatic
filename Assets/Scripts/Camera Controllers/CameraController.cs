@@ -33,9 +33,11 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
     void LateUpdate()
     {
         inputState = inputProvider.GetState();
-        if(PositionTarget != null) UpdatePosition();
-        if (!IsFocused)  UpdateRotationInput();
-        else UpdateRotationTarget();
+        if (PositionTarget != null) {
+            UpdatePosition();
+            if (!IsFocused) UpdateRotationInput();
+            else UpdateRotationTarget();
+        }
     }
 
     private void UpdatePosition() {
@@ -47,7 +49,7 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
         clampedLookEulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, clampedLookEulers.x), cameraAngleLimit.x, cameraAngleLimit.y);
         
         localEulers = clampedLookEulers;
-        transform.localEulerAngles = localEulers + (InheritTargetRotation ? PositionTarget.eulerAngles : Vector3.zero);
+        transform.localEulerAngles = localEulers + PositionTarget.eulerAngles;
     }
 
     private void UpdateRotationTarget()
