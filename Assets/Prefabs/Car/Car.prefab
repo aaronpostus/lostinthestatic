@@ -720,10 +720,10 @@ MonoBehaviour:
       Data: 0.75
     - Name: springConst
       Entry: 4
-      Data: 7000
+      Data: 12000
     - Name: springDamp
       Entry: 4
-      Data: 3500
+      Data: 6000
   cameraTarget: {fileID: 4152370829350717923}
   powerCurve:
     serializedVersion: 2
@@ -767,7 +767,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  powerScalar: 400
+  powerScalar: 600
   maxVelocity: 12
   maxSteerAngle: 40
   steerSpeed: 8

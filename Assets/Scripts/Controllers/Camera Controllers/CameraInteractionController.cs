@@ -28,10 +28,12 @@ public class CameraInteractionController : MonoBehaviour
     void Update()
     {
         interactTarget = null;
+        interactionString.Value = "";
         //if (interactionString != null) interactionString.Value = interactTarget != null ? "" : ;
         if (!cc.IsFree || !Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask)) return;
-
+        
         interactTarget = hit.collider.transform;
+        interactionString.Value = string.Format("[E] to {0}", interactTarget.GetComponent<IInteractable>().Type.ToString());
     }
 
     private void TryInteract()

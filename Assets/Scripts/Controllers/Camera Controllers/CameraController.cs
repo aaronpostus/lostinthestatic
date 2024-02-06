@@ -23,11 +23,11 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
     [SerializeField] private Vector2 cameraAngleLimit;
     public bool IsFree => PositionTarget != null && !IsFocused;
     public bool IsFocused => lookTarget != null;
-    private Vector3 localEulers;
+    public Vector3 LocalEulers;
 
     private void Awake()
     {
-        localEulers = transform.localEulerAngles;
+        LocalEulers = transform.localEulerAngles;
     }
 
     void LateUpdate()
@@ -45,23 +45,23 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
     }
 
     private void UpdateRotationInput() {
-        Vector3 clampedLookEulers = inputState.lookEulers + localEulers;
+        Vector3 clampedLookEulers = inputState.lookEulers + LocalEulers;
         clampedLookEulers.x = Mathf.Clamp(Mathf.DeltaAngle(0, clampedLookEulers.x), cameraAngleLimit.x, cameraAngleLimit.y);
-        
-        localEulers = clampedLookEulers;
-        transform.localEulerAngles = localEulers + PositionTarget.eulerAngles;
+
+        LocalEulers = clampedLookEulers;
+        transform.localEulerAngles = LocalEulers + PositionTarget.eulerAngles;
     }
 
     private void UpdateRotationTarget()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookTarget.position - transform.position, Vector3.up), lookTargetSlerp*Time.deltaTime);
-        localEulers = transform.localEulerAngles;
+        LocalEulers = transform.localEulerAngles;
     }
 
     public InputState ModifyInput(InputState input)
     {
-        input.moveDirection = Quaternion.AngleAxis(localEulers.y, Vector3.up) * input.moveDirection;
-        input.lookEulers = localEulers;
+        input.moveDirection = Quaternion.AngleAxis(LocalEulers.y, Vector3.up) * input.moveDirection;
+        input.lookEulers = LocalEulers;
         return input;
     }
 }
