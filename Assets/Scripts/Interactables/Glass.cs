@@ -1,10 +1,10 @@
+using FMODUnity;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Glass : MonoBehaviour, IInteractable
 {
+    [SerializeField] EventReference eventRef;
     public InteractionType Type => InteractionType.Play;
     public event Action<Glass> OnPlay;
 
@@ -12,5 +12,6 @@ public class Glass : MonoBehaviour, IInteractable
     {
         //player has clicked on Glass
         OnPlay?.Invoke(this);
+        FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, gameObject);
     }
 }
