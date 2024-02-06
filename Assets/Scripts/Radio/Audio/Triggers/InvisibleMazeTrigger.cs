@@ -8,6 +8,7 @@ public class InvisibleMazeTrigger : AudioTrigger
     public void Start()
     {
         channel = (InvisibleMazeChannel) audioComponent.GetRadioChannel(channelNumber);
+        controller.PassChannel(channel);
     }
     public override void EnterAudioZone(GameObject gameObject)
     {

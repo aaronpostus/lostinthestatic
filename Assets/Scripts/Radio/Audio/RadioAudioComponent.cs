@@ -25,9 +25,9 @@ public class RadioAudioComponent : MonoBehaviour
     private IRadioChannel CreateChannel(RadioChannelData channelData) {
         return channelData.channelType switch
         {
-            RadioChannelType.MUSIC => new MusicChannel(channelData, this.gameObject),
-            RadioChannelType.INVISIBLE_MAZE => new InvisibleMazeChannel(channelData),
-            RadioChannelType.DIALOGUE => new DialogueChannel(channelData, this.gameObject),
+            RadioChannelType.MUSIC => new MusicChannel(channelData, gameObject),
+            RadioChannelType.INVISIBLE_MAZE => new InvisibleMazeChannel(channelData, gameObject),
+            RadioChannelType.DIALOGUE => new DialogueChannel(channelData, gameObject),
             _ => throw new System.NotImplementedException(),
         };
     }

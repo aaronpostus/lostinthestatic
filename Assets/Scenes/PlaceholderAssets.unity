@@ -3869,7 +3869,7 @@ MonoBehaviour:
   spline: {fileID: 1829010554}
   player: {fileID: 2025510901}
   respawnPosition: {fileID: 285104981}
-  maxDistanceBeforeDeath: 5
+  maxDistanceBeforeDeath: 8
 --- !u!1 &385863023
 GameObject:
   m_ObjectHideFlags: 0

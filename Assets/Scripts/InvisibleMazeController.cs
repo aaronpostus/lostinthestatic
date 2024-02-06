@@ -9,11 +9,15 @@ public class InvisibleMazeController : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] Transform respawnPosition;
     [SerializeField] float maxDistanceBeforeDeath;
+    private InvisibleMazeChannel channel;
     public void StartTrackingPlayer() {
         UpdateTicker.Subscribe(UpdatePlayerPos);
     }
     public void StopTrackingPlayer() { 
         UpdateTicker.Unsubscribe(UpdatePlayerPos);
+    }
+    public void PassChannel(InvisibleMazeChannel channel) {
+        this.channel = channel;
     }
     void UpdatePlayerPos() {
         SplineSample sample = new SplineSample();
@@ -22,6 +26,7 @@ public class InvisibleMazeController : MonoBehaviour
         Vector3 pointPos = sample.position;
         float distance = Mathf.Sqrt(Mathf.Pow(playerPos.x - pointPos.x, 2) + Mathf.Pow(playerPos.z - pointPos.z, 2));
         Debug.Log(distance);
+        channel.UpdateBalance(1-(distance / maxDistanceBeforeDeath));
         if (distance > maxDistanceBeforeDeath) {
             Lose();
         }

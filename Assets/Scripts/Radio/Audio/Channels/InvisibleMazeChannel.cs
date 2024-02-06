@@ -1,4 +1,5 @@
 ﻿using FMOD.Studio;
+using UnityEngine;
 using static RadioData;
 public class InvisibleMazeChannel : IRadioChannel
 {
@@ -8,9 +9,12 @@ public class InvisibleMazeChannel : IRadioChannel
     EventInstance loopEventInstance;
     private MAZE_STATE state = MAZE_STATE.PLAYER_OUTSIDE;
     private CHANNEL_STATE channelState = CHANNEL_STATE.NOT_LISTENING;
-    public InvisibleMazeChannel(RadioChannelData radioData)
+    public InvisibleMazeChannel(RadioChannelData radioData, GameObject attentuationObject)
     {
         this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
+        loopEventInstance.start();
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
+        loopEventInstance.setVolume(0);
         //this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
     }
     public void EnterMaze()
@@ -42,6 +46,10 @@ public class InvisibleMazeChannel : IRadioChannel
             TurnOnChannelVol();
         }
         channelState = CHANNEL_STATE.LISTENING;
+    }
+    public void UpdateBalance(float balance)
+    {
+        loopEventInstance.setParameterByName("BLEND", balance);
     }
     private void TurnOnChannelVol() {
         loopEventInstance.setVolume(1f);
