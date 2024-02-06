@@ -218,7 +218,7 @@ MonoBehaviour:
     - Name: inputProvider
       Entry: 10
       Data: 0
-  cameraTarget: {fileID: 0}
+  cameraTarget: {fileID: 705369643307259311}
   gravity: 15
   terminalVelocity: 10
   friction: 10

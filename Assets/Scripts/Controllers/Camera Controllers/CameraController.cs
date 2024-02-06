@@ -28,6 +28,7 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
     private void Awake()
     {
         LocalEulers = transform.localEulerAngles;
+        GameManager.Instance.Camera = this;
     }
 
     void LateUpdate()

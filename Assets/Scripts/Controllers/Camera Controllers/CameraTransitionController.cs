@@ -16,6 +16,7 @@ public class CameraTransitionController : MonoBehaviour
     private Transform playerTarget;
     private Transform carTarget;
     private Vector3 cameraEulers;
+
     private void Start()
     {
         cc = GameManager.Instance.Camera;
