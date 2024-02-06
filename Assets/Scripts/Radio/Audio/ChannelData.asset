@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChannelData
   m_EditorClassIdentifier: 
   channels:
-  - channelName: 
+  - channelName: Shotgun!
     channelFrequency: 99.7
     FMODEventRef:
       Guid:
@@ -23,6 +23,18 @@ MonoBehaviour:
         Data4: 1317793662
       Path: event:/RADIO_CHANNEL_99.7
     channelType: 0
+    trigger: {fileID: 0}
+  - channelName: Arise and become light
+    channelFrequency: 97.6
+    FMODEventRef:
+      Guid:
+        Data1: -750648880
+        Data2: 1156969152
+        Data3: 238360483
+        Data4: 1289935353
+      Path: event:/RADIO_CHANNEL_97.6
+    channelType: 1
+    trigger: {fileID: 0}
   radioSeekNoise:
     Guid:
       Data1: -163713300

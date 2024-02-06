@@ -11,11 +11,13 @@ using static RadioData;
 public class DialogueChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
+    private GameObject attentuationObject;
     public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject) { 
         this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
-        this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
-
+        this.attentuationObject = attentuationObject;
+        //this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
     }
+
     public void SeekTo() {
         PLAYBACK_STATE playbackState;
         loopEventInstance.getPlaybackState(out playbackState);
@@ -24,6 +26,7 @@ public class DialogueChannel : IRadioChannel
         {
             Debug.Log("Last time the loop stopped! Starting from beginning");
             loopEventInstance.start();
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
         }
         loopEventInstance.setParameterByName("LOOP",1);
         loopEventInstance.getParameterByName("LOOP", out var value);

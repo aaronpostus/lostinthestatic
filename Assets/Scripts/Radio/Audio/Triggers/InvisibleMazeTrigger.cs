@@ -1,14 +1,15 @@
-﻿using FMODUnity;
+﻿using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class InvisibleMazeTrigger : AudioTrigger
 {
-    private EventReference fmodEventRef;
+    private EventInstance eventRef;
     private GameObject playerGameObj;
-    public InvisibleMazeTrigger(string playerTag, EventReference fmodEventRef) : base(playerTag) {
-        this.fmodEventRef = fmodEventRef;
+    public override void AssignEventInstance(EventInstance eventInst)
+    {
+        eventRef = eventInst;
     }
-
     public override void EnterAudioZone(GameObject gameObject)
     {
         this.playerGameObj = gameObject;
@@ -16,6 +17,6 @@ public class InvisibleMazeTrigger : AudioTrigger
 
     public override void ExitAudioZone()
     {
-        throw new System.NotImplementedException();
+
     }
 }

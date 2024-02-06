@@ -20,9 +20,9 @@ public class RadioAudioComponent : MonoBehaviour
         return channelData.channelType switch
         {
             // change later to include classes for the other types of channels
-            RadioChannelType.MUSIC => new MusicChannel(channelData, gameObject),
-            RadioChannelType.INVISIBLE_MAZE => new DialogueChannel(channelData, gameObject),
-            RadioChannelType.DIALOGUE => new DialogueChannel(channelData, gameObject),
+            RadioChannelType.MUSIC => new MusicChannel(channelData, playerCollider.gameObject),
+            RadioChannelType.INVISIBLE_MAZE => new DialogueChannel(channelData, playerCollider.gameObject),
+            RadioChannelType.DIALOGUE => new DialogueChannel(channelData, playerCollider.gameObject),
             _ => throw new System.NotImplementedException(),
         };
     }

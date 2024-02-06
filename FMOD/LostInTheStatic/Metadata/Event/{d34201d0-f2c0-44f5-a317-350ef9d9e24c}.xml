@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{d34201d0-f2c0-44f5-a317-350ef9d9e24c}">
 		<property name="name">
-			<value>RADIO_CHANNEL_95.6</value>
+			<value>RADIO_CHANNEL_97.6</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -80,6 +80,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{f613a385-3eee-4b24-a762-7032921fb373}">
+		<property name="volume">
+			<value>-28</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{b55aca74-51d7-4f26-825b-c79963c37347}</destination>
 		</relationship>

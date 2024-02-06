@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿
+using FMOD.Studio;
+using UnityEngine;
 
 public abstract class AudioTrigger : MonoBehaviour
 {
-    private string playerTag;
-    public AudioTrigger(string playerTag) { 
-        this.playerTag = playerTag;
-    }
+    private const string playerTag = "Player";
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,4 +21,5 @@ public abstract class AudioTrigger : MonoBehaviour
     }
     public abstract void EnterAudioZone(GameObject gameObject);
     public abstract void ExitAudioZone();
+    public abstract void AssignEventInstance(EventInstance eventInst);
 }

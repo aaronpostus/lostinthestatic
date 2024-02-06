@@ -15,9 +15,10 @@ public class RadioData : ScriptableObject
         public float channelFrequency;
         public EventReference FMODEventRef;
         public RadioChannelType channelType;
+        public AudioTrigger trigger;
     }
 
     public List<RadioChannelData> channels;
     public EventReference radioSeekNoise;
-    public AudioTrigger trigger;
+
 }
