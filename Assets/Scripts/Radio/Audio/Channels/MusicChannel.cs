@@ -15,7 +15,9 @@ public class MusicChannel : IRadioChannel
         loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
         if (radioData.hasAudioTrigger)
         {
-            radioData.trigger.AssignEventInstance(loopEventInstance);
+            // NOT NOT GOOD BAD BAD DO DIFFERENT LATER TECH DEBT TECH DEBT
+            AudioTrigger trigger = GameObject.Find("GlassPuzzleAudioTrigger").GetComponent<GlassPuzzleTrigger>();
+            trigger.AssignEventInstance(loopEventInstance);
         }
         loopEventInstance.setVolume(0.0f);
 
