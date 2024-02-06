@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: a4e7860d06227d246a5dc7abd352eabf
+<<<<<<<< HEAD:Assets/Scenes/Interactable Testing.unity.meta
+guid: 04c2278a508162540b34fd52573e5821
+========
+guid: 2ad68311f49424fd280f8bbcf1129654
+>>>>>>>> radio-controller:Assets/Scripts/Radio/Serial/Demo/Serial Demo.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
