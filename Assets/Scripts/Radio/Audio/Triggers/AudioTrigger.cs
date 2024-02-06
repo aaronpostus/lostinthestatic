@@ -1,5 +1,4 @@
-﻿using FMODUnity;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class AudioTrigger : MonoBehaviour
 {

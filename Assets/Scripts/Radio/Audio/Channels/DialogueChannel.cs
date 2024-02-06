@@ -1,6 +1,7 @@
 ﻿using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using static RadioData;
 
 // A dialogue will start from the beginning the first time the user seeks to it.
 // Then, while they are selected on that station, it will continue looping.
@@ -10,8 +11,8 @@ using UnityEngine;
 public class DialogueChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
-    public DialogueChannel(EventReference fmodEventRef, GameObject attentuationObject) { 
-        this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEventRef);
+    public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject) { 
+        this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
         this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
 
     }
@@ -31,5 +32,10 @@ public class DialogueChannel : IRadioChannel
     public void SeekAwayFrom() {
         loopEventInstance.setVolume(0.0f);
         loopEventInstance.setParameterByName("LOOP", 0f);
+    }
+
+    public void InitializeAudioTrigger()
+    {
+
     }
 }

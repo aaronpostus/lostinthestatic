@@ -19,4 +19,5 @@ public class RadioData : ScriptableObject
 
     public List<RadioChannelData> channels;
     public EventReference radioSeekNoise;
+    public AudioTrigger trigger;
 }
