@@ -21,5 +21,4 @@ public abstract class AudioTrigger : MonoBehaviour
     }
     public abstract void EnterAudioZone(GameObject gameObject);
     public abstract void ExitAudioZone();
-    public abstract void AssignEventInstance(EventInstance eventInst);
 }

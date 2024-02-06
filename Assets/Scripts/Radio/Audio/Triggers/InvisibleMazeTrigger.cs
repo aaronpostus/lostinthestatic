@@ -6,17 +6,20 @@ public class InvisibleMazeTrigger : AudioTrigger
 {
     private EventInstance eventRef;
     private GameObject playerGameObj;
-    public override void AssignEventInstance(EventInstance eventInst)
+    [SerializeField] RadioAudioComponent audioComponent;
+    [SerializeField] float channelNumber;
+    public void Start()
     {
-        eventRef = eventInst;
+        this.eventRef = audioComponent.GetEventInstance(channelNumber);
     }
     public override void EnterAudioZone(GameObject gameObject)
     {
         this.playerGameObj = gameObject;
+        eventRef.setVolume(1);
     }
 
     public override void ExitAudioZone()
     {
-
+        eventRef.setVolume(0);
     }
 }

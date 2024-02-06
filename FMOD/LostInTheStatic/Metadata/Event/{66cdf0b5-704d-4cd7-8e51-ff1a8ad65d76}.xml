@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{66cdf0b5-704d-4cd7-8e51-ff1a8ad65d76}">
 		<property name="name">
-			<value>InvisibleMaze</value>
+			<value>RADIO_CHANNEL_98.3</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>

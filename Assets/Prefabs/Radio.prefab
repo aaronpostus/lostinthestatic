@@ -5331,6 +5331,7 @@ GameObject:
   - component: {fileID: 4888894305143202918}
   - component: {fileID: 4888894305143202916}
   - component: {fileID: 4888894305143202917}
+  - component: {fileID: 8929279889156708947}
   - component: {fileID: 4888894305143202938}
   m_Layer: 0
   m_Name: Radio
@@ -5748,7 +5749,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 568e6bcff114d774eb861184c1555ef8, type: 2}
-  playerCollider: {fileID: 0}
+  audiotriggers: {fileID: 8929279889156708947}
+--- !u!114 &8929279889156708947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4888894305143202923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940cd53b72f318644bf8c6121042485e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: triggers
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Single, mscorlib],[AudioTrigger,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Single,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!54 &4888894305143202938
 Rigidbody:
   m_ObjectHideFlags: 0

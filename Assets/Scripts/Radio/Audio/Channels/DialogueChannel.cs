@@ -17,30 +17,24 @@ public class DialogueChannel : IRadioChannel
         this.attentuationObject = attentuationObject;
         //this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
     }
-
     public void SeekTo() {
         PLAYBACK_STATE playbackState;
         loopEventInstance.getPlaybackState(out playbackState);
         loopEventInstance.setVolume(1.0f);
         if (playbackState == PLAYBACK_STATE.STOPPED)
         {
-            Debug.Log("Last time the loop stopped! Starting from beginning");
             loopEventInstance.start();
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
         }
-        loopEventInstance.setParameterByName("LOOP",1);
-        loopEventInstance.getParameterByName("LOOP", out var value);
-        Debug.Log("LOOP:"+value);
+        loopEventInstance.setParameterByName("LOOPDIALOGUE",1);
     }
     public void SeekAwayFrom() {
         loopEventInstance.setVolume(0.0f);
-        loopEventInstance.setParameterByName("LOOP", 0f);
-        loopEventInstance.getParameterByName("LOOP", out var value);
-        Debug.Log("LOOP:" + value);
+        loopEventInstance.setParameterByName("LOOPDIALOGUE", 0f);
     }
 
-    public void InitializeAudioTrigger()
+    public EventInstance GetEventInstance()
     {
-
+        return loopEventInstance;
     }
 }

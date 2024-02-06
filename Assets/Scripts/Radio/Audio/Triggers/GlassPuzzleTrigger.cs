@@ -4,11 +4,12 @@ using UnityEngine;
 public class GlassPuzzleTrigger : AudioTrigger
 {
     private EventInstance eventRef;
-    public override void AssignEventInstance(EventInstance eventInst)
+    [SerializeField] RadioAudioComponent audioComponent;
+    [SerializeField] float channelNumber;
+    public void Start()
     {
-        eventRef = eventInst;
+        this.eventRef = audioComponent.GetEventInstance(channelNumber);
     }
-
     public override void EnterAudioZone(GameObject gameObject)
     {
         Debug.Log(eventRef.setParameterByName("SKIP", 0));

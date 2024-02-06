@@ -7,9 +7,15 @@ using static RadioData;
 public class RadioAudioComponent : MonoBehaviour
 {
     [SerializeField] RadioData data;
-    [SerializeField] Collider playerCollider;
     private Dictionary<float, IRadioChannel> radioChannels;
     private IRadioChannel currentRadioChannel = null;
+    public bool HasEventInstance(float freq) {
+        return radioChannels.ContainsKey(freq); ;
+    }
+    public EventInstance GetEventInstance(float freq) {
+        return radioChannels[freq].GetEventInstance();
+    }
+
     private void CreateChannels() {
         radioChannels = new Dictionary<float, IRadioChannel>();
         foreach (RadioChannelData channelData in data.channels) {
@@ -19,7 +25,6 @@ public class RadioAudioComponent : MonoBehaviour
     private IRadioChannel CreateChannel(RadioChannelData channelData) {
         return channelData.channelType switch
         {
-            // change later to include classes for the other types of channels
             RadioChannelType.MUSIC => new MusicChannel(channelData, this.gameObject),
             RadioChannelType.INVISIBLE_MAZE => new DialogueChannel(channelData, this.gameObject),
             RadioChannelType.DIALOGUE => new DialogueChannel(channelData, this.gameObject),
