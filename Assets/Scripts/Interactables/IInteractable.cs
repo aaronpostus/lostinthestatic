@@ -4,7 +4,6 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    //public event Action OnInteract;
     public InteractionType Type { get; }
     void Interact();
 }
