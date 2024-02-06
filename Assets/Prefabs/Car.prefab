@@ -605,10 +605,10 @@ MonoBehaviour:
       Data: 0.75
     - Name: springConst
       Entry: 4
-      Data: 5500
+      Data: 15000
     - Name: springDamp
       Entry: 4
-      Data: 1000
+      Data: 3000
   cameraTarget: {fileID: 4152370829350717923}
   powerCurve:
     serializedVersion: 2

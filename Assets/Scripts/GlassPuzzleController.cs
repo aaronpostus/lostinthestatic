@@ -19,7 +19,6 @@ public class GlassPuzzleController : MonoBehaviour
 
 
     private void OnEnable() {
-        sequence = new List<Glass>();
         foreach (Glass glass in subscribedGlasses)  glass.OnPlay += CheckSequence; 
     }
 
@@ -33,7 +32,11 @@ public class GlassPuzzleController : MonoBehaviour
     private void CheckSequence(Glass glass) {
         if (sequence[activeIndex].Equals(glass)){
             activeIndex++;
-            if (activeIndex >= sequence.Count) GameManager.Instance.CompletePuzzle(PuzzleFlag.Glass);
+            if (activeIndex >= sequence.Count) {
+                GameManager.Instance.CompletePuzzle(PuzzleFlag.Glass);
+                enabled = false;
+            } 
+            
         }
         else {
             activeIndex = 0;

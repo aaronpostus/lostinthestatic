@@ -17,9 +17,9 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 19.99997
-      outSlope: 19.99997
+      value: 0.5
+      inSlope: 9.999969
+      outSlope: 9.999969
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -79,4 +79,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RollResistanceScalar: 0.25
+  RollResistanceScalar: 0.5

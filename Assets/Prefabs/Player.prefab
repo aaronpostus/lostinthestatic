@@ -221,7 +221,7 @@ MonoBehaviour:
       Entry: 10
       Data: 0
   cameraTarget: {fileID: 705369643307259311}
-  gravity: 15
+  gravity: 9.81
   terminalVelocity: 10
   friction: 10
   airFriction: 2
@@ -231,7 +231,7 @@ MonoBehaviour:
   rotationLerp: 0.4
   maxSlope: 60
   slopeJumpBias: 0.5
-  jumpHeight: 3
+  jumpHeight: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 1
