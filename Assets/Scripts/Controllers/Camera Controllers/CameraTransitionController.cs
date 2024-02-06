@@ -15,7 +15,7 @@ public class CameraTransitionController : MonoBehaviour
     private Transform fromTarget, toTarget;
     private Transform playerTarget;
     private Transform carTarget;
-    private Vector3 startEulers, endEulers;
+    private Vector3 cameraEulers;
     private void Start()
     {
         cc = GameManager.Instance.Camera;
@@ -42,17 +42,19 @@ public class CameraTransitionController : MonoBehaviour
         toTarget = targetState == PlayerState.InCar ? carTarget : playerTarget;
         cc.PositionTarget = null;
         transitionTimer = 0;
-        startEulers = fromTarget.eulerAngles;
-        endEulers = toTarget.eulerAngles;
+        cameraEulers = cc.LocalEulers;
         UpdateTicker.Subscribe(IncrementTransition);
     }
 
     private void IncrementTransition()
     {
-        transitionTimer += Time.deltaTime;
+        transitionTimer = Mathf.Min(transitionTimer + Time.deltaTime,  transitionTime);
+
         transform.position = Vector3.Lerp(fromTarget.position, toTarget.position, transitionCurve.Evaluate(transitionTimer / transitionTime));
-        transform.eulerAngles = Vector3.Slerp(fromTarget.position, toTarget.position, transitionCurve.Evaluate(transitionTimer / transitionTime));
-        if (transitionTimer > transitionTime)
+
+        float slerpValue = transitionCurve.Evaluate(transitionTimer / transitionTime);
+        transform.rotation = Quaternion.Slerp(Quaternion.Euler(cameraEulers + fromTarget.eulerAngles), Quaternion.Euler(cameraEulers + toTarget.eulerAngles), slerpValue);
+        if (transitionTimer >= transitionTime)
         {
             cc.PositionTarget = toTarget;
             GameManager.Instance.ActiveState = GameManager.Instance.TargetState;
