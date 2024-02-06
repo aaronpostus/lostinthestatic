@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="ParameterPreset" id="{12317963-edbc-4b5b-a47d-91ff3551e231}">
+	<object class="ParameterPreset" id="{94f8d449-4780-4bdc-8f1f-16fda89fcf85}">
 		<property name="name">
-			<value>LOOP</value>
+			<value>SKIP</value>
 		</property>
 		<relationship name="folder">
 			<destination>{07d4a1d2-ef61-47f4-a9c3-24291ec9a57a}</destination>
 		</relationship>
 		<relationship name="parameter">
-			<destination>{324f2677-5d67-489c-95be-9c11c378cb08}</destination>
+			<destination>{8be75758-a79e-4f14-8291-900f5134fc38}</destination>
 		</relationship>
 	</object>
-	<object class="GameParameter" id="{324f2677-5d67-489c-95be-9c11c378cb08}">
+	<object class="GameParameter" id="{8be75758-a79e-4f14-8291-900f5134fc38}">
 		<property name="parameterType">
 			<value>1</value>
 		</property>

@@ -11,11 +11,13 @@ public class GlassPuzzleTrigger : AudioTrigger
 
     public override void EnterAudioZone(GameObject gameObject)
     {
-        eventRef.setParameterByName("SKIP", 0);
+        Debug.Log(eventRef.setParameterByName("SKIP", 0));
+        Debug.Log("Enter");
     }
 
     public override void ExitAudioZone()
     {
-        eventRef.setParameterByName("SKIP", 1);
+        Debug.Log(eventRef.setParameterByName("SKIP", 1));
+        Debug.Log("Exit");
     }
 }
