@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void CompletePuzzle(PuzzleFlag puzzleCompleted)
     {
         PuzzleState = puzzleCompleted | PuzzleState;
-        puzzleCongrats.Value = "Congrats on beating the " + puzzleCompleted + "puzzle.";
+        puzzleCongrats.Value = "Congrats on beating the " + puzzleCompleted + " puzzle.";
         StartCoroutine(RemovePuzzleCongrats());
     }
     IEnumerator RemovePuzzleCongrats()
