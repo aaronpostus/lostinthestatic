@@ -30685,6 +30685,17 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1379957737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4888894305143202917, guid: 5e905b2a1cf7b5e4183f8ffaec2119f5, type: 3}
+  m_PrefabInstance: {fileID: 1379957734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379957735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a6f4c3daed9c74ea4a8499891f10be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1388608054
 GameObject:
   m_ObjectHideFlags: 0
@@ -42918,8 +42929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac30c1e6a3c83ed47a7c39e786dd56fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioComponent: {fileID: 0}
-  channelNumber: 0
+  audioComponent: {fileID: 1379957737}
+  channelNumber: 97.6
 --- !u!65 &1891012824
 BoxCollider:
   m_ObjectHideFlags: 0
