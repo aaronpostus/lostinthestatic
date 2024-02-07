@@ -1,13 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] 
-    public static GameManager Instance {
-        get {
+    [SerializeField] StringReference puzzleCongrats;
+    public static GameManager Instance
+    {
+        get
+        {
             if (instance == null) instance = new GameObject("[Game Manager]").AddComponent<GameManager>();
-            return instance;    
+            return instance;
         }
     }
     private static GameManager instance;
@@ -17,11 +20,14 @@ public class GameManager : MonoBehaviour
     public PuzzleFlag PuzzleState = 0;
 
     public PlayerState TargetState;
-    public PlayerState ActiveState {
-        get {
+    public PlayerState ActiveState
+    {
+        get
+        {
             return activeState;
         }
-        set {
+        set
+        {
             activeState = value;
             PlayerStateChanged?.Invoke(value);
         }
@@ -40,6 +46,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerStateChanged?.Invoke(activeState);
+        puzzleCongrats.Value = "";
     }
 
     private void OnDestroy()
@@ -47,11 +54,18 @@ public class GameManager : MonoBehaviour
         instance = null;
     }
 
-    public void CompletePuzzle(PuzzleFlag puzzleCompleted) {
+    public void CompletePuzzle(PuzzleFlag puzzleCompleted)
+    {
         PuzzleState = puzzleCompleted | PuzzleState;
+        puzzleCongrats.Value = "Congrats on beating the " + puzzleCompleted + "puzzle.";
+        StartCoroutine(RemovePuzzleCongrats());
+    }
+    IEnumerator RemovePuzzleCongrats()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        puzzleCongrats.Value = "";
     }
 }
-
 public enum PlayerState
 {
     InCar,
