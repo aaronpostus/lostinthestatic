@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -29,6 +30,12 @@ public class Radio : MonoBehaviour
     // timer for save state to expire
     private float remainingSaveStateTime;
 
+    private Bus masterBus;
+
+    void Start()
+    {
+        masterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
+    }
     public Radio() {
         freqRange = maxRadioFreq - minRadioFreq;
         volRange = (maxVol - minVol) + 1;
@@ -167,8 +174,9 @@ public class Radio : MonoBehaviour
     }
     // updates the in-game elements
     private void RefreshVolume() {
-        string volume = this.prettyVolume + "";
-        this.vol.text = volume;
+        string volume = prettyVolume + "";
+        vol.text = volume;
+        masterBus.setVolume(prettyVolume/maxVol);
     }
     private void Update()
     {
