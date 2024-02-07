@@ -52589,6 +52589,10 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 4052654093160791825, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
+    - target: {fileID: 5188458373396740873, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
 --- !u!1 &1937769533 stripped
