@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] 
     public static GameManager Instance {
         get {
             if (instance == null) instance = new GameObject("[Game Manager]").AddComponent<GameManager>();
