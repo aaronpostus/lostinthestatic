@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // This class is used for handling keyboard input to control the radio. This could easily be refactored into a general user input class later on.
 public class RadioInput : MonoBehaviour
@@ -19,7 +20,8 @@ public class RadioInput : MonoBehaviour
             { KeyCode.RightArrow, radio.IncreaseVolume },
             { KeyCode.LeftArrow, radio.DecreaseVolume },
             { KeyCode.UpArrow, radio.IncreaseFrequency },
-            { KeyCode.DownArrow, radio.DecreaseFrequency }
+            { KeyCode.DownArrow, radio.DecreaseFrequency },
+            { KeyCode.R, Restart }
         };
         // gahhh this is more hard coded than necessary but i couldnt get the commented out code to work difauhyujdfksajfdaj ill fix it later
         keyPressAndReleaseInputActions = new Dictionary<KeyCode, Action<int, bool>> 
@@ -30,6 +32,9 @@ public class RadioInput : MonoBehaviour
             { KeyCode.Alpha4, radio.ButtonInteraction },
             { KeyCode.Alpha5, radio.ButtonInteraction } 
         };
+    }
+    void Restart(float throwaway) {
+        SceneManager.LoadScene("Level");
     }
     private void Update()
     {
