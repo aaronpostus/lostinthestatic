@@ -7,7 +7,7 @@ public class RestartTunnel : MonoBehaviour
     [SerializeField] private float triggerFrequency;
     [SerializeField] private Transform resetPosition;
     [SerializeField] private GameObject radio;
-    [SerializeField] private Transform door;
+    [SerializeField] private GameObject door;
     private bool puzzleNotSolved = true;
     private Vector3 positionOffset;
 
