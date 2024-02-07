@@ -54,7 +54,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  GripFactor: 1.5
+  GripFactor: 8
   RollResistance:
     serializedVersion: 2
     m_Curve:
