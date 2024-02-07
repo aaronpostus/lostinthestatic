@@ -32,4 +32,9 @@ public class LoopingChannel : IRadioChannel
         loopEventInstance.setVolume(0.0f);
         loopEventInstance.setParameterByName("LOOP", 0f);
     }
+
+    public EventInstance GetEventInstance()
+    {
+        return loopEventInstance;
+    }
 }
