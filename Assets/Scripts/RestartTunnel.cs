@@ -5,10 +5,12 @@ using UnityEngine;
 public class RestartTunnel : MonoBehaviour
 {
     [SerializeField] private float triggerFrequency;
-    [SerializeField] private Vector3 resetPosition;
+    [SerializeField] private Transform resetPosition;
     [SerializeField] private GameObject radio;
-    [SerializeField] private GameObject door;
+    [SerializeField] private Transform door;
     private bool puzzleNotSolved = true;
+    private Vector3 positionOffset;
+
     public void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Player")
@@ -16,7 +18,8 @@ public class RestartTunnel : MonoBehaviour
             checkFrequency();
             if(puzzleNotSolved)
             {
-                col.gameObject.transform.position = resetPosition;
+                positionOffset = col.gameObject.transform.position - transform.position;
+                col.gameObject.GetComponent<Rigidbody>().position = resetPosition.position+positionOffset;
             }
         }
     }

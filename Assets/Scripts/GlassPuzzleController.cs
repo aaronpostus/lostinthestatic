@@ -11,7 +11,7 @@ public class GlassPuzzleController : MonoBehaviour
 
     private void Awake() {
         subscribedGlasses = new HashSet<Glass>();
-        foreach (Glass glass in sequence)
+        foreach (Glass glass in GetComponentsInChildren<Glass>())
         {
             subscribedGlasses.Add(glass);
         }
