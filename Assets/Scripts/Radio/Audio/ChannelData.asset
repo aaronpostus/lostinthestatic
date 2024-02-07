@@ -49,6 +49,54 @@ MonoBehaviour:
     channelType: 3
     trigger: {fileID: 0}
     hasAudioTrigger: 1
+  - channelName: Kirby
+    channelFrequency: 97.1
+    FMODEventRef:
+      Guid:
+        Data1: 2070910476
+        Data2: 1242813885
+        Data3: -968619847
+        Data4: -156435966
+      Path: event:/RADIO_CHANNEL_97.1
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Palace of Twilight
+    channelFrequency: 98.8
+    FMODEventRef:
+      Guid:
+        Data1: -1560012718
+        Data2: 1124565492
+        Data3: 995839927
+        Data4: 1538400559
+      Path: event:/RADIO_CHANNEL_98.8
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Rickroll
+    channelFrequency: 99.2
+    FMODEventRef:
+      Guid:
+        Data1: 561711595
+        Data2: 1179691549
+        Data3: -2143916877
+        Data4: 225391285
+      Path: event:/RADIO_CHANNEL_99.2
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Forest Temple
+    channelFrequency: 98.5
+    FMODEventRef:
+      Guid:
+        Data1: -863081551
+        Data2: 1209988037
+        Data3: -1687392849
+        Data4: -12047084
+      Path: event:/RADIO_CHANNEL_98.5
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
   radioSeekNoise:
     Guid:
       Data1: -163713300
