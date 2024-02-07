@@ -608,7 +608,7 @@ MonoBehaviour:
       Data: 15000
     - Name: springDamp
       Entry: 4
-      Data: 3000
+      Data: 10000
   cameraTarget: {fileID: 4152370829350717923}
   powerCurve:
     serializedVersion: 2
@@ -655,7 +655,7 @@ MonoBehaviour:
   powerScalar: 600
   maxVelocity: 15
   maxSteerAngle: 40
-  steerSpeed: 8
+  steerSpeed: 5
 --- !u!1 &6356070184272104225
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Physics Testing.unity
     guid: 85bb8fe05cf504645a1e0adb0bfe8645
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4d72c86c48e43db48b9ec6509aa735cd
+  - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: 1459d13e99ab8ec47921e6b056e460bc
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 6a2fe693d82609840b002a638f834df0
   m_configObjects: {}

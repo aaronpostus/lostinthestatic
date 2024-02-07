@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public static event Action<PlayerState> PlayerStateChanged;
 
-    public PuzzleFlag PuzzleState = 0;
+    public PuzzleFlag PuzzleState;
 
     public PlayerState TargetState;
     public PlayerState ActiveState {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void CompletePuzzle(PuzzleFlag puzzleCompleted) {
         PuzzleState = puzzleCompleted | PuzzleState;
+        if (PuzzleState == PuzzleFlag.Complete) SceneManager.LoadScene(SceneName.EndScene.ToString());
     }
 }
 
