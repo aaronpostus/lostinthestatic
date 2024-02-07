@@ -51585,9 +51585,17 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1937769542}
+    - target: {fileID: 705369643675858284, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 705369643675858285, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 726928145486868815, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4052654093160791825, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
       propertyPath: serializationData.Prefab

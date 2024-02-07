@@ -33,8 +33,8 @@ public class InvisibleMazeController : MonoBehaviour
     }
 
     void Lose() {
-        player.transform.position = respawnPosition.position;
         player.transform.rotation = respawnPosition.rotation;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player.transform.position = respawnPosition.position;
     }
 }
