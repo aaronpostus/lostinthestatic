@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0af41e17-2f3a-4dee-8ccc-2af74ddda5e7}">
+		<property name="assetPath">
+			<value>Forest_Temple_-_The_Legend_of_Zelda_Ocarina_Of_Time.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>224.07836734693876</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{094ab35d-17fa-4645-b4da-0ad9f83c9a79}</destination>
+		</relationship>
+	</object>
+</objects>
