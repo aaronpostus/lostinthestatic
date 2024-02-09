@@ -5778,7 +5778,7 @@ GameObject:
   - component: {fileID: 4888894305551201374}
   - component: {fileID: 4888894305551201369}
   m_Layer: 0
-  m_Name: freqdial
+  m_Name: freqdials
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
