@@ -21127,17 +21127,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &624997000 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2620787455358748541, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
-  m_PrefabInstance: {fileID: 1487106192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &637438801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 178800583847159952, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
@@ -36927,7 +36916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198480, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -75.6
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198480, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36935,7 +36924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198480, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 56.2
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198480, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -36970,6 +36959,10 @@ PrefabInstance:
       value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+      propertyPath: powerScalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: cameraTarget
       value: 
       objectReference: {fileID: 137546391}
@@ -36979,27 +36972,31 @@ PrefabInstance:
       objectReference: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"wheels.[0]","value":$eref:0'
+      value: '"path":"springDamp","value":{"$id":0,"$type":"System.Single, mscorlib",1500}'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"wheels.[1]","value":$eref:1'
+      value: '"path":"wheels","length":3'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"wheels.[2]","value":$eref:2'
+      value: '"path":"wheels.[0]","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"wheels.[3]","value":$eref:3'
+      value: '"path":"wheels.[1]","value":$eref:1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[4]
+      value: '"path":"wheels.[2]","value":$eref:2'
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
@@ -37013,10 +37010,6 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[2]
       value: 
       objectReference: {fileID: 1497728883}
-    - target: {fileID: 6356070184044198487, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[3]
-      value: 
-      objectReference: {fileID: 624997000}
     - target: {fileID: 6356070184430693745, guid: c0dde8cfd7d66a14595e20f3135815b8, type: 3}
       propertyPath: m_Mesh
       value: 
