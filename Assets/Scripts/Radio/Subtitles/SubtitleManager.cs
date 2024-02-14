@@ -43,12 +43,17 @@ internal class SubtitleManager : MonoBehaviour
     {
         instance = null;
     }
-    public void AddCallback(EventInstance eventInstance) {
+    public void AddCallback(EventInstance eventInstance)
+    {
         eventInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
         eventInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
     }
-
-    public void ClearSubtitles() {
+    public void RemoveCallback(EventInstance eventInstance)
+    {
+        eventInstance.setCallback(DummyCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.STARTED);
+    }
+    public void ClearSubtitles()
+    {
         subtitleText.Value = "";
         referenceText.Value = "";
         Destroy(Instance.typeWriter);
@@ -85,7 +90,8 @@ internal class SubtitleManager : MonoBehaviour
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
                         timelineInfo.lastMarker = parameter.name;
 
-                        if (Instance.typeWriter) {
+                        if (Instance.typeWriter)
+                        {
                             Instance.ClearSubtitles();
                             Debug.Log("A dialogue line was cut short. The speed needs to be increased or the text needs to be shorter.");
                         }
@@ -103,6 +109,13 @@ internal class SubtitleManager : MonoBehaviour
                     }
             }
         }
+        return FMOD.RESULT.OK;
+    }
+    // Fmod is lacking a way to remove callbacks
+
+    [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
+    static FMOD.RESULT DummyCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
+    {
         return FMOD.RESULT.OK;
     }
 }

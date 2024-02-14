@@ -17,13 +17,13 @@ public class DialogueChannel : IRadioChannel
 
     public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject) { 
         loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
-        SubtitleManager.Instance.AddCallback(loopEventInstance);
         this.attentuationObject = attentuationObject;
     }
     public void SeekTo() {
         PLAYBACK_STATE playbackState;
         loopEventInstance.getPlaybackState(out playbackState);
         loopEventInstance.setVolume(1.0f);
+        SubtitleManager.Instance.AddCallback(loopEventInstance);
         if (playbackState == PLAYBACK_STATE.STOPPED)
         {
             loopEventInstance.start();
@@ -35,12 +35,11 @@ public class DialogueChannel : IRadioChannel
         loopEventInstance.setVolume(0.0f);
         loopEventInstance.setParameterByName("LOOPDIALOGUE", 0f);
         SubtitleManager.Instance.ClearSubtitles();
+        SubtitleManager.Instance.RemoveCallback(loopEventInstance);
     }
 
     public EventInstance GetEventInstance()
     {
         return loopEventInstance;
     }
-
-    
 }
