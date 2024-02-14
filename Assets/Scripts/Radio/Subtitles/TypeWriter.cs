@@ -25,6 +25,9 @@ public class TypeWriter : MonoBehaviour
             index += 1;
             StartCoroutine(PauseBetweenChars(letter));
         }
+        else {
+            Destroy(this.gameObject);
+        }
     }
 
     private string Write(char letter)
