@@ -5,14 +5,7 @@ using FMOD.Studio;
 
 internal class SubtitleManager : MonoBehaviour
 {
-    public static SubtitleManager Instance
-    {
-        get
-        {
-            if (instance == null) instance = new GameObject("[Subtitle Manager]").AddComponent<SubtitleManager>();
-            return instance;
-        }
-    }
+    public static SubtitleManager Instance { get; private set; }
     [StructLayout(LayoutKind.Sequential)]
     public class TimelineInfo
     {
@@ -28,8 +21,14 @@ internal class SubtitleManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        // Pin the class that will store the data modified during the callback
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+
+        timelineInfo = new TimelineInfo();
         timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
         beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
         //this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));

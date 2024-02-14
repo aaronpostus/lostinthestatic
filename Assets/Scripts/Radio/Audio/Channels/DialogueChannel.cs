@@ -15,10 +15,10 @@ public class DialogueChannel : IRadioChannel
     private EventInstance loopEventInstance;
     private GameObject attentuationObject;
 
-    public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject, StringReference subtitleText) { 
+    public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject) { 
         loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
-        this.attentuationObject = attentuationObject;
         SubtitleManager.Instance.AddCallback(loopEventInstance);
+        this.attentuationObject = attentuationObject;
     }
     public void SeekTo() {
         PLAYBACK_STATE playbackState;
