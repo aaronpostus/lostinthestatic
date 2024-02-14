@@ -34,6 +34,7 @@ public class DialogueChannel : IRadioChannel
     public void SeekAwayFrom() {
         loopEventInstance.setVolume(0.0f);
         loopEventInstance.setParameterByName("LOOPDIALOGUE", 0f);
+        SubtitleManager.Instance.ClearSubtitles();
     }
 
     public EventInstance GetEventInstance()

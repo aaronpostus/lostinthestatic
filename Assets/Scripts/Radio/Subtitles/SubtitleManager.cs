@@ -17,7 +17,9 @@ internal class SubtitleManager : MonoBehaviour
     private GCHandle timelineHandle;
     private FMOD.Studio.EVENT_CALLBACK beatCallback;
     private static SubtitleManager instance;
-    [SerializeField] StringReference subtitleText;
+    private GameObject typeWriter;
+    [SerializeField] StringReference subtitleText, referenceText;
+    [SerializeField] GameObject typeWriterPrefab;
 
     private void Awake()
     {
@@ -44,6 +46,12 @@ internal class SubtitleManager : MonoBehaviour
     public void AddCallback(EventInstance eventInstance) {
         eventInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
         eventInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+    }
+
+    public void ClearSubtitles() {
+        subtitleText.Value = "";
+        referenceText.Value = "";
+        Destroy(Instance.typeWriter);
     }
 
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
@@ -76,7 +84,15 @@ internal class SubtitleManager : MonoBehaviour
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
                         timelineInfo.lastMarker = parameter.name;
-                        Instance.subtitleText.Value = (string) parameter.name;
+
+                        if (Instance.typeWriter) {
+                            Instance.ClearSubtitles();
+                            Debug.Log("A dialogue line was cut short. The speed needs to be increased or the text needs to be shorter.");
+                        }
+
+                        Instance.subtitleText.Value = "";
+                        Instance.referenceText.Value = (string)parameter.name;
+                        Instance.typeWriter = Instantiate(Instance.typeWriterPrefab);
                         break;
                     }
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
