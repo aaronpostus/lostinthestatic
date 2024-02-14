@@ -5,6 +5,7 @@ using static RadioData;
 public class RadioAudioComponent : MonoBehaviour
 {
     [SerializeField] RadioData data;
+    [SerializeField] StringReference subtitleText;
     private Dictionary<float, IRadioChannel> radioChannels;
     private IRadioChannel currentRadioChannel = null;
     public bool HasEventInstance(float freq) {
@@ -27,7 +28,7 @@ public class RadioAudioComponent : MonoBehaviour
         {
             RadioChannelType.MUSIC => new MusicChannel(channelData, gameObject),
             RadioChannelType.INVISIBLE_MAZE => new InvisibleMazeChannel(channelData, gameObject),
-            RadioChannelType.DIALOGUE => new DialogueChannel(channelData, gameObject),
+            RadioChannelType.DIALOGUE => new DialogueChannel(channelData, gameObject, subtitleText),
             _ => throw new System.NotImplementedException(),
         };
     }

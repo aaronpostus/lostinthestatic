@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] StringReference puzzleCongrats;
     public static GameManager Instance
     {
         get
@@ -34,6 +33,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private PlayerState activeState;
+    [SerializeField] StringReference puzzleCongrats;
     public CharacterMotor Player;
     public CarController Car;
     public CameraController Camera;

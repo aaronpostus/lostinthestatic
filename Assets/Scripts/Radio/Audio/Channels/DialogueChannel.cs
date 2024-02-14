@@ -1,5 +1,7 @@
 ﻿using FMOD.Studio;
 using FMODUnity;
+using System.Runtime.InteropServices;
+using System;
 using UnityEngine;
 using static RadioData;
 
@@ -10,12 +12,13 @@ using static RadioData;
 // This channel is intended to be used for narrative heavy channels rather than something like music.
 public class DialogueChannel : IRadioChannel
 {
-    EventInstance loopEventInstance;
+    private EventInstance loopEventInstance;
     private GameObject attentuationObject;
-    public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject) { 
-        this.loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
+
+    public DialogueChannel(RadioChannelData radioData, GameObject attentuationObject, StringReference subtitleText) { 
+        loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
         this.attentuationObject = attentuationObject;
-        //this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
+        SubtitleManager.Instance.AddCallback(loopEventInstance);
     }
     public void SeekTo() {
         PLAYBACK_STATE playbackState;
@@ -37,4 +40,6 @@ public class DialogueChannel : IRadioChannel
     {
         return loopEventInstance;
     }
+
+    
 }
