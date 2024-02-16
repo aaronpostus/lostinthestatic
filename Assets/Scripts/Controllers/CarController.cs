@@ -37,12 +37,12 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 
     private void OnEnable()
     {
-        GameManager.PlayerStateChanged += HandleStateChange;
+        GameManager.TransitionStarted += HandleStateChange;
     }
 
     private void OnDisable()
     {
-        GameManager.PlayerStateChanged -= HandleStateChange;
+        GameManager.TransitionStarted -= HandleStateChange;
     }
 
     private void HandleStateChange (PlayerState state){

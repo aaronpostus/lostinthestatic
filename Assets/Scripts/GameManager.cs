@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
     [SerializeField] StringReference puzzleCongrats;
     public static GameManager Instance
     {
@@ -15,25 +16,14 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager instance;
 
-    public static event Action<PlayerState> PlayerStateChanged;
-
+    public static event Action<PlayerState> TransitionStarted;
+    public static event Action<PlayerState, float> Transitioning;
+    public float TransitionProgress { get; private set; }
+    private readonly float transitionTime = 0.5f;
     public PuzzleFlag PuzzleState = 0;
 
-    public PlayerState TargetState;
-    public PlayerState ActiveState
-    {
-        get
-        {
-            return activeState;
-        }
-        set
-        {
-            activeState = value;
-            PlayerStateChanged?.Invoke(value);
-        }
-    }
-
-    [SerializeField] private PlayerState activeState;
+    public PlayerState TargetState { get; private set; }
+    public PlayerState ActiveState { get; private set; }
     public CharacterMotor Player;
     public CarController Car;
     public CameraController Camera;
@@ -45,8 +35,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerStateChanged?.Invoke(activeState);
         puzzleCongrats.Value = "";
+        CarHandle.OnTryTransition += TryTransition;
+    }
+
+    private void TryTransition(PlayerState targetState)
+    {
+        if (TransitionProgress < 1 || targetState == ActiveState) return;
+        TransitionProgress = 0;
+        UpdateTicker.Subscribe(IncrementTransition);
+
     }
 
     private void OnDestroy()
@@ -65,7 +63,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f); // Wait for 3 seconds
         puzzleCongrats.Value = "";
     }
+
+    private void IncrementTransition() {
+        TransitionProgress += Time.deltaTime / transitionTime;
+        Transitioning?.Invoke(TargetState, TransitionProgress);
+        if (TransitionProgress >= 1) {
+            ActiveState = TargetState;
+            UpdateTicker.Unsubscribe(IncrementTransition);
+        }
+    }
 }
+
 public enum PlayerState
 {
     InCar,
