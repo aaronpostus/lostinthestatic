@@ -3,8 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(CameraController))]
 public class CameraTransitionController : MonoBehaviour
 {
-
-    [SerializeField] private float transitionTime = 1;
     [SerializeField] private float transitionTimer;
     [SerializeField] private AnimationCurve transitionCurve;
 
@@ -13,6 +11,7 @@ public class CameraTransitionController : MonoBehaviour
     private Transform playerTarget;
     private Transform carTarget;
     private Vector3 cameraEulers;
+    private float transitionTime;
 
     private void Start()
     {
@@ -24,18 +23,18 @@ public class CameraTransitionController : MonoBehaviour
 
     private void OnEnable()
     {
-        CarHandle.OnTryTransition += TransitionTarget;
+        GameManager.Transitioning += Transition;
     }
 
     private void OnDisable()
     {
-        CarHandle.OnTryTransition -= TransitionTarget;
+        GameManager.Transitioning -= Transition;
     }
 
-    public void TransitionTarget(PlayerState targetState)
+    public void Transition (PlayerState targetState, float progress)
     {
         if (targetState == GameManager.Instance.ActiveState) return;
-        GameManager.Instance.TargetState = targetState;
+        //GameManager.Instance.TargetState = targetState;
         fromTarget = targetState == PlayerState.OnFoot ? carTarget : playerTarget;
         toTarget = targetState == PlayerState.InCar ? carTarget : playerTarget;
         cc.PositionTarget = null;
@@ -55,7 +54,7 @@ public class CameraTransitionController : MonoBehaviour
         if (transitionTimer >= transitionTime)
         {
             cc.PositionTarget = toTarget;
-            GameManager.Instance.ActiveState = GameManager.Instance.TargetState;
+            //GameManager.Instance.ActiveState = GameManager.Instance.TargetState;
             UpdateTicker.Unsubscribe(IncrementTransition);
         }
     }

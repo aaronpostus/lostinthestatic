@@ -9,11 +9,11 @@ public class CharacterToCarBinder : MonoBehaviour
     private Vector3 offset;
     private void Awake()
     {
-        GameManager.PlayerStateChanged += HandleStateChange;
+        GameManager.TransitionStarted += HandleStateChange;
     }
     private void OnDestroy()
     {
-        GameManager.PlayerStateChanged -= HandleStateChange;
+        GameManager.TransitionStarted -= HandleStateChange;
     }
 
     private void HandleStateChange(PlayerState targetState) {
