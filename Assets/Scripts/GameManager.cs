@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public static event Action<PlayerState> TransitionStarted;
     public static event Action<PlayerState> TransitionEnded;
     public float TransitionProgress { get; private set; }
-    private readonly float transitionTime = 0.5f;
+    private readonly float transitionTime = 1f;
     public PuzzleFlag PuzzleState = 0;
 
     public PlayerState TargetState { get; private set; }
