@@ -654,7 +654,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  powerScalar: 1400
+  powerScalar: 1000
   maxVelocity: 15
   maxSteerAngle: 40
   steerSpeed: 5

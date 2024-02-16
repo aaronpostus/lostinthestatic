@@ -23042,8 +23042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzleCongrats: {fileID: 11400000, guid: 4e6f7738ddd38ac4a8ee47750b9467bd, type: 2}
   PuzzleState: 6
-  TargetState: 1
-  activeState: 1
   Player: {fileID: 1937769540}
   Car: {fileID: 1874953325}
   Camera: {fileID: 0}
