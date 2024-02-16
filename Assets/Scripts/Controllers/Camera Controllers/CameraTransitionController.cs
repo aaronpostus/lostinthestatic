@@ -14,8 +14,8 @@ public class CameraTransitionController : MonoBehaviour
     private void Start()
     {
         cc = GameManager.Instance.Camera;
-        playerTarget = GameManager.Instance.Player.GetTarget();
-        carTarget = GameManager.Instance.Car.GetTarget();
+        playerTarget = GameManager.Instance.Player.GetCameraTarget();
+        carTarget = GameManager.Instance.Car.GetCameraTarget();
         cc.PositionTarget = GameManager.Instance.ActiveState == PlayerState.OnFoot ? playerTarget : carTarget;
     }
 
