@@ -9,7 +9,7 @@ using UnityEngine;
 public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
-    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private Transform cameraTarget, radioTarget;
 
     private Vector3[,] wheelForces;
     private Color[] forceColors;
@@ -138,5 +138,6 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         inputState = new InputState();
     }
 
-    public Transform GetTarget() => cameraTarget;
+    public Transform GetCameraTarget() => cameraTarget;
+    public Transform GetRadioTarget() => radioTarget;
 }
