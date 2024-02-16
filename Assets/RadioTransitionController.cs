@@ -14,6 +14,7 @@ public class RadioTransitionController : MonoBehaviour
     private Rigidbody rb;
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         playerTarget = GameManager.Instance.Player.GetRadioTarget();
         carTarget = GameManager.Instance.Car.GetRadioTarget();
         UpdateTargets(GameManager.Instance.ActiveState);
@@ -62,11 +63,10 @@ public class RadioTransitionController : MonoBehaviour
         transform.position = toTarget.position;
         transform.rotation = toTarget.rotation;
         if (activeState == PlayerState.OnFoot) {
-            if(rb!= null) Destroy(rb);
+            rb.isKinematic = true;
             transform.SetParent(playerTarget, true);
         }else {
-            rb=this.AddComponent<Rigidbody>();
-            rb.interpolation = RigidbodyInterpolation.Interpolate;
+            rb.isKinematic = false;
             joint = this.AddComponent<FixedJoint>();
             joint.connectedBody = GameManager.Instance.Car.transform.GetComponent<Rigidbody>();
         }
