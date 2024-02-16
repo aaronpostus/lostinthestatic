@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     public static event Action<PlayerState> TransitionStarted;
-    public static event Action<PlayerState, float> Transitioning;
+    public static event Action<PlayerState> TransitionEnded;
     public float TransitionProgress { get; private set; }
     private readonly float transitionTime = 0.5f;
     public PuzzleFlag PuzzleState = 0;
@@ -31,26 +31,27 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
+        TransitionProgress = 0;
+        ActiveState = PlayerState.OnFoot;
         puzzleCongrats.Value = "";
         CarHandle.OnTryTransition += TryTransition;
-    }
-
-    private void TryTransition(PlayerState targetState)
-    {
-        if (TransitionProgress < 1 || targetState == ActiveState) return;
-        TransitionProgress = 0;
-        UpdateTicker.Subscribe(IncrementTransition);
-
     }
 
     private void OnDestroy()
     {
         instance = null;
+        CarHandle.OnTryTransition -= TryTransition;
     }
+
+    private void TryTransition(PlayerState targetState)
+    {
+        if (TransitionProgress > 1 || targetState == ActiveState) return;
+        TargetState = targetState;
+        TransitionStarted?.Invoke(targetState); 
+        UpdateTicker.Subscribe(IncrementTransition);
+    }
+
+    
 
     public void CompletePuzzle(PuzzleFlag puzzleCompleted)
     {
@@ -66,9 +67,11 @@ public class GameManager : MonoBehaviour
 
     private void IncrementTransition() {
         TransitionProgress += Time.deltaTime / transitionTime;
-        Transitioning?.Invoke(TargetState, TransitionProgress);
+
         if (TransitionProgress >= 1) {
             ActiveState = TargetState;
+            TransitionProgress = 0;
+            TransitionEnded?.Invoke(ActiveState);
             UpdateTicker.Unsubscribe(IncrementTransition);
         }
     }

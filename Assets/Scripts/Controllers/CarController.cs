@@ -33,6 +33,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         wheelForces = new Vector3[3, wheels.Length];
         forceColors = new Color[3] { Color.red, Color.green, Color.blue };
         GameManager.Instance.Car = this;
+        HandleStateChange(GameManager.Instance.ActiveState);
     }
 
     private void OnEnable()
@@ -47,12 +48,12 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 
     private void HandleStateChange (PlayerState state){
         rb.isKinematic = state != PlayerState.InCar;
+        if(state == PlayerState.InCar) SubscribeInput();
+        else UnsubscribeInput();
     }
 
     private void Update()
     {
-        inputState = inputProvider.GetState();
-
         for(int i=0;i<wheels.Length;i++)
         {
             Transform wTransform = wheels[i].transform;
@@ -125,6 +126,16 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             }
             wheelForces[2, i] = forceToApply;
         }
+    }
+
+
+    private void UpdateInput() => inputState = inputProvider.GetState();
+    private void SubscribeInput() {
+        UpdateTicker.Subscribe(UpdateInput);
+    }
+    private void UnsubscribeInput() {
+        UpdateTicker.Unsubscribe(UpdateInput);
+        inputState = new InputState();
     }
 
     public Transform GetTarget() => cameraTarget;
