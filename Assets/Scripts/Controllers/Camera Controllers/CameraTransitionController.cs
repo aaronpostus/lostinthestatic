@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(CameraController))]
 public class CameraTransitionController : MonoBehaviour
 {
-    [SerializeField] private float transitionTimer;
     [SerializeField] private AnimationCurve transitionCurve;
 
     private CameraController cc;
@@ -11,7 +10,6 @@ public class CameraTransitionController : MonoBehaviour
     private Transform playerTarget;
     private Transform carTarget;
     private Vector3 cameraEulers;
-    private float transitionTime;
 
     private void Start()
     {
@@ -23,39 +21,33 @@ public class CameraTransitionController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Transitioning += Transition;
+        GameManager.TransitionStarted += StartTransition;
+        GameManager.TransitionEnded += EndTransition;
     }
 
     private void OnDisable()
     {
-        GameManager.Transitioning -= Transition;
+        GameManager.TransitionStarted -= StartTransition;
+        GameManager.TransitionEnded -= EndTransition;
     }
 
-    public void Transition (PlayerState targetState, float progress)
-    {
-        if (targetState == GameManager.Instance.ActiveState) return;
-        //GameManager.Instance.TargetState = targetState;
+    private void StartTransition(PlayerState targetState) {
         fromTarget = targetState == PlayerState.OnFoot ? carTarget : playerTarget;
         toTarget = targetState == PlayerState.InCar ? carTarget : playerTarget;
         cc.PositionTarget = null;
-        transitionTimer = 0;
         cameraEulers = cc.LocalEulers;
-        UpdateTicker.Subscribe(IncrementTransition);
+        UpdateTicker.Subscribe(Transition);
     }
 
-    private void IncrementTransition()
+    private void EndTransition(PlayerState activeState) {
+        cc.PositionTarget = toTarget;
+        UpdateTicker.Unsubscribe(Transition);
+    }
+
+    private void Transition()
     {
-        transitionTimer = Mathf.Min(transitionTimer + Time.deltaTime,  transitionTime);
-
-        transform.position = Vector3.Lerp(fromTarget.position, toTarget.position, transitionCurve.Evaluate(transitionTimer / transitionTime));
-
-        float slerpValue = transitionCurve.Evaluate(transitionTimer / transitionTime);
-        transform.rotation = Quaternion.Slerp(Quaternion.Euler(cameraEulers + fromTarget.eulerAngles), Quaternion.Euler(cameraEulers + toTarget.eulerAngles), slerpValue);
-        if (transitionTimer >= transitionTime)
-        {
-            cc.PositionTarget = toTarget;
-            //GameManager.Instance.ActiveState = GameManager.Instance.TargetState;
-            UpdateTicker.Unsubscribe(IncrementTransition);
-        }
+        float transitionValue = transitionCurve.Evaluate(GameManager.Instance.TransitionProgress);
+        transform.position = Vector3.Lerp(fromTarget.position, toTarget.position, transitionValue);
+        transform.rotation = Quaternion.Slerp(Quaternion.Euler(cameraEulers + fromTarget.eulerAngles), Quaternion.Euler(cameraEulers + toTarget.eulerAngles), transitionValue);
     }
 }

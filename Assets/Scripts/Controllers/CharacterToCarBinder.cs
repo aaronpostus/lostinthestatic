@@ -9,29 +9,27 @@ public class CharacterToCarBinder : MonoBehaviour
     private Vector3 offset;
     private void Awake()
     {
-        GameManager.TransitionStarted += HandleStateChange;
+        GameManager.TransitionStarted += CheckBind;
+        GameManager.TransitionEnded += CheckUnbind;
     }
     private void OnDestroy()
     {
-        GameManager.TransitionStarted -= HandleStateChange;
+        GameManager.TransitionStarted -= CheckBind;
+        GameManager.TransitionEnded -= CheckUnbind;
     }
 
-    private void HandleStateChange(PlayerState targetState) {
-        if (targetState == PlayerState.InCar) BindCar();
-        else UnBindCar();
-    }
-
-
-    public void BindCar()
+    public void CheckBind(PlayerState targetState)
     {
+        if (targetState != PlayerState.InCar) return;
         bindTarget = GameManager.Instance.Car.transform;
         offset = bindTarget.InverseTransformPoint(transform.position);
-        gameObject.SetActive(false);
         UpdateTicker.Subscribe(KeepRelativeOffset);
+        gameObject.SetActive(false);
     }
 
-    public void UnBindCar()
+    public void CheckUnbind(PlayerState activeState)
     {
+        if (activeState != PlayerState.OnFoot) return;
         gameObject.SetActive(true);
         UpdateTicker.Unsubscribe(KeepRelativeOffset);
     }
