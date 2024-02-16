@@ -300,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSteerable: 1
   IsPowered: 1
+  IsReverseSteerable: 0
   Data: {fileID: 11400000, guid: fcf0b5abb82040e488e0615df1eb519e, type: 2}
 --- !u!1 &6356070183918276246
 GameObject:
@@ -1119,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSteerable: 1
   IsPowered: 1
+  IsReverseSteerable: 0
   Data: {fileID: 11400000, guid: fcf0b5abb82040e488e0615df1eb519e, type: 2}
 --- !u!1 &6356070184555186155
 GameObject:
@@ -1167,6 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSteerable: 0
   IsPowered: 0
+  IsReverseSteerable: 1
   Data: {fileID: 11400000, guid: efed512e429ed4045b4ccc84b773eadb, type: 2}
 --- !u!1 &6356070184684493848
 GameObject:
@@ -1215,6 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSteerable: 0
   IsPowered: 0
+  IsReverseSteerable: 0
   Data: {fileID: 11400000, guid: efed512e429ed4045b4ccc84b773eadb, type: 2}
 --- !u!1 &6356070184824582450
 GameObject:

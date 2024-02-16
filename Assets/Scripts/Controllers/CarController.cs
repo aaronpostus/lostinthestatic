@@ -58,9 +58,10 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         {
             Transform wTransform = wheels[i].transform;
             //Steer wheels
-            if (wheels[i].IsSteerable) {
+            if (wheels[i].IsSteerable || wheels[i].IsReverseSteerable) {
+                float modifier = wheels[i].IsSteerable? 1f : -1f;
                 Vector3 wheelEulers = wTransform.localEulerAngles;
-                wheelEulers.y = Mathf.Lerp(wheelEulers.y, wheelEulers.y+Mathf.DeltaAngle(wheelEulers.y,maxSteerAngle*inputState.moveDirection.x), steerSpeed * Time.deltaTime);
+                wheelEulers.y = Mathf.Lerp(wheelEulers.y, wheelEulers.y+Mathf.DeltaAngle(wheelEulers.y,maxSteerAngle*inputState.moveDirection.x* modifier), steerSpeed * Time.deltaTime);
                 wheels[i].transform.localEulerAngles = wheelEulers;
             }
 
