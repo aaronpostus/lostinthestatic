@@ -6,9 +6,11 @@ using UnityEngine;
 public class InvisibleMazeController : MonoBehaviour
 {
     [SerializeField] SplineComputer spline;
+    [SerializeField] SplineFollower splineFollower;
     [SerializeField] GameObject player;
     [SerializeField] Transform respawnPosition;
     [SerializeField] float maxDistanceBeforeDeath;
+    [SerializeField] float distanceAheadOfCar;
     private InvisibleMazeChannel channel;
     private bool trackPlayer;
 
@@ -23,6 +25,10 @@ public class InvisibleMazeController : MonoBehaviour
         float distance = Mathf.Sqrt(Mathf.Pow(playerPos.x - pointPos.x, 2) + Mathf.Pow(playerPos.z - pointPos.z, 2));
         Debug.Log(distance);
         channel.UpdateBalance(1 - (distance / maxDistanceBeforeDeath));
+
+        
+        splineFollower.SetPercent(sample.percent + distanceAheadOfCar);
+
         if (distance > maxDistanceBeforeDeath)
         {
             Lose();
@@ -32,6 +38,7 @@ public class InvisibleMazeController : MonoBehaviour
 
     public void StartTrackingPlayer() {
         trackPlayer = true;
+
     }
 
     public void StopTrackingPlayer() {
