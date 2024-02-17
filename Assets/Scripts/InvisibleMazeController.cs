@@ -13,7 +13,10 @@ public class InvisibleMazeController : MonoBehaviour
     [SerializeField] float distanceAheadOfCar;
     private InvisibleMazeChannel channel;
     private bool trackPlayer;
-
+    private void Start()
+    {
+        splineFollower.gameObject.SetActive(false);
+    }
     private void FixedUpdate()
     {
         if (!trackPlayer) return;
@@ -38,11 +41,12 @@ public class InvisibleMazeController : MonoBehaviour
 
     public void StartTrackingPlayer() {
         trackPlayer = true;
-
+        splineFollower.gameObject.SetActive(true);
     }
 
     public void StopTrackingPlayer() {
         trackPlayer = false;
+        splineFollower.gameObject.SetActive(false);
     }
 
     public void PassChannel(InvisibleMazeChannel channel) {
