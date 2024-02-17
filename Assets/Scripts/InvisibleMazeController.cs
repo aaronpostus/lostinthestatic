@@ -61,6 +61,13 @@ public class InvisibleMazeController : MonoBehaviour
 
     private IEnumerator ReleaseOnNextStep() {
         Rigidbody rb = player.transform.GetComponent<Rigidbody>();
+
+        if (rb == null) {
+            player.transform.rotation = respawnPosition.rotation;
+            player.transform.position = respawnPosition.position;
+            yield return null;
+        }
+
         rb.isKinematic = true;
         
         rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
