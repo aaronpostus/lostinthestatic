@@ -65,25 +65,53 @@ PrefabInstance:
       propertyPath: m_Name
       value: D#
       objectReference: {fileID: 0}
+    - target: {fileID: 572956476728885240, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 678898562128067037, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
       propertyPath: m_Name
       value: F
+      objectReference: {fileID: 0}
+    - target: {fileID: 678898562128067037, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5617546669939611374, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
       propertyPath: m_Name
       value: F#
       objectReference: {fileID: 0}
+    - target: {fileID: 5617546669939611374, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6756052184754929656, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
       propertyPath: m_Name
       value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756052184754929656, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8326534102487131583, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
       propertyPath: m_Name
       value: music_puzzle_glasses textured
       objectReference: {fileID: 0}
+    - target: {fileID: 8326534102487131583, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412936290838047370, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8430476460667501716, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
       propertyPath: m_Name
       value: D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430476460667501716, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8702671964056829701, guid: e20e97069764cb14584ace78fcbfc624, type: 3}
       propertyPath: m_RootOrder
