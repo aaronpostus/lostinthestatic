@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TypeWriter : MonoBehaviour
 {
+    //
     [SerializeField] StringReference referenceText, subtitleText;
     [SerializeField] PauseInfo pauseInfo;
     private int index;

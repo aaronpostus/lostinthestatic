@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56221d563423cb342893ca58ddeb6c05, type: 3}
-  m_Name: SubtitleReferenceText
+  m_Name: SubtitleTexts
   m_EditorClassIdentifier: 
   Value: 
