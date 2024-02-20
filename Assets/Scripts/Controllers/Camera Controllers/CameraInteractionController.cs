@@ -33,7 +33,7 @@ public class CameraInteractionController : MonoBehaviour
         if (!cc.IsFree || !Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask)) return;
         
         interactTarget = hit.collider.transform;
-        interactionString.Value = string.Format("[E] to {0}", interactTarget.GetComponent<IInteractable>().Type.ToString());
+        if (interactTarget.TryGetComponent(out IInteractable interactableTarget)) interactionString.Value = string.Format("[E] to {0}", interactableTarget.Type.ToString());
     }
 
     private void TryInteract()
