@@ -33,7 +33,6 @@ internal class SubtitleManager : MonoBehaviour
         timelineInfo = new TimelineInfo();
         timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
         beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
-        //this.loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
     }
     private void Start()
     {
