@@ -6,12 +6,17 @@ using UnityEngine;
 public class InvisibleMazeController : MonoBehaviour
 {
     [SerializeField] SplineComputer spline;
+    [SerializeField] SplineFollower splineFollower;
     [SerializeField] GameObject player;
     [SerializeField] Transform respawnPosition;
     [SerializeField] float maxDistanceBeforeDeath;
+    [SerializeField] float distanceAheadOfCar;
     private InvisibleMazeChannel channel;
     private bool trackPlayer;
-
+    private void Start()
+    {
+        splineFollower.gameObject.SetActive(false);
+    }
     private void FixedUpdate()
     {
         if (!trackPlayer) return;
@@ -23,6 +28,10 @@ public class InvisibleMazeController : MonoBehaviour
         float distance = Mathf.Sqrt(Mathf.Pow(playerPos.x - pointPos.x, 2) + Mathf.Pow(playerPos.z - pointPos.z, 2));
         Debug.Log(distance);
         channel.UpdateBalance(1 - (distance / maxDistanceBeforeDeath));
+
+        
+        splineFollower.SetPercent(sample.percent + distanceAheadOfCar);
+
         if (distance > maxDistanceBeforeDeath)
         {
             Lose();
@@ -32,10 +41,12 @@ public class InvisibleMazeController : MonoBehaviour
 
     public void StartTrackingPlayer() {
         trackPlayer = true;
+        splineFollower.gameObject.SetActive(true);
     }
 
     public void StopTrackingPlayer() {
         trackPlayer = false;
+        splineFollower.gameObject.SetActive(false);
     }
 
     public void PassChannel(InvisibleMazeChannel channel) {
@@ -50,6 +61,13 @@ public class InvisibleMazeController : MonoBehaviour
 
     private IEnumerator ReleaseOnNextStep() {
         Rigidbody rb = player.transform.GetComponent<Rigidbody>();
+
+        if (rb == null) {
+            player.transform.rotation = respawnPosition.rotation;
+            player.transform.position = respawnPosition.position;
+            yield return null;
+        }
+
         rb.isKinematic = true;
         
         rb.collisionDetectionMode = CollisionDetectionMode.Discrete;

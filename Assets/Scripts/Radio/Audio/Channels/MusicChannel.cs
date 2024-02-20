@@ -11,7 +11,10 @@ public class MusicChannel : IRadioChannel
     {
         loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(radioData.FMODEventRef);
         loopEventInstance.start();
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
+
+        Debug.Log(attentuationObject.transform.GetComponent<Rigidbody>());
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform, attentuationObject.transform.GetComponent<Rigidbody>());
+
         loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(attentuationObject));
         loopEventInstance.setVolume(0.0f);
 
