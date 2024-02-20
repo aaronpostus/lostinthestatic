@@ -33,8 +33,11 @@ public class GameManager : MonoBehaviour
         instance = this;
         TransitionProgress = 0;
         ActiveState = PlayerState.OnFoot;
-        puzzleCongrats.Value = "";
+
         CarHandle.OnTryTransition += TryTransition;
+
+
+        if(puzzleCongrats!= null) puzzleCongrats.Value = "";
     }
 
     private void OnDestroy()
@@ -56,6 +59,8 @@ public class GameManager : MonoBehaviour
     public void CompletePuzzle(PuzzleFlag puzzleCompleted)
     {
         PuzzleState = puzzleCompleted | PuzzleState;
+
+        if (puzzleCongrats == null) return;
         puzzleCongrats.Value = "Congrats on beating the " + puzzleCompleted + " puzzle.";
         StartCoroutine(RemovePuzzleCongrats());
     }

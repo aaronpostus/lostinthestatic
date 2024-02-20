@@ -15,5 +15,7 @@ public enum InteractionType {
     TapGlass,
     Close,
     Play,
-    Use
+    Use,
+    Place,
+    Remove
 }
