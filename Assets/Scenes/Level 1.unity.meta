@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: 7e3699c0e7f7d1649a5db4036970ec87
+<<<<<<<< HEAD:Assets/Scenes/Level.unity.meta
+guid: 3edfac0648c25904985bd0b493155865
+========
+guid: 08574fff0ffbe8e4abae50225cc3a26d
+folderAsset: yes
+>>>>>>>> main:Assets/Models.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

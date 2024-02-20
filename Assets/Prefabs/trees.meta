@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Simple FPS Controller/Scenes/Example.unity.meta
+guid: e952108a73b37594891ebfb62eb18bbe
+========
 guid: d444beb321c6ac44992c9a10d38d04c0
 folderAsset: yes
+>>>>>>>> origin/beta:Assets/Prefabs/trees.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

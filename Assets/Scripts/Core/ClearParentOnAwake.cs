@@ -6,6 +6,6 @@ public class ClearParentOnAwake : MonoBehaviour
 {
     private void Awake()
     {
-        transform.parent = null;
+        transform.SetParent(null);
     }
 }

@@ -9,7 +9,7 @@ public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargeta
 {
     [Header("Input Source")]
     [OdinSerialize] private IInputProvider inputProvider;
-    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private Transform cameraTarget, radioTarget;
         
     public int priority => 5;
     private InputState inputState;
@@ -171,5 +171,6 @@ public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargeta
         return vector - contactNormal * Vector3.Dot(vector, contactNormal);
     }
 
-    public Transform GetTarget() => cameraTarget;
+    public Transform GetCameraTarget() => cameraTarget;
+    public Transform GetRadioTarget() => radioTarget;
 }

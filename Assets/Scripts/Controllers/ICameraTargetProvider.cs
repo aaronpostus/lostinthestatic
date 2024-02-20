@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICameraTargetable
 {
-    public Transform GetTarget();
+    public Transform GetCameraTarget();
 }

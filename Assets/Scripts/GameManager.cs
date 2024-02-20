@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
+    [SerializeField] StringReference puzzleCongrats;
     public static GameManager Instance
     {
         get
@@ -14,26 +16,14 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager instance;
 
-    public static event Action<PlayerState> PlayerStateChanged;
-
+    public static event Action<PlayerState> TransitionStarted;
+    public static event Action<PlayerState> TransitionEnded;
+    public float TransitionProgress { get; private set; }
+    private readonly float transitionTime = 0.5f;
     public PuzzleFlag PuzzleState = 0;
 
-    public PlayerState TargetState;
-    public PlayerState ActiveState
-    {
-        get
-        {
-            return activeState;
-        }
-        set
-        {
-            activeState = value;
-            PlayerStateChanged?.Invoke(value);
-        }
-    }
-
-    [SerializeField] private PlayerState activeState;
-    [SerializeField] StringReference puzzleCongrats;
+    public PlayerState TargetState { get; private set; }
+    public PlayerState ActiveState { get; private set; }
     public CharacterMotor Player;
     public CarController Car;
     public CameraController Camera;
@@ -41,18 +31,27 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
-        PlayerStateChanged?.Invoke(activeState);
+        TransitionProgress = 0;
+        ActiveState = PlayerState.OnFoot;
         puzzleCongrats.Value = "";
+        CarHandle.OnTryTransition += TryTransition;
     }
 
     private void OnDestroy()
     {
         instance = null;
+        CarHandle.OnTryTransition -= TryTransition;
     }
+
+    private void TryTransition(PlayerState targetState)
+    {
+        if (TransitionProgress > 1 || targetState == ActiveState) return;
+        TargetState = targetState;
+        TransitionStarted?.Invoke(targetState); 
+        UpdateTicker.Subscribe(IncrementTransition);
+    }
+
+    
 
     public void CompletePuzzle(PuzzleFlag puzzleCompleted)
     {
@@ -65,7 +64,19 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f); // Wait for 3 seconds
         puzzleCongrats.Value = "";
     }
+
+    private void IncrementTransition() {
+        TransitionProgress += Time.deltaTime / transitionTime;
+        Debug.Log(TransitionProgress);
+        if (TransitionProgress >= 1) {
+            ActiveState = TargetState;
+            TransitionProgress = 0;
+            TransitionEnded?.Invoke(ActiveState);
+            UpdateTicker.Unsubscribe(IncrementTransition);
+        }
+    }
 }
+
 public enum PlayerState
 {
     InCar,

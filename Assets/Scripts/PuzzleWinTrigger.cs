@@ -9,7 +9,7 @@ public class PuzzleWinTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             GameManager.Instance.CompletePuzzle(flagType);
-            Destroy(this.gameObject);
+            Destroy(this);
         }
     }
 }

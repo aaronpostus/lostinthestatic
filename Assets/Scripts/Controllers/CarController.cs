@@ -9,7 +9,7 @@ using UnityEngine;
 public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
-    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private Transform cameraTarget, radioTarget;
 
     private Vector3[,] wheelForces;
     private Color[] forceColors;
@@ -33,33 +33,35 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         wheelForces = new Vector3[3, wheels.Length];
         forceColors = new Color[3] { Color.red, Color.green, Color.blue };
         GameManager.Instance.Car = this;
+        HandleStateChange(GameManager.Instance.ActiveState);
     }
 
     private void OnEnable()
     {
-        GameManager.PlayerStateChanged += HandleStateChange;
+        GameManager.TransitionStarted += HandleStateChange;
     }
 
     private void OnDisable()
     {
-        GameManager.PlayerStateChanged -= HandleStateChange;
+        GameManager.TransitionStarted -= HandleStateChange;
     }
 
     private void HandleStateChange (PlayerState state){
         rb.isKinematic = state != PlayerState.InCar;
+        if(state == PlayerState.InCar) SubscribeInput();
+        else UnsubscribeInput();
     }
 
     private void Update()
     {
-        inputState = inputProvider.GetState();
-
         for(int i=0;i<wheels.Length;i++)
         {
             Transform wTransform = wheels[i].transform;
             //Steer wheels
-            if (wheels[i].IsSteerable) {
+            if (wheels[i].IsSteerable || wheels[i].IsReverseSteerable) {
+                float modifier = wheels[i].IsSteerable? 1f : -1f;
                 Vector3 wheelEulers = wTransform.localEulerAngles;
-                wheelEulers.y = Mathf.Lerp(wheelEulers.y, wheelEulers.y+Mathf.DeltaAngle(wheelEulers.y,maxSteerAngle*inputState.moveDirection.x), steerSpeed * Time.deltaTime);
+                wheelEulers.y = Mathf.Lerp(wheelEulers.y, wheelEulers.y+Mathf.DeltaAngle(wheelEulers.y,maxSteerAngle*inputState.moveDirection.x* modifier), steerSpeed * Time.deltaTime);
                 wheels[i].transform.localEulerAngles = wheelEulers;
             }
 
@@ -127,5 +129,16 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         }
     }
 
-    public Transform GetTarget() => cameraTarget;
+
+    private void UpdateInput() => inputState = inputProvider.GetState();
+    private void SubscribeInput() {
+        UpdateTicker.Subscribe(UpdateInput);
+    }
+    private void UnsubscribeInput() {
+        UpdateTicker.Unsubscribe(UpdateInput);
+        inputState = new InputState();
+    }
+
+    public Transform GetCameraTarget() => cameraTarget;
+    public Transform GetRadioTarget() => radioTarget;
 }

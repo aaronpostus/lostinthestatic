@@ -11,7 +11,7 @@ public class CameraController : SerializedMonoBehaviour, IInputModifier
 
     public Transform PositionTarget { get { return positionTarget; } 
         set {
-            InheritTargetRotation = value == GameManager.Instance.Player.GetTarget() ? true : false;
+            //InheritTargetRotation = value == GameManager.Instance.Player.GetCameraTarget() ? true : false;
             positionTarget = value;
         }
     }
