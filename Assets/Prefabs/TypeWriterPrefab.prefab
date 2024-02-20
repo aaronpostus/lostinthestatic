@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 159044076625866535}
   - component: {fileID: 6050173442849387782}
   m_Layer: 0
-  m_Name: TypeWriter
+  m_Name: TypeWriterPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
