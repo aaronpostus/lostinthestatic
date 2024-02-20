@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     
     [SerializeField] StringReference puzzleCongrats;
+    [SerializeField] ShardNumReference shards;
+    public EventReference puzzleSolvedNoise;
     public static GameManager Instance
     {
         get
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
 
 
         if(puzzleCongrats!= null) puzzleCongrats.Value = "";
+        if (shardsCollected != null) shardsCollected.Value = "0";
     }
 
     private void OnDestroy()
@@ -61,7 +65,8 @@ public class GameManager : MonoBehaviour
         PuzzleState = puzzleCompleted | PuzzleState;
 
         if (puzzleCongrats == null) return;
-        puzzleCongrats.Value = "Congrats on beating the " + puzzleCompleted + " puzzle.";
+        puzzleCongrats.Value = "Glass shard collected.";
+        FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
         StartCoroutine(RemovePuzzleCongrats());
     }
     IEnumerator RemovePuzzleCongrats()
