@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 2811826445724732886}
   - component: {fileID: 3608859714981800270}
   - component: {fileID: 1954886197159743582}
+  - component: {fileID: 1184777178043453520}
   m_Layer: 5
   m_Name: ShardsText
   m_TagString: Untagged
@@ -187,7 +188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.49982136}
   m_AnchorMax: {x: 0.5, y: 0.49982136}
-  m_AnchoredPosition: {x: -757, y: -471.52872}
+  m_AnchoredPosition: {x: -703.1053, y: -471.52872}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3608859714981800270
@@ -287,6 +288,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1184777178043453520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6390712267057551749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8fa8aad0da63944a386583b24a0f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shardNum: {fileID: 11400000, guid: 8269f321c5c74244b99ceb93d5bc9cc3, type: 2}
 --- !u!1 &7918659136427759787
 GameObject:
   m_ObjectHideFlags: 0

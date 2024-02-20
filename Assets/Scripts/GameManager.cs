@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
 
         if(puzzleCongrats!= null) puzzleCongrats.Value = "";
-        if (shardsCollected != null) shardsCollected.Value = "0";
+        if (shards != null) shards.Value = 0;
     }
 
     private void OnDestroy()
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         if (puzzleCongrats == null) return;
         puzzleCongrats.Value = "Glass shard collected.";
         FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
+        shards.Value += 1;
         StartCoroutine(RemovePuzzleCongrats());
     }
     IEnumerator RemovePuzzleCongrats()
