@@ -8,6 +8,7 @@ using static RadioData;
 // If the user seeks away, it will continue to the end of the audio file then wait for the user to seek back before restarting.
 // 
 // This channel is intended to be used for narrative heavy channels rather than something like music.
+//
 public class DialogueChannel : IRadioChannel
 {
     EventInstance loopEventInstance;
