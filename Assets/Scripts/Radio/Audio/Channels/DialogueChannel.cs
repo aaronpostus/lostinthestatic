@@ -27,11 +27,13 @@ public class DialogueChannel : IRadioChannel
             loopEventInstance.start();
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(loopEventInstance, attentuationObject.transform);
         }
+        SubtitleManager.Instance.AddCallback(loopEventInstance);
         loopEventInstance.setParameterByName("LOOPDIALOGUE",1);
     }
     public void SeekAwayFrom() {
         loopEventInstance.setVolume(0.0f);
         loopEventInstance.setParameterByName("LOOPDIALOGUE", 0f);
+        SubtitleManager.Instance.RemoveCallback(loopEventInstance);
     }
 
     public EventInstance GetEventInstance()
