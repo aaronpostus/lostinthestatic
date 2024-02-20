@@ -37,6 +37,7 @@ internal class SubtitleManager : MonoBehaviour
     private void Start()
     {
         subtitleText.Value = "";
+        referenceText.Value = "";
     }
     private void OnDestroy()
     {
