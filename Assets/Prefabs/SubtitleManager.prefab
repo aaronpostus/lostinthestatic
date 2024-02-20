@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitleText: {fileID: 11400000, guid: f38cad979e5a04548a851c1d7d4b50da, type: 2}
   referenceText: {fileID: 11400000, guid: aa98614c84e2e6e49a4ffc1131ddb64e, type: 2}
-  typeWriterPrefab: {fileID: 0}
+  typeWriterPrefab: {fileID: 332629822248628778, guid: 49c48682f5f37fc45ba99ee195d85058, type: 3}

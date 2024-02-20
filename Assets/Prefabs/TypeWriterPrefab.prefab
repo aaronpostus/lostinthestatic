@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340462a903742354a8ef5e1366e083ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  referenceText: {fileID: 11400000, guid: aea5e9ea1bfd7584fb815f614b6f3fea, type: 2}
-  subtitleText: {fileID: 11400000, guid: ec759b2a93c88e6488f220c31861a494, type: 2}
+  referenceText: {fileID: 11400000, guid: aa98614c84e2e6e49a4ffc1131ddb64e, type: 2}
+  subtitleText: {fileID: 11400000, guid: f38cad979e5a04548a851c1d7d4b50da, type: 2}
   pauseInfo:
     dotPause: 0.17
     commaPause: 0.14
