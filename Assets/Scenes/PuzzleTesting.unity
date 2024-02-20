@@ -697,19 +697,19 @@ PrefabInstance:
     - target: {fileID: 5369057340576936886, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 2107118736}
+      objectReference: {fileID: 0}
     - target: {fileID: 5369057340576936886, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 1487815015}
+      objectReference: {fileID: 0}
     - target: {fileID: 5369057340576936886, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[2]
       value: 
-      objectReference: {fileID: 1891951731}
+      objectReference: {fileID: 0}
     - target: {fileID: 5369057340576936886, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[3]
       value: 
-      objectReference: {fileID: 271791362}
+      objectReference: {fileID: 0}
     - target: {fileID: 5921146186506269824, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: m_Name
       value: scale
@@ -720,15 +720,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6442385769472273978, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6442385769472273978, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.47
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6442385769472273978, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6442385769472273978, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1514,17 +1514,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &271791362 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 271791362, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
-  m_PrefabInstance: {fileID: 91589837}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c450c7c80bb7bc429c289596d0dbe34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &287277539
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,11 +4050,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be03bc44a3e7d324783fd682775ef2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1487815015 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 978639178416410531, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
-  m_PrefabInstance: {fileID: 91589837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1490120292 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 705369643675858282, guid: e1689e9a1d59e724c9f4ec8ab5910464, type: 3}
@@ -5575,17 +5559,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1891951731 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1891951731, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
-  m_PrefabInstance: {fileID: 91589837}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c450c7c80bb7bc429c289596d0dbe34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1928550748
 Mesh:
   m_ObjectHideFlags: 0
@@ -6664,17 +6637,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &2107118736 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2107118736, guid: 964dadea8b8ce264db42586a29982d84, type: 3}
-  m_PrefabInstance: {fileID: 91589837}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c450c7c80bb7bc429c289596d0dbe34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &34571278977106116
 PrefabInstance:
   m_ObjectHideFlags: 0
