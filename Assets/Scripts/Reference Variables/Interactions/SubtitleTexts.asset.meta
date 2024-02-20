@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Reference Variables/Interactions/SubtitleTexts.asset.meta
 guid: f38cad979e5a04548a851c1d7d4b50da
+========
+guid: 8087456513da3444bab37923169c4057
+folderAsset: yes
+>>>>>>>> art-test:Assets/Models/Textured Models.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
