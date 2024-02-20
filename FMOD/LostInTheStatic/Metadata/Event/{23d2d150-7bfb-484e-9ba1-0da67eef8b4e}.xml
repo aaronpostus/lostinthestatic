@@ -82,6 +82,27 @@
 			<destination>{e779ca60-00c8-4a13-9dce-e55a244150db}</destination>
 			<destination>{8d841da4-a1be-40f4-8478-e809b4fec21a}</destination>
 			<destination>{ddf91d9b-af87-4236-b91f-a84e9c0be363}</destination>
+			<destination>{1af1ea94-683a-4657-9eff-dd4b95b263f7}</destination>
+			<destination>{b0c6f020-7361-4c56-ab45-416195de4927}</destination>
+			<destination>{7455866b-f97c-4dd0-95e5-cd997d3fe3dd}</destination>
+			<destination>{0870c4c3-a89d-48c6-b0d8-1e5ae0c5bf62}</destination>
+			<destination>{0d0be4a2-bf16-4495-9ef3-537c7aa8739a}</destination>
+			<destination>{0254f53a-fa3b-4fb7-8a61-691bceadb54b}</destination>
+			<destination>{9d3e3bb8-cfad-4e4f-a73d-f3821fac1fb2}</destination>
+			<destination>{44fc2e44-5dab-4ce3-b03d-9887d103c097}</destination>
+			<destination>{8f8a64fb-b44a-46b2-9cbc-cbe8a80abbeb}</destination>
+			<destination>{b96568b2-9822-4524-a653-25e67ae88faf}</destination>
+			<destination>{f908e2a0-d1a4-45af-85b9-4fb258ac1d04}</destination>
+			<destination>{c1f05bc8-fecd-4c0a-91ee-bc0f7bf31511}</destination>
+			<destination>{5db375e7-2053-4826-a6fb-7419154262a0}</destination>
+			<destination>{3b52e4cf-5250-44f0-9c44-4cf9e8499842}</destination>
+			<destination>{f8cd1395-a5f2-4ba3-aaa4-203a386c7380}</destination>
+			<destination>{6d5f5ade-046b-4b47-acba-eaf8a08d705e}</destination>
+			<destination>{320d08f2-4207-471e-ac9b-7a594921de5a}</destination>
+			<destination>{01c76068-a9b4-4ae0-88be-6c643efd3b39}</destination>
+			<destination>{922cb98e-d22b-4680-83ce-a7f99d46dbbf}</destination>
+			<destination>{42093629-a1d0-4469-87a4-dd6532dc24c8}</destination>
+			<destination>{e0c01ad7-7bb7-41d9-a287-6f22faea8277}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{517a9d6f-57a4-4e11-84b4-f0488c302398}">
@@ -148,7 +169,7 @@
 			<value>0</value>
 		</property>
 		<property name="name">
-			<value>Marker A</value>
+			<value>[Country Guitar Riffing]</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
@@ -159,16 +180,332 @@
 	</object>
 	<object class="NamedMarker" id="{ddf91d9b-af87-4236-b91f-a84e9c0be363}">
 		<property name="position">
-			<value>12</value>
+			<value>4.9491509433962273</value>
 		</property>
 		<property name="name">
-			<value>Marker B</value>
+			<value>JERRY
+Welcome to EP. 62 of Shotgun! The podcast where I, Jerry White, tell you how to teach survival skills to your young boys. Ain’t that right Junior?</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{23e4fca1-6645-4273-9706-130c1b693317}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{1af1ea94-683a-4657-9eff-dd4b95b263f7}">
+		<property name="position">
+			<value>18.539676549865231</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Ya, pa.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{b0c6f020-7361-4c56-ab45-416195de4927}">
+		<property name="position">
+			<value>20</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+Last episode Junior killed his first deer, ain’t that right?</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9c421626-973c-4a78-811f-0bedd9da0480}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{7455866b-f97c-4dd0-95e5-cd997d3fe3dd}">
+		<property name="position">
+			<value>25.295660377358494</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Ya, pa.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{0870c4c3-a89d-48c6-b0d8-1e5ae0c5bf62}">
+		<property name="position">
+			<value>26.5</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+He’s a very good shot! BUT. We have to remember what Junior?</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{4cb3c44c-67ad-4dec-a3f3-c4f7c89011c4}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{0d0be4a2-bf16-4495-9ef3-537c7aa8739a}">
+		<property name="position">
+			<value>34</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Aim for the head-</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{0254f53a-fa3b-4fb7-8a61-691bceadb54b}">
+		<property name="position">
+			<value>35.351078167115908</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+Aim for the head, that’s right!</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9c421626-973c-4a78-811f-0bedd9da0480}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{9d3e3bb8-cfad-4e4f-a73d-f3821fac1fb2}">
+		<property name="position">
+			<value>40.88941374663073</value>
+		</property>
+		<property name="name">
+			<value>JERRY (cont.)
+Now, a good hunter can kill a deer, a great one can harvest it. The important bits are going to be the backstraps, tenderloins, flanks, ribs, and neck. Got that?</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{23e4fca1-6645-4273-9706-130c1b693317}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{44fc2e44-5dab-4ce3-b03d-9887d103c097}">
+		<property name="position">
+			<value>59.036300539083562</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+Junior.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{8f8a64fb-b44a-46b2-9cbc-cbe8a80abbeb}">
+		<property name="position">
+			<value>61.5</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Do we have to do this right now?</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9c421626-973c-4a78-811f-0bedd9da0480}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{b96568b2-9822-4524-a653-25e67ae88faf}">
+		<property name="position">
+			<value>64.5</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+(through gritted teeth) Repeat what I just said back to me.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{f908e2a0-d1a4-45af-85b9-4fb258ac1d04}">
+		<property name="position">
+			<value>69.838018867924532</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+The important bits are the flanks, ribs, neck…</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{4cb3c44c-67ad-4dec-a3f3-c4f7c89011c4}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{c1f05bc8-fecd-4c0a-91ee-bc0f7bf31511}">
+		<property name="position">
+			<value>75.062122641509447</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+Backstraps and tenderloins.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{23e4fca1-6645-4273-9706-130c1b693317}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{5db375e7-2053-4826-a6fb-7419154262a0}">
+		<property name="position">
+			<value>78.282998652291113</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Yes.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{3b52e4cf-5250-44f0-9c44-4cf9e8499842}">
+		<property name="position">
+			<value>81.307479784366592</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+Now the best way to learn how to gut a deer is by doing. Just make sure your station is clean and you have the proper materials. Keep in mind, there’s going to be a lot of blood.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9c421626-973c-4a78-811f-0bedd9da0480}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{f8cd1395-a5f2-4ba3-aaa4-203a386c7380}">
+		<property name="position">
+			<value>96.783396226415107</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Dad, I think it’s moving.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{6d5f5ade-046b-4b47-acba-eaf8a08d705e}">
+		<property name="position">
+			<value>99.061576819407023</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+That’s just muscle memory. It’s totally normal, and remember folks, if it is still alive, it won’t be in a few moments! Okay, step one, we’re going to have Junior take his knife and slit our catch right down the middle of the stomach.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{4cb3c44c-67ad-4dec-a3f3-c4f7c89011c4}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{320d08f2-4207-471e-ac9b-7a594921de5a}">
+		<property name="position">
+			<value>118.19043800539085</value>
+		</property>
+		<property name="name">
+			<value>JERRY (cont.)
+Once you get in there, you have to start identifying the parts. Not everything here is edible.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{23e4fca1-6645-4273-9706-130c1b693317}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{01c76068-a9b4-4ae0-88be-6c643efd3b39}">
+		<property name="position">
+			<value>130.64187331536391</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+And that’s it. Pretty easy once you get the hang of it right Junior?</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{922cb98e-d22b-4680-83ce-a7f99d46dbbf}">
+		<property name="position">
+			<value>135.82669811320756</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Ya, pa.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9c421626-973c-4a78-811f-0bedd9da0480}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{42093629-a1d0-4469-87a4-dd6532dc24c8}">
+		<property name="position">
+			<value>137</value>
+		</property>
+		<property name="name">
+			<value>JERRY
+Now, that’s all the time we have for this episode. We hope you’ve learned something valuable here today. Remember, survival is for the fittest, and we hope you join us next time on Shotgun! Say bye Junior.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1a07b9ff-d72d-46e7-a24a-e332de00194d}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{e0c01ad7-7bb7-41d9-a287-6f22faea8277}">
+		<property name="position">
+			<value>152.5</value>
+		</property>
+		<property name="name">
+			<value>JUNIOR
+Bye.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0f8d630a-4c3a-4e1d-bef9-03179ff50a9d}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9c421626-973c-4a78-811f-0bedd9da0480}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{a03f4f69-a487-4085-b272-3ab3dfc98e0d}">
