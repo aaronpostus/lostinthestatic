@@ -11,6 +11,7 @@ public class InvisibleMazeController : MonoBehaviour
     [SerializeField] Transform respawnPosition;
     [SerializeField] float maxDistanceBeforeDeath;
     [SerializeField] float distanceAheadOfCar;
+    [SerializeField] Radio radio;
     private InvisibleMazeChannel channel;
     private bool trackPlayer;
     private void Start()
@@ -42,6 +43,7 @@ public class InvisibleMazeController : MonoBehaviour
     public void StartTrackingPlayer() {
         trackPlayer = true;
         splineFollower.gameObject.SetActive(true);
+        radio.SetFrequency(98.3f);
     }
 
     public void StopTrackingPlayer() {
