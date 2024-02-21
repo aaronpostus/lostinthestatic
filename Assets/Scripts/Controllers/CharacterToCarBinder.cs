@@ -42,10 +42,13 @@ public class CharacterToCarBinder : MonoBehaviour
         if (targetState != PlayerState.OnFoot) return;
         UpdateTicker.Unsubscribe(KeepRelativeOffset);
         Transform origin = GameManager.Instance.Car.ExitPosition;
-        if (!Physics.CapsuleCast(origin.position+Vector3.up, origin.position-Vector3.up, 0.5f, -origin.right*minExitDistance, exitMask)) {
+        float r = 0.5f;
+        if (!Physics.CapsuleCast(origin.position+Vector3.up*r, origin.position-Vector3.up * r, r, -origin.right,minExitDistance, exitMask)) {
             transform.position = origin.position - origin.right*minExitDistance;
-        } else if (!Physics.CapsuleCast(origin.position + Vector3.up, origin.position - Vector3.up, 0.5f, origin.right*minExitDistance, exitMask)) {
+            if (Physics.CapsuleCast(origin.position + Vector3.up * r, origin.position - Vector3.up * r, r, Vector3.down, out RaycastHit hit)) transform.position = transform.position + hit.distance * Vector3.down;
+        } else if (!Physics.CapsuleCast(origin.position + Vector3.up, origin.position - Vector3.up, r, origin.right,minExitDistance, exitMask)) {
             transform.position = origin.position + origin.right * minExitDistance;
+            if (Physics.CapsuleCast(origin.position + Vector3.up * r, origin.position - Vector3.up * r, r, Vector3.down, out RaycastHit hit)) transform.position = transform.position + hit.distance * Vector3.down;
         } else {
             transform.position = GameManager.Instance.Car.transform.position + Vector3.up * 3f;
         }

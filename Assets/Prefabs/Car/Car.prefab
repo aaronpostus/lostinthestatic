@@ -896,9 +896,8 @@ GameObject:
   - component: {fileID: 3797540451878955353}
   - component: {fileID: 7912730582642340204}
   - component: {fileID: 3875572833534925364}
-  - component: {fileID: 5515696528539821928}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: speedometer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -915,7 +914,8 @@ Transform:
   m_LocalPosition: {x: -1.192, y: 0.383, z: 1.438}
   m_LocalScale: {x: 0.35384586, y: 0.16716, z: 0.23594}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3668249273352364946}
   m_Father: {fileID: 6356070184044198480}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 58.379, y: 0, z: 0}
@@ -969,19 +969,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5515696528539821928
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3399806726383533362}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3797961525016785141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1146,37 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &4642932512077644807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6186429215836067608}
+  m_Layer: 0
+  m_Name: ExitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6186429215836067608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642932512077644807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.189, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6356070184044198480}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4925561447120657951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,17 +1202,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4925561447120657951}
-  m_LocalRotation: {x: 0.45895642, y: -0, z: -0, w: 0.88845885}
-  m_LocalPosition: {x: 0, y: 0, z: 1.314}
-  m_LocalScale: {x: 0.06248515, y: 0.048210666, z: 0.07913522}
+  m_LocalRotation: {x: -0.032623734, y: -0, z: -0, w: 0.9994677}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5245815}
+  m_LocalScale: {x: 0.17658861, y: 0.28790653, z: 0.33582032}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6356070184044198480}
-  m_RootOrder: 10
+  m_Father: {fileID: 3797540451878955353}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -3.739, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.708, y: 0.452}
+  m_AnchoredPosition: {x: 1.3678405, y: -0.41525725}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8748058024446262777
@@ -1844,7 +1862,7 @@ Transform:
   - {fileID: 4753766085157789244}
   - {fileID: 1466744033630434996}
   - {fileID: 3797540451878955353}
-  - {fileID: 3668249273352364946}
+  - {fileID: 6186429215836067608}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1950,7 +1968,7 @@ MonoBehaviour:
       Data: 20000
   cameraTarget: {fileID: 4152370829350717923}
   radioTarget: {fileID: 1466744033630434996}
-  ExitPosition: {fileID: 6356070184044198480}
+  ExitPosition: {fileID: 6186429215836067608}
   emitter: {fileID: 5560677983770462896}
   powerCurve:
     serializedVersion: 2
