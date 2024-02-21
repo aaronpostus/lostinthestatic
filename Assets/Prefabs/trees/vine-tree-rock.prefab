@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 5878754486988554070}
   - component: {fileID: 7366292062760644851}
   - component: {fileID: 4746412286572250169}
+  - component: {fileID: 67608007781731755}
   m_Layer: 0
   m_Name: vine-tree-rock
   m_TagString: Untagged
@@ -338,6 +339,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &67608007781731755
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547768367697094124}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 1
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.013332469
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2510345932684228062}
+    - renderer: {fileID: 7268972491198720430}
+    - renderer: {fileID: 3669612932595768625}
+    - renderer: {fileID: 6213640515611866718}
+    - renderer: {fileID: 5149746951686918547}
+    - renderer: {fileID: 2645363625512661775}
+    - renderer: {fileID: 1218556878080303274}
+    - renderer: {fileID: 4746412286572250169}
+  - screenRelativeHeight: 0.0047311294
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.00011894957
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &6907326995075311157
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +610,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdf219326ca47a047b08009d8d9391d0, type: 3}
+--- !u!23 &1218556878080303274 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7924301616570515588, guid: bdf219326ca47a047b08009d8d9391d0, type: 3}
+  m_PrefabInstance: {fileID: 9012240874790756398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2645363625512661775 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6460362400804852513, guid: bdf219326ca47a047b08009d8d9391d0, type: 3}
+  m_PrefabInstance: {fileID: 9012240874790756398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8399228430512107934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 685079934189801904, guid: bdf219326ca47a047b08009d8d9391d0, type: 3}
