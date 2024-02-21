@@ -23,6 +23,9 @@
 			<destination>{5ac66dbe-3326-4d8b-ab5d-735a11e933f4}</destination>
 		</relationship>
 		<relationship name="markerTracks">
+			<destination>{810c233a-5666-41e3-98b8-97d10a902073}</destination>
+			<destination>{07a00518-dabd-443e-8426-1ecde02fb5e4}</destination>
+			<destination>{680f5184-6070-43ee-884c-2823942b55fa}</destination>
 			<destination>{7ad838c1-c183-4034-90fd-6019bf1544aa}</destination>
 		</relationship>
 		<relationship name="timeline">
@@ -39,7 +42,7 @@
 	</object>
 	<object class="MasterTrack" id="{1d2c6d3c-a328-479f-8b77-8782a893da5f}">
 		<relationship name="modules">
-			<destination>{634716d4-b3a7-4ba1-bcf5-758153cbbb19}</destination>
+			<destination>{7a510633-3cef-488c-9709-ff1cc4ebb305}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{1ecb9228-7781-43a5-9ec4-36f6799af9d5}</destination>
@@ -57,13 +60,26 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{5ac66dbe-3326-4d8b-ab5d-735a11e933f4}" />
+	<object class="MarkerTrack" id="{810c233a-5666-41e3-98b8-97d10a902073}" />
+	<object class="MarkerTrack" id="{07a00518-dabd-443e-8426-1ecde02fb5e4}" />
+	<object class="MarkerTrack" id="{680f5184-6070-43ee-884c-2823942b55fa}" />
 	<object class="MarkerTrack" id="{7ad838c1-c183-4034-90fd-6019bf1544aa}" />
 	<object class="Timeline" id="{d58b49e8-686c-4dc0-b213-a49f942aa7cb}">
 		<relationship name="modules">
-			<destination>{634716d4-b3a7-4ba1-bcf5-758153cbbb19}</destination>
+			<destination>{7a510633-3cef-488c-9709-ff1cc4ebb305}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{3ced6ad7-4992-404f-80d0-404c905f057e}</destination>
+			<destination>{88d38303-ec12-4c90-9cea-17a8967d19a0}</destination>
+			<destination>{921bef92-7b96-4570-9c53-df1c5e795f71}</destination>
+			<destination>{912a218f-3ae5-40f7-9991-741c5cc71c36}</destination>
+			<destination>{0c6dee81-277d-4412-ba11-79557d692a22}</destination>
+			<destination>{3feaeb16-a5c1-4c03-a6e1-46a79709f9e5}</destination>
+			<destination>{956f4bbf-b36c-432e-aef9-82eb30230b13}</destination>
+			<destination>{3c1e74d5-d623-497d-ac2e-95bc5748d205}</destination>
+			<destination>{658254e9-4787-47a1-8d08-9af9a3176435}</destination>
+			<destination>{c0c5a54d-0883-43d2-acda-2d1bcaebaa77}</destination>
+			<destination>{e365cad8-cc13-4c7f-98f7-5feb12c24a3a}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{1ecb9228-7781-43a5-9ec4-36f6799af9d5}">
@@ -77,12 +93,12 @@
 			<destination>{7c9ee288-7ae7-47c5-94af-34ea8c9f3803}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{634716d4-b3a7-4ba1-bcf5-758153cbbb19}">
+	<object class="SingleSound" id="{7a510633-3cef-488c-9709-ff1cc4ebb305}">
 		<property name="length">
-			<value>212.11199999999999</value>
+			<value>100</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{661b8c43-ab78-43e2-92eb-51addc9952ef}</destination>
+			<destination>{4fd43cc8-9d76-4c53-982d-eefec9e58321}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{0ec80f2c-be45-4cce-97a6-1f71ac872b57}">
@@ -96,7 +112,148 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>212.11199999999999</value>
+			<value>100</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{7ad838c1-c183-4034-90fd-6019bf1544aa}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{88d38303-ec12-4c90-9cea-17a8967d19a0}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="name">
+			<value>Preacher
+Let us begin by turning our Bibles to Matthew 25:46, where Jesus himself speaks about the eternal consequences of our choices.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{680f5184-6070-43ee-884c-2823942b55fa}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{921bef92-7b96-4570-9c53-df1c5e795f71}">
+		<property name="position">
+			<value>10</value>
+		</property>
+		<property name="name">
+			<value>"For the wicked will go away into eternal punishment, but the righteous into eternal life."</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{07a00518-dabd-443e-8426-1ecde02fb5e4}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{912a218f-3ae5-40f7-9991-741c5cc71c36}">
+		<property name="position">
+			<value>16</value>
+		</property>
+		<property name="name">
+			<value>Our God is holy and righteous. HE is the epitome of perfection and goodness. We know HE has given us free will and we know what HE demands of us.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{810c233a-5666-41e3-98b8-97d10a902073}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{0c6dee81-277d-4412-ba11-79557d692a22}">
+		<property name="position">
+			<value>28.891625615763541</value>
+		</property>
+		<property name="name">
+			<value>Sin is not merely a mistake or a momentary lapse in judgment. It is rebellion against the holiness of God. We now know that we need more than repentance to get the key that unlocks the door to God's holy gates.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{680f5184-6070-43ee-884c-2823942b55fa}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{3feaeb16-a5c1-4c03-a6e1-46a79709f9e5}">
+		<property name="position">
+			<value>61</value>
+		</property>
+		<property name="name">
+			<value>Marker A</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{810c233a-5666-41e3-98b8-97d10a902073}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{956f4bbf-b36c-432e-aef9-82eb30230b13}">
+		<property name="position">
+			<value>44</value>
+		</property>
+		<property name="name">
+			<value>It is OUR job to bring repentance down on those who sully the name of the Lord.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{07a00518-dabd-443e-8426-1ecde02fb5e4}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{3c1e74d5-d623-497d-ac2e-95bc5748d205}">
+		<property name="position">
+			<value>50.135467980295559</value>
+		</property>
+		<property name="name">
+			<value>Hebrews 10:26-27 warns, "If we deliberately keep on sinning after we have received the knowledge of the truth, no sacrifice for sins is left, but only a fearful expectation of judgment and of raging fire that will consume the enemies of God."</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{07a00518-dabd-443e-8426-1ecde02fb5e4}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{658254e9-4787-47a1-8d08-9af9a3176435}">
+		<property name="position">
+			<value>69.585385878489319</value>
+		</property>
+		<property name="name">
+			<value>Now, brothers and sisters, join me in prayer.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{810c233a-5666-41e3-98b8-97d10a902073}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{c0c5a54d-0883-43d2-acda-2d1bcaebaa77}">
+		<property name="position">
+			<value>74.022988505747108</value>
+		</property>
+		<property name="name">
+			<value>“Hear us, our God, for we are being mocked. May their scoffing fall back on their own heads, and may they themselves become captives in a foreign land! Do not ignore their guilt. Do not blot out their sins.”</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{810c233a-5666-41e3-98b8-97d10a902073}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{e365cad8-cc13-4c7f-98f7-5feb12c24a3a}">
+		<property name="position">
+			<value>92</value>
+		</property>
+		<property name="name">
+			<value>The mass had ended, go in peace.</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{d58b49e8-686c-4dc0-b213-a49f942aa7cb}</destination>
