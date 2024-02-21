@@ -1998,6 +1998,7 @@ MonoBehaviour:
   maxVelocity: 15
   maxSteerAngle: 40
   steerSpeed: 15
+  speedometer: {fileID: 9146506315484502900}
 --- !u!114 &5560677983770462896
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -25,6 +26,8 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 
     [OdinSerialize] private float suspensionRestDist;
     [OdinSerialize] private float springConst, springDamp;
+
+    [SerializeField] TextMeshPro speedometer;
 
     private Rigidbody rb;
     private InputState inputState;
@@ -133,6 +136,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             }
             wheelForces[2, i] = forceToApply;
         }
+        speedometer.text = Mathf.Floor(rb.velocity.magnitude * 2) + "MPH";
     }
 
 
