@@ -49,9 +49,12 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
         GameManager.TransitionStarted -= HandleStateChange;
     }
 
-    private void HandleStateChange (PlayerState state){
+    private void HandleStateChange(PlayerState state) {
         rb.isKinematic = state != PlayerState.InCar;
-        if(state == PlayerState.InCar) SubscribeInput();
+        if (state == PlayerState.InCar)
+        {
+            SubscribeInput();
+        }
         else UnsubscribeInput();
     }
 

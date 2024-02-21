@@ -1,4 +1,6 @@
 using Drawing;
+using FMOD.Studio;
+using FMODUnity;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
@@ -39,10 +41,14 @@ public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargeta
     private Vector3 targetVelocity;
     public Vector3 position => transform.position;
 
+    public EventReference walkingSound;
+
     [SerializeField] private float targetRotationAngle;
     private bool previouslyGrounded;
     private Rigidbody rb;
     private ContactPoint[] contactBuffer = new ContactPoint[10];
+    private EventInstance walking;
+    [SerializeField] private float speedToMakeWalkingSound;
     
     void OnValidate() {
         slopeDotProduct = Mathf.Cos(maxSlope * Mathf.Deg2Rad);
@@ -55,12 +61,28 @@ public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargeta
         currentMaxSpeed = maxSpeed;
         OnValidate();
         GameManager.Instance.Player = this;
+        walking = FMODUnity.RuntimeManager.CreateInstance(walkingSound);
+        walking.setVolume(0f);
+        walking.start();
     }
 
-    private void OnEnable() => inputProvider.OnJump.started += TryJump;
+    private void OnEnable() {
 
-    private void OnDisable() => inputProvider.OnJump.started -= TryJump;
+        inputProvider.OnJump.started += TryJump;
+        GameManager.TransitionStarted += HandleStateChange;
+    }
 
+    private void HandleStateChange(PlayerState state)
+    {
+        if (state == PlayerState.InCar) {
+            walking.setVolume(0f);
+        }
+    }
+
+    private void OnDisable() {
+        inputProvider.OnJump.started -= TryJump;
+        GameManager.TransitionStarted -= HandleStateChange;
+    }
     void Update()
     {
         inputState = inputProvider.GetState();
@@ -100,6 +122,16 @@ public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargeta
         groundContactCount = 0;
         contactNormal = Vector3.zero;
         steepContactNormal = Vector3.zero;
+
+        if (previouslyGrounded && rb.velocity.magnitude > speedToMakeWalkingSound && GameManager.Instance.ActiveState == PlayerState.OnFoot)
+        {
+            Debug.Log("VOLUME ON");
+            walking.setVolume(1f);
+        }
+        else {
+            Debug.Log("VOLUME OFF");
+            walking.setVolume(0f);
+        }
     }
 
     private void UpdateTargetsFromInput()

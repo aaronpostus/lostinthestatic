@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         TransitionProgress = 0;
         ActiveState = PlayerState.OnFoot;
-        Cursor.visible = false;
         CarHandle.OnTryTransition += TryTransition;
 
 
