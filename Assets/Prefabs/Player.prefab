@@ -238,7 +238,15 @@ MonoBehaviour:
   contactNormal: {x: 0, y: 0, z: 0}
   steepContactNormal: {x: 0, y: 0, z: 0}
   groundContactCount: 0
+  walkingSound:
+    Guid:
+      Data1: 1076630383
+      Data2: 1087576137
+      Data3: -1197458813
+      Data4: 273513749
+    Path: event:/WALKING
   targetRotationAngle: 0
+  speedToMakeWalkingSound: 1
 --- !u!114 &2539403608121529739
 MonoBehaviour:
   m_ObjectHideFlags: 0
