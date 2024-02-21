@@ -126,7 +126,7 @@ public class Radio : MonoBehaviour
     }
 
     // set radio to an exact frequency (i.e. 99.5f)
-    private void SetFrequency(float freq) {
+    public void SetFrequency(float freq) {
         // don't do anything if the frequency hasn't actually changed
         if (this.rawFrequency == freq) {
             return;
