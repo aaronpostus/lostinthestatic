@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{92def0a3-36c8-4a5b-9dc6-2e7997f1549d}">
+		<property name="name">
+			<value>STATICVOLUME</value>
+		</property>
+		<relationship name="folder">
+			<destination>{7c98e3f1-0a1c-4c63-96ba-f3ecd210d7ef}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e9b52e32-cbdb-41c1-be2c-77415927739b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e9b52e32-cbdb-41c1-be2c-77415927739b}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

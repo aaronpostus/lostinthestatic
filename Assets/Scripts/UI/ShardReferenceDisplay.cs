@@ -11,5 +11,10 @@ public class ShardReferenceDisplay : MonoBehaviour
 
     private void OnDisable() { shardNum.OnChange -= UpdateText; }
 
-    private void UpdateText() { text.text = shardNum.Value + " SHARDS COLLECTED"; }
+    private void UpdateText() {
+        if (shardNum.Value == 1) {
+            text.text = shardNum.Value + " SHARD COLLECTED";
+        }
+        text.text = shardNum.Value + " SHARDS COLLECTED"; 
+    }
 }

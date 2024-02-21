@@ -11,9 +11,12 @@ public class HitDeer : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Debug.Log(col.GetComponent<Rigidbody>().velocity.magnitude);
-            if (col.GetComponent<Rigidbody>().velocity.magnitude >= 10)
+            if (col.GetComponent<Rigidbody>().velocity.magnitude >= 7.5)
             {
-                numHits += 1;
+                GameManager.Instance.CompletePuzzle(PuzzleFlag.Deer);
+                Destroy(gameObject);
+                // add multiple hits back with auditory / visual response for gold
+                //numHits += 1;
             }
         }
     }

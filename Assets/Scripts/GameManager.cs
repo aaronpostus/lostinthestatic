@@ -2,6 +2,7 @@ using FMODUnity;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         TransitionProgress = 0;
         ActiveState = PlayerState.OnFoot;
-
+        Cursor.visible = false;
         CarHandle.OnTryTransition += TryTransition;
 
 
