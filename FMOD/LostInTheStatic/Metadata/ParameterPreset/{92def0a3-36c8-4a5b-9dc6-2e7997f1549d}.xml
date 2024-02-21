@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{92def0a3-36c8-4a5b-9dc6-2e7997f1549d}">
 		<property name="name">
-			<value>STATICVOLUME</value>
+			<value>NOISE</value>
 		</property>
 		<relationship name="folder">
 			<destination>{7c98e3f1-0a1c-4c63-96ba-f3ecd210d7ef}</destination>
@@ -12,14 +12,16 @@
 		</relationship>
 	</object>
 	<object class="GameParameter" id="{e9b52e32-cbdb-41c1-be2c-77415927739b}">
-		<property name="isGlobal">
-			<value>true</value>
-		</property>
 		<property name="initialValue">
 			<value>0</value>
 		</property>
-		<property name="isExposedRecursively">
-			<value>false</value>
+		<relationship name="automators">
+			<destination>{09f52bab-48bb-4e3b-9c46-55c108b686e8}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{09f52bab-48bb-4e3b-9c46-55c108b686e8}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>cursorPosition</value>
 		</property>
 	</object>
 </objects>

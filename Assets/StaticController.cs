@@ -40,7 +40,7 @@ public class StaticController : MonoBehaviour
             afraidText.enabled = false;
             return 0f;
         }
-        Debug.Log(staticEvent.setParameterByName("STATICVOLUME", value));
+        Debug.Log(staticEvent.setParameterByName("NOISE", value));
         afraidText.enabled = true;
         value -= 0.4f;
         // Quadratic curve parameters
@@ -58,7 +58,7 @@ public class StaticController : MonoBehaviour
         Cursor.visible = false;
         if (!tethering) {
             if (GameManager.Instance.ActiveState == PlayerState.InCar) {
-                tethering = true;
+                BeginTether();
             }
             return;
         }
