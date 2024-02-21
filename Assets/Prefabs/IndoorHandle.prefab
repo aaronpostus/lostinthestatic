@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5118961172935301381}
   - component: {fileID: 7957548700774233797}
   - component: {fileID: 703096529042479215}
-  - component: {fileID: 454484293283733102}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -11670,20 +11669,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383093205963340084}
   m_Mesh: {fileID: 0}
---- !u!64 &454484293283733102
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383093205963340084}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &2731261500189610475
 GameObject:
   m_ObjectHideFlags: 0
@@ -11697,7 +11682,6 @@ GameObject:
   - component: {fileID: 6862839575570847408}
   - component: {fileID: 8274378353182783985}
   - component: {fileID: 825218189707346152}
-  - component: {fileID: 7292702651348201784}
   m_Layer: 0
   m_Name: IndoorHandle
   m_TagString: Untagged
@@ -18554,18 +18538,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2731261500189610475}
-  m_Mesh: {fileID: 0}
---- !u!64 &7292702651348201784
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2731261500189610475}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}
