@@ -3,11 +3,14 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
+    [SerializeField] TextMeshPro speedometer;
+
     [OdinSerialize] private IMoveInputProvider inputProvider;
     [SerializeField] private Transform cameraTarget, radioTarget;
 
@@ -74,6 +77,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
             }
         }
         Draw.Arrow(transform.position, transform.position+rb.velocity, Color.yellow);
+        speedometer.text = Mathf.Floor(rb.velocity.magnitude * 2) + " MPH";
     }
 
     void FixedUpdate()
