@@ -1950,7 +1950,7 @@ MonoBehaviour:
       Data: 20000
   cameraTarget: {fileID: 4152370829350717923}
   radioTarget: {fileID: 1466744033630434996}
-  emitter: {fileID: 0}
+  emitter: {fileID: 5560677983770462896}
   powerCurve:
     serializedVersion: 2
     m_Curve:
