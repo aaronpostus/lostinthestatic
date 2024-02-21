@@ -225,8 +225,8 @@ MonoBehaviour:
   terminalVelocity: 10
   friction: 10
   airFriction: 2
-  maxSpeed: 8
-  groundAccelerationScalar: 2
+  maxSpeed: 4
+  groundAccelerationScalar: 23
   airAccelerationScalar: 0.25
   rotationLerp: 0.4
   maxSlope: 60

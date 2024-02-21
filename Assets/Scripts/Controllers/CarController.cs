@@ -1,4 +1,5 @@
 using Drawing;
+using FMODUnity;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using UnityEngine;
 public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
+    [SerializeField] EventReference engineEvent;
     [SerializeField] private Transform cameraTarget, radioTarget;
 
     private Vector3[,] wheelForces;
