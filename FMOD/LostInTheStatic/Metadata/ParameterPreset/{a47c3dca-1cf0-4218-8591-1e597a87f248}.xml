@@ -39,51 +39,5 @@
 		<property name="nameOfPropertyBeingAutomated">
 			<value>cursorPosition</value>
 		</property>
-		<relationship name="automationCurves">
-			<destination>{416ed2b6-3e41-481d-8371-a81831aa2acf}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationCurve" id="{416ed2b6-3e41-481d-8371-a81831aa2acf}">
-		<relationship name="parameter">
-			<destination>{05b082e3-0e2d-448b-aa01-3979186ae77a}</destination>
-		</relationship>
-		<relationship name="automationPoints">
-			<destination>{b5db9c3a-93d0-49d4-9f4b-197685051e90}</destination>
-			<destination>{2f885185-02aa-4602-90ac-eafbb29b2187}</destination>
-			<destination>{698396e7-5e89-44d3-af8d-03242fe490e2}</destination>
-			<destination>{3349f516-0763-47d4-87dc-7e0b613f97fb}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationPoint" id="{b5db9c3a-93d0-49d4-9f4b-197685051e90}">
-		<property name="position">
-			<value>0</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{2f885185-02aa-4602-90ac-eafbb29b2187}">
-		<property name="position">
-			<value>0.5</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{698396e7-5e89-44d3-af8d-03242fe490e2}">
-		<property name="position">
-			<value>1</value>
-		</property>
-		<property name="value">
-			<value>1</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{3349f516-0763-47d4-87dc-7e0b613f97fb}">
-		<property name="position">
-			<value>0.50002083333333336</value>
-		</property>
-		<property name="value">
-			<value>1</value>
-		</property>
 	</object>
 </objects>
