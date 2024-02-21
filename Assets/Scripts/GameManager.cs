@@ -1,11 +1,15 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     
     [SerializeField] StringReference puzzleCongrats;
+    [SerializeField] ShardNumReference shards;
+    public EventReference puzzleSolvedNoise;
     public static GameManager Instance
     {
         get
@@ -33,11 +37,12 @@ public class GameManager : MonoBehaviour
         instance = this;
         TransitionProgress = 0;
         ActiveState = PlayerState.OnFoot;
-
+        Cursor.visible = false;
         CarHandle.OnTryTransition += TryTransition;
 
 
         if(puzzleCongrats!= null) puzzleCongrats.Value = "";
+        if (shards != null) shards.Value = 0;
     }
 
     private void OnDestroy()
@@ -61,7 +66,9 @@ public class GameManager : MonoBehaviour
         PuzzleState = puzzleCompleted | PuzzleState;
 
         if (puzzleCongrats == null) return;
-        puzzleCongrats.Value = "Congrats on beating the " + puzzleCompleted + " puzzle.";
+        puzzleCongrats.Value = "Glass shard collected.";
+        FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
+        shards.Value += 1;
         StartCoroutine(RemovePuzzleCongrats());
     }
     IEnumerator RemovePuzzleCongrats()
