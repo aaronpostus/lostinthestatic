@@ -7,7 +7,6 @@ using UnityEngine;
 public class ScalesPuzzleController : SerializedMonoBehaviour
 {
     public ScalesFlag ItemsPlaced;
-    [SerializeField] private AnimationCurve heightPath;
     [SerializeField] List<ScalesItem> Items;
     public void OnEnable()
     {
