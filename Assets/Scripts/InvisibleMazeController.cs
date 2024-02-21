@@ -12,6 +12,7 @@ public class InvisibleMazeController : MonoBehaviour
     [SerializeField] float maxDistanceBeforeDeath;
     [SerializeField] float distanceAheadOfCar;
     [SerializeField] Radio radio;
+    [SerializeField] StaticController staticController;
     private InvisibleMazeChannel channel;
     private bool trackPlayer;
     private void Start()
@@ -85,5 +86,6 @@ public class InvisibleMazeController : MonoBehaviour
         rb.isKinematic = false;
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+        staticController.HotFix();
     }
 }

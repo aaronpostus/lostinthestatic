@@ -1,5 +1,6 @@
 using FMOD.Studio;
 using FMODUnity;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -62,6 +63,15 @@ public class StaticController : MonoBehaviour
             }
             return;
         }
+        if (!player.gameObject.active) {
+            staticEvent.setParameterByName("NOISE", 0f);
+            return;
+        }
         staticRenderer.material.SetFloat("_Intensity", 1 - ApplyQuadraticCurve((GetDistanceBetweenCarAndPlayer() / maxDistancePlayerAndCar)));
+    }
+
+    internal void HotFix()
+    {
+        staticEvent.setParameterByName("NOISE", 0f);
     }
 }

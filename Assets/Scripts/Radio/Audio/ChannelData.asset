@@ -101,11 +101,11 @@ MonoBehaviour:
     channelFrequency: 98.7
     FMODEventRef:
       Guid:
-        Data1: 0
-        Data2: 0
-        Data3: 0
-        Data4: 0
-      Path: 
+        Data1: 2086752957
+        Data2: 1241823597
+        Data3: -1732429934
+        Data4: -2074489271
+      Path: event:/RADIO_CHANNEL_98.7
     channelType: 0
     trigger: {fileID: 0}
     hasAudioTrigger: 0
