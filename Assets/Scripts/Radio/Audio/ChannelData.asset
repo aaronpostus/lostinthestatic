@@ -49,7 +49,7 @@ MonoBehaviour:
     channelType: 3
     trigger: {fileID: 0}
     hasAudioTrigger: 1
-  - channelName: Kirby
+  - channelName: Random Station 1
     channelFrequency: 97.1
     FMODEventRef:
       Guid:
@@ -61,7 +61,7 @@ MonoBehaviour:
     channelType: 1
     trigger: {fileID: 0}
     hasAudioTrigger: 0
-  - channelName: Palace of Twilight
+  - channelName: Random Station 3
     channelFrequency: 98.8
     FMODEventRef:
       Guid:
@@ -73,7 +73,7 @@ MonoBehaviour:
     channelType: 1
     trigger: {fileID: 0}
     hasAudioTrigger: 0
-  - channelName: Rickroll
+  - channelName: MASS
     channelFrequency: 99.2
     FMODEventRef:
       Guid:
@@ -82,10 +82,10 @@ MonoBehaviour:
         Data3: -2143916877
         Data4: 225391285
       Path: event:/RADIO_CHANNEL_99.2
-    channelType: 1
+    channelType: 0
     trigger: {fileID: 0}
     hasAudioTrigger: 0
-  - channelName: Forest Temple
+  - channelName: Random Station 2
     channelFrequency: 98.5
     FMODEventRef:
       Guid:
@@ -95,6 +95,18 @@ MonoBehaviour:
         Data4: -12047084
       Path: event:/RADIO_CHANNEL_98.5
     channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: EULOGY
+    channelFrequency: 98.7
+    FMODEventRef:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    channelType: 0
     trigger: {fileID: 0}
     hasAudioTrigger: 0
   radioSeekNoise:

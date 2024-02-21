@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Event" id="{7c6152bd-b96d-4a04-9237-bd9849ce5984}">
+		<property name="name">
+			<value>RADIO_CHANNEL_98.7</value>
+		</property>
+		<property name="outputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="folder">
+			<destination>{038ce845-5ad3-418c-8319-7d1e907d30fa}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{e8bb54df-6349-4a34-83ab-3978cb5fe23f}</destination>
+		</relationship>
+		<relationship name="masterTrack">
+			<destination>{04231235-28e8-4832-8bfd-ff7b27472a6e}</destination>
+		</relationship>
+		<relationship name="mixerInput">
+			<destination>{2d348e91-7d8b-405b-9e70-b8542a0a5a34}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{5d086fb0-3ce7-47e2-9d67-cf7b28d6af81}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{c4b64c91-2332-421b-819f-7d4634028d81}</destination>
+			<destination>{c61aebae-792b-4639-aca8-c7b2ca57fe8a}</destination>
+			<destination>{b6ffe514-5444-422b-8e46-0751aee16217}</destination>
+			<destination>{740cfb45-7130-4808-84eb-0b3feef902a3}</destination>
+			<destination>{bfdc6fee-9b42-4b0c-b1aa-0522d6550774}</destination>
+			<destination>{dc6247a6-babc-4f4b-a894-d710dd8b146c}</destination>
+			<destination>{9160f9bd-43e0-46a0-bdf9-6c334f2b65d9}</destination>
+			<destination>{f201fe5a-6f4f-49e8-a68c-8e840adbe097}</destination>
+			<destination>{c83a23c8-fc00-4c29-bcd2-9906a17e8ed8}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{e23fad53-81ab-4b54-9ade-a81617232c46}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixer" id="{e8bb54df-6349-4a34-83ab-3978cb5fe23f}">
+		<relationship name="masterBus">
+			<destination>{a29181e5-0cfc-478e-8932-06079b13f2c2}</destination>
+		</relationship>
+	</object>
+	<object class="MasterTrack" id="{04231235-28e8-4832-8bfd-ff7b27472a6e}">
+		<relationship name="modules">
+			<destination>{eda2caa8-2a66-4f92-b8e5-da2d8e3141f9}</destination>
+		</relationship>
+		<relationship name="mixerGroup">
+			<destination>{a29181e5-0cfc-478e-8932-06079b13f2c2}</destination>
+		</relationship>
+	</object>
+	<object class="MixerInput" id="{2d348e91-7d8b-405b-9e70-b8542a0a5a34}">
+		<relationship name="effectChain">
+			<destination>{6d42f4a2-d1a4-4ff3-92be-55dd3f3c56d9}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{f38c69df-85c8-4643-b934-bb8524787b92}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{e7b951f0-82f0-4816-85b2-50746e2ad041}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{5d086fb0-3ce7-47e2-9d67-cf7b28d6af81}" />
+	<object class="MarkerTrack" id="{c4b64c91-2332-421b-819f-7d4634028d81}" />
+	<object class="MarkerTrack" id="{c61aebae-792b-4639-aca8-c7b2ca57fe8a}" />
+	<object class="MarkerTrack" id="{b6ffe514-5444-422b-8e46-0751aee16217}" />
+	<object class="MarkerTrack" id="{740cfb45-7130-4808-84eb-0b3feef902a3}" />
+	<object class="MarkerTrack" id="{bfdc6fee-9b42-4b0c-b1aa-0522d6550774}" />
+	<object class="MarkerTrack" id="{dc6247a6-babc-4f4b-a894-d710dd8b146c}" />
+	<object class="MarkerTrack" id="{9160f9bd-43e0-46a0-bdf9-6c334f2b65d9}" />
+	<object class="MarkerTrack" id="{f201fe5a-6f4f-49e8-a68c-8e840adbe097}" />
+	<object class="MarkerTrack" id="{c83a23c8-fc00-4c29-bcd2-9906a17e8ed8}" />
+	<object class="Timeline" id="{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}">
+		<relationship name="modules">
+			<destination>{eda2caa8-2a66-4f92-b8e5-da2d8e3141f9}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{7d5c627c-3847-4474-b660-3e32edea5353}</destination>
+			<destination>{13e1e296-af83-41cd-bb7d-c4cf90a856ce}</destination>
+			<destination>{bc1be293-4d29-4709-a62e-79a9a6d6540f}</destination>
+			<destination>{f79dbebf-10e6-4ef3-96ad-7de725692db9}</destination>
+			<destination>{283df20a-e38e-476a-8880-1490110d5935}</destination>
+			<destination>{6c34affb-6af8-4091-a99c-1770450ac971}</destination>
+			<destination>{f820835c-4c27-49cd-b203-8c8801a8849b}</destination>
+			<destination>{39340e2b-f197-4ac4-af93-a67b9f963dfa}</destination>
+			<destination>{b635cfe5-348f-4a31-b91c-e9e10e824bb5}</destination>
+			<destination>{7be6adf4-1fae-496f-9f01-d67d189052c1}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerMaster" id="{a29181e5-0cfc-478e-8932-06079b13f2c2}">
+		<relationship name="effectChain">
+			<destination>{7f1e83fd-7923-4256-8bf7-260249e36330}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{b757001b-45a7-4e58-8ae0-7fee178c3689}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{e8bb54df-6349-4a34-83ab-3978cb5fe23f}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{eda2caa8-2a66-4f92-b8e5-da2d8e3141f9}">
+		<property name="length">
+			<value>117.39428571428572</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{d2e9358c-e255-4612-bb9a-416ff6ac4737}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{6d42f4a2-d1a4-4ff3-92be-55dd3f3c56d9}">
+		<relationship name="effects">
+			<destination>{8a2cb53f-67f5-4585-a5db-bb5913f4a8de}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{f38c69df-85c8-4643-b934-bb8524787b92}" />
+	<object class="LoopRegion" id="{7d5c627c-3847-4474-b660-3e32edea5353}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>117.39428571428572</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{c83a23c8-fc00-4c29-bcd2-9906a17e8ed8}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{13e1e296-af83-41cd-bb7d-c4cf90a856ce}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="name">
+			<value>Hello. Um, I knew Sami for, well it’s about 6 years now, and, um, I have something written for today:</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{c4b64c91-2332-421b-819f-7d4634028d81}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{bc1be293-4d29-4709-a62e-79a9a6d6540f}">
+		<property name="position">
+			<value>13.083738005390837</value>
+		</property>
+		<property name="name">
+			<value>We gather with heavy hearts to remember and celebrate the life of a young soul who left us too soon – Samantha LeGrange. In the midst of our grief, we find solace in coming together as a community to honor her memory and reflect on the impact she had during her time with us.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{c61aebae-792b-4639-aca8-c7b2ca57fe8a}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{f79dbebf-10e6-4ef3-96ad-7de725692db9}">
+		<property name="position">
+			<value>31.519914285714286</value>
+		</property>
+		<property name="name">
+			<value>Sami was a vibrant and rebellious young woman whose infectious laughter could light up any room. She had an energy and enthusiasm for life that touched the hearts of all who knew her.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{b6ffe514-5444-422b-8e46-0751aee16217}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{283df20a-e38e-476a-8880-1490110d5935}">
+		<property name="position">
+			<value>42</value>
+		</property>
+		<property name="name">
+			<value>It is with deep sadness that I-that we-confront the circumstances of her passing. An accident that robbed us of the potential she carried within her. In the face of this heart-wrenching reality, I want us to remember Sami not for the circumstances of her departure, but for the beautiful soul she was and the mark she left on our lives.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{740cfb45-7130-4808-84eb-0b3feef902a3}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{6c34affb-6af8-4091-a99c-1770450ac971}">
+		<property name="position">
+			<value>64</value>
+		</property>
+		<property name="name">
+			<value>As we navigate the pain of this loss, let us also use this moment to reflect on the consequences of our actions. Sami's passing serves as a key reminder of the devastating impact that our decisions have. As we reflect, I hope it’s possible to unlock a deeper understanding of our journey.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{dc6247a6-babc-4f4b-a894-d710dd8b146c}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{f820835c-4c27-49cd-b203-8c8801a8849b}">
+		<property name="position">
+			<value>81.357061778975748</value>
+		</property>
+		<property name="name">
+			<value>To Sami’s mother, we extend our deepest condolences. We cannot fathom the depth of your sorrow, but I stand beside you, offering my love and support during this unimaginably difficult time.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{f201fe5a-6f4f-49e8-a68c-8e840adbe097}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{39340e2b-f197-4ac4-af93-a67b9f963dfa}">
+		<property name="position">
+			<value>93.727141347708894</value>
+		</property>
+		<property name="name">
+			<value>Let us honor Sami by carrying forward the lessons she taught us about love, compassion, and the preciousness of life. Though she may no longer be with us physically, her spirit will continue to guide us as we navigate the challenging road ahead.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{9160f9bd-43e0-46a0-bdf9-6c334f2b65d9}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{b635cfe5-348f-4a31-b91c-e9e10e824bb5}">
+		<property name="position">
+			<value>108.71396851752021</value>
+		</property>
+		<property name="name">
+			<value>May Sami rest in peace, and may her memory be a blessing to us all.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{bfdc6fee-9b42-4b0c-b1aa-0522d6550774}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{7be6adf4-1fae-496f-9f01-d67d189052c1}">
+		<property name="position">
+			<value>113.82852064690027</value>
+		</property>
+		<property name="name">
+			<value>Thank you.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{405d30fd-cc59-4ff3-b9dc-7cdb1f1b04a1}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{c4b64c91-2332-421b-819f-7d4634028d81}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{7f1e83fd-7923-4256-8bf7-260249e36330}">
+		<relationship name="effects">
+			<destination>{9f24992e-6f77-44f9-a43c-36d51431a794}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{b757001b-45a7-4e58-8ae0-7fee178c3689}" />
+	<object class="MixerBusFader" id="{8a2cb53f-67f5-4585-a5db-bb5913f4a8de}" />
+	<object class="MixerBusFader" id="{9f24992e-6f77-44f9-a43c-36d51431a794}" />
+</objects>
