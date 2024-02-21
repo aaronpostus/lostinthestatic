@@ -299,9 +299,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279587013871626179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: 0.5, z: -0.5}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -1.68, y: 0.307, z: -0.24}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6356070184044198480}
   m_RootOrder: 1
@@ -587,9 +587,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044605811675125054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.276, y: 0.5, z: -0.5}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -1.276, y: 0.30700004, z: -0.23999977}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6356070184044198480}
   m_RootOrder: 2
@@ -1950,6 +1950,7 @@ MonoBehaviour:
       Data: 20000
   cameraTarget: {fileID: 4152370829350717923}
   radioTarget: {fileID: 1466744033630434996}
+  ExitPosition: {fileID: 6356070184044198480}
   emitter: {fileID: 5560677983770462896}
   powerCurve:
     serializedVersion: 2

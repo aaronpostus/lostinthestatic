@@ -7,14 +7,18 @@ public class CharacterToCarBinder : MonoBehaviour
 {
     private Transform bindTarget;
     private Vector3 offset;
+    [SerializeField] private float minExitDistance=1f;
+    [SerializeField] private LayerMask exitMask;
     private void Awake()
     {
         GameManager.TransitionStarted += CheckBind;
+        GameManager.TransitionStarted += CheckPlayerPosition;
         GameManager.TransitionEnded += CheckUnbind;
     }
     private void OnDestroy()
     {
         GameManager.TransitionStarted -= CheckBind;
+        GameManager.TransitionStarted -= CheckPlayerPosition;
         GameManager.TransitionEnded -= CheckUnbind;
     }
 
@@ -31,8 +35,23 @@ public class CharacterToCarBinder : MonoBehaviour
     {
         if (activeState != PlayerState.OnFoot) return;
         gameObject.SetActive(true);
-        UpdateTicker.Unsubscribe(KeepRelativeOffset);
+        
     }
+
+    public void CheckPlayerPosition(PlayerState targetState) {
+        if (targetState != PlayerState.OnFoot) return;
+        UpdateTicker.Unsubscribe(KeepRelativeOffset);
+        Transform origin = GameManager.Instance.Car.ExitPosition;
+        if (!Physics.CapsuleCast(origin.position+Vector3.up, origin.position-Vector3.up, 0.5f, -origin.right*minExitDistance, exitMask)) {
+            transform.position = origin.position - origin.right*minExitDistance;
+        } else if (!Physics.CapsuleCast(origin.position + Vector3.up, origin.position - Vector3.up, 0.5f, origin.right*minExitDistance, exitMask)) {
+            transform.position = origin.position + origin.right * minExitDistance;
+        } else {
+            transform.position = GameManager.Instance.Car.transform.position + Vector3.up * 3f;
+        }
+
+    }
+
 
     private void KeepRelativeOffset()
     {

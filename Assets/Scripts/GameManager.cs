@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
 
     private void IncrementTransition() {
         TransitionProgress += Time.deltaTime / transitionTime;
-        Debug.Log(TransitionProgress);
         if (TransitionProgress >= 1) {
             ActiveState = TargetState;
             TransitionProgress = 0;

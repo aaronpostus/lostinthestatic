@@ -11,6 +11,7 @@ public class CarController : SerializedMonoBehaviour, ICameraTargetable
 {
     [OdinSerialize] private IMoveInputProvider inputProvider;
     [SerializeField] private Transform cameraTarget, radioTarget;
+    public Transform ExitPosition;
     [SerializeField] StudioEventEmitter emitter;
     private Vector3[,] wheelForces;
     private Color[] forceColors;
