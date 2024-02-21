@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8463165821210124860}
+  - component: {fileID: 6099188522322355582}
   m_Layer: 0
   m_Name: vine-tree1
   m_TagString: Untagged
@@ -37,6 +38,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &6099188522322355582
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563254908871344657}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7809670433526478045}
+    - renderer: {fileID: 7632419696158941464}
+    - renderer: {fileID: 3590593749008452102}
+    - renderer: {fileID: 2622841744988025655}
+    - renderer: {fileID: 7182683191017731038}
+    - renderer: {fileID: 8277398059722653253}
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &3142330836046811336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44,6 +75,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8463165821210124860}
     m_Modifications:
+    - target: {fileID: 1152351496164090879, guid: 2dcd231e78d8dbf478c6f30d69ba1530, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3792597c75b94ad4585bc9c8d4d4cbee, type: 2}
     - target: {fileID: 7118833524972640507, guid: 2dcd231e78d8dbf478c6f30d69ba1530, type: 3}
       propertyPath: m_Name
       value: Branch 4
@@ -106,6 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dcd231e78d8dbf478c6f30d69ba1530, type: 3}
+--- !u!23 &2622841744988025655 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1152351496164090879, guid: 2dcd231e78d8dbf478c6f30d69ba1530, type: 3}
+  m_PrefabInstance: {fileID: 3142330836046811336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5962986298715929733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8744588930380753997, guid: 2dcd231e78d8dbf478c6f30d69ba1530, type: 3}
@@ -174,6 +214,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 113.76
       objectReference: {fileID: 0}
+    - target: {fileID: 4811443881848966732, guid: 8999f8fc51ea66040a5f43b3719e3864, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3792597c75b94ad4585bc9c8d4d4cbee, type: 2}
     - target: {fileID: 8018056776440895418, guid: 8999f8fc51ea66040a5f43b3719e3864, type: 3}
       propertyPath: m_Name
       value: Branch 1
@@ -183,6 +227,11 @@ PrefabInstance:
 --- !u!4 &3396258898234293258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 109709473758660251, guid: 8999f8fc51ea66040a5f43b3719e3864, type: 3}
+  m_PrefabInstance: {fileID: 3360858870986766993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7809670433526478045 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4811443881848966732, guid: 8999f8fc51ea66040a5f43b3719e3864, type: 3}
   m_PrefabInstance: {fileID: 3360858870986766993}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4282619580805212580
@@ -244,6 +293,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -34.463013
       objectReference: {fileID: 0}
+    - target: {fileID: 5946201317159028924, guid: d5139ba78217ef8409f8afb109961315, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3792597c75b94ad4585bc9c8d4d4cbee, type: 2}
     - target: {fileID: 6036720454274805057, guid: d5139ba78217ef8409f8afb109961315, type: 3}
       propertyPath: m_Name
       value: Branch 2
@@ -253,6 +306,11 @@ PrefabInstance:
 --- !u!4 &2745747045457625649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2122375966609271701, guid: d5139ba78217ef8409f8afb109961315, type: 3}
+  m_PrefabInstance: {fileID: 4282619580805212580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7632419696158941464 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5946201317159028924, guid: d5139ba78217ef8409f8afb109961315, type: 3}
   m_PrefabInstance: {fileID: 4282619580805212580}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4685045361242369022
@@ -314,6 +372,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2497980061399291936, guid: 1c051c9c4293e954c9223d029b3b84ba, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3792597c75b94ad4585bc9c8d4d4cbee, type: 2}
     - target: {fileID: 5669278340987207197, guid: 1c051c9c4293e954c9223d029b3b84ba, type: 3}
       propertyPath: m_Name
       value: Branch 5
@@ -323,6 +385,11 @@ PrefabInstance:
 --- !u!4 &6173916580384064796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1489204405568712418, guid: 1c051c9c4293e954c9223d029b3b84ba, type: 3}
+  m_PrefabInstance: {fileID: 4685045361242369022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7182683191017731038 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2497980061399291936, guid: 1c051c9c4293e954c9223d029b3b84ba, type: 3}
   m_PrefabInstance: {fileID: 4685045361242369022}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4921740507713447174
@@ -388,12 +455,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -227.941
       objectReference: {fileID: 0}
+    - target: {fileID: 8474034074355904256, guid: 13197ddcbdb0c5046bd04019e5615988, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3792597c75b94ad4585bc9c8d4d4cbee, type: 2}
     - target: {fileID: 9192595302051358527, guid: 13197ddcbdb0c5046bd04019e5615988, type: 3}
       propertyPath: m_Name
       value: Branch 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13197ddcbdb0c5046bd04019e5615988, type: 3}
+--- !u!23 &3590593749008452102 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8474034074355904256, guid: 13197ddcbdb0c5046bd04019e5615988, type: 3}
+  m_PrefabInstance: {fileID: 4921740507713447174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3773350372205048931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8075001143156511077, guid: 13197ddcbdb0c5046bd04019e5615988, type: 3}
@@ -450,6 +526,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 59c709a437b26874b888d4b7aee29166, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 413759d16455cd94c80aa859137fedba, type: 2}
     - target: {fileID: 919132149155446097, guid: 59c709a437b26874b888d4b7aee29166, type: 3}
       propertyPath: m_Name
       value: tree-low-transformFixed
@@ -459,5 +539,10 @@ PrefabInstance:
 --- !u!4 &7103326094498546986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59c709a437b26874b888d4b7aee29166, type: 3}
+  m_PrefabInstance: {fileID: 7286450431128249025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8277398059722653253 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 59c709a437b26874b888d4b7aee29166, type: 3}
   m_PrefabInstance: {fileID: 7286450431128249025}
   m_PrefabAsset: {fileID: 0}
