@@ -852,7 +852,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3377141650170276927, guid: b3a9879fd4741e34192991295b82f573, type: 3}
       propertyPath: m_text
-      value: YOU ARE AFRAID OF MOVING TOO FAR FROM YOUR CAR.
+      value: 'THE STATIC ENGULFS YOU.
+
+        YOU FEEL A COMPULSION TO RETURN TO
+        THE CAR.'
       objectReference: {fileID: 0}
     - target: {fileID: 3377141650170276927, guid: b3a9879fd4741e34192991295b82f573, type: 3}
       propertyPath: m_fontSize
