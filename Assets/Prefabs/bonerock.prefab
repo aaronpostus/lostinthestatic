@@ -57,7 +57,7 @@ LODGroup:
   - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &4373688437385459803
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3981065676529349206, guid: 10eb452126d983047950c39e5fabea9c, type: 3}
+  - {fileID: 2100000, guid: cb00d46abf2aba94eb0ef4b7e3113ce6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
