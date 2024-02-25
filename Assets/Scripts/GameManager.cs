@@ -31,12 +31,17 @@ public class GameManager : MonoBehaviour
     public CharacterMotor Player;
     public CarController Car;
     public CameraController Camera;
+    public bool mainMenu = false;
 
     private void Awake()
     {
         instance = this;
         TransitionProgress = 0;
         ActiveState = PlayerState.OnFoot;
+        if (mainMenu) {
+            Debug.Log("test");
+            ActiveState = PlayerState.InCar;
+        }
         CarHandle.OnTryTransition += TryTransition;
 
 
