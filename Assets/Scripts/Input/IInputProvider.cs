@@ -90,4 +90,8 @@ public struct InputState
         aimPoint = Vector3.zero;
         shouldLookAtAim = false;
     }
+    public override string ToString()
+    {
+        return $"{moveDirection.x},{moveDirection.y},{lookEulers.x},{lookEulers.y}";
+    }
 }
