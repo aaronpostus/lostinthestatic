@@ -1,6 +1,7 @@
 using FMODUnity;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] StringReference puzzleCongrats;
     [SerializeField] ShardNumReference shards;
+    [SerializeField] GameObject puzzleMiniMapPrefab;
+    [SerializeField] List<Transform> puzzleLocationsMiniMap;
     public EventReference puzzleSolvedNoise;
     public static GameManager Instance
     {
@@ -31,17 +34,30 @@ public class GameManager : MonoBehaviour
     public CharacterMotor Player;
     public CarController Car;
     public CameraController Camera;
+    public bool mainMenu = false;
 
     private void Awake()
     {
         instance = this;
         TransitionProgress = 0;
         ActiveState = PlayerState.OnFoot;
+        if (mainMenu) {
+            Debug.Log("test");
+            ActiveState = PlayerState.InCar;
+        }
         CarHandle.OnTryTransition += TryTransition;
 
+        PlacePuzzleUIElements();
 
         if(puzzleCongrats!= null) puzzleCongrats.Value = "";
         if (shards != null) shards.Value = 0;
+    }
+    private void PlacePuzzleUIElements()
+    {
+        foreach (Transform loc in puzzleLocationsMiniMap) {
+            Debug.Log("Placed UI element");
+            Instantiate(puzzleMiniMapPrefab,loc);
+        }
     }
 
     private void OnDestroy()

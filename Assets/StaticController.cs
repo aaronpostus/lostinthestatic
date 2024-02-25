@@ -1,8 +1,10 @@
 using FMOD.Studio;
 using FMODUnity;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StaticController : MonoBehaviour
 {
@@ -12,11 +14,18 @@ public class StaticController : MonoBehaviour
     [SerializeField] float maxDistancePlayerAndCar;
     [SerializeField] TextMeshProUGUI afraidText;
     [SerializeField] float percentageAwayToDisplayGoBackText;
+    [SerializeField] bool mainMenu = false;
+    [SerializeField] bool fadingIn;
+    [SerializeField] float mainMenuInitStatic;
     private EventInstance staticEvent;
     bool tethering = false;
     public void Awake()
     {
+        if(afraidText)
         afraidText.enabled = false;
+        if(mainMenu) staticRenderer.material.SetFloat("_Intensity", mainMenuInitStatic);
+        if (fadingIn) StartCoroutine(FadeToClearCoroutine());
+
     }
     public void BeginTether() {
         tethering = true;
@@ -52,11 +61,53 @@ public class StaticController : MonoBehaviour
 
         return result;
     }
+    public void MainMenuFadeToWhite()
+    {
+        StartCoroutine(FadeToWhiteCoroutine());
+    }
+    IEnumerator FadeToClearCoroutine()
+    {
+        float elapsedTime = 0;
+        float startIntensity = staticRenderer.material.GetFloat("_Intensity");
+        float targetIntensity = 0f;
+
+        while (elapsedTime < 3f)
+        {
+            float t = elapsedTime / 3f;
+            staticRenderer.material.SetFloat("_Intensity", Mathf.Lerp(startIntensity, targetIntensity, t));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
+    IEnumerator FadeToWhiteCoroutine()
+    {
+        float elapsedTime = 0;
+        float startIntensity = staticRenderer.material.GetFloat("_Intensity");
+        float targetIntensity = 1f;
+
+        while (elapsedTime < 3f)
+        {
+            float t = elapsedTime / 3f;
+            staticRenderer.material.SetFloat("_Intensity", Mathf.Lerp(startIntensity, targetIntensity, t));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        staticRenderer.material.SetFloat("_Intensity", targetIntensity); // Ensure we reach the exact target
+        SceneManager.LoadScene("Level");
+    }
 
     public void Update()
     {
         // this cursor thing needs to be moved elsewhere
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        if (mainMenu || fadingIn) {
+            return;
+        }
+
         if (!tethering) {
             if (GameManager.Instance.ActiveState == PlayerState.InCar) {
                 BeginTether();

@@ -61,8 +61,7 @@ using Unity.VisualScripting;
 public class Serial : MonoBehaviour
 {
     [Tooltip("Are we using the physical controller?")]
-    [SerializeField] bool usingPhysicalController = false;
-	public static bool usingPhysical;
+	public static bool usingPhysical = GameStart.isUsingRadio;
     /// <summary>
     /// Enable notification of data as it arrives
     /// Sends OnSerialData(string data) message
@@ -175,7 +174,6 @@ public class Serial : MonoBehaviour
 	void OnEnable ()
 	{
 		s_instances.Add (this);
-		usingPhysical = this.usingPhysicalController;
 
         if (GetConfig ().logDebugInfos && !s_debug) {
 			Debug.LogWarning ("Serial debug informations enabled by " + GetConfig ());

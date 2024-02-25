@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerInputSO", menuName = "ScriptableObjects/PlayerInputSO", order = 1)]
 public class PlayerInputSO : ScriptableObject, IInputProvider
 {
-    public PlayerInput input { get; private set;}
+    public PlayerInput input { get; private set; }
     public List<ButtonAction> Abilities => abilityActions;
     private List<ButtonAction> abilityActions;
 
@@ -34,4 +34,5 @@ public class PlayerInputSO : ScriptableObject, IInputProvider
         InputState state = new InputState(input.Game.Move.ReadValue<Vector2>(), input.Game.Look.ReadValue<Vector2>() * lookSensitivity);
         return state;
     }
+
 }
