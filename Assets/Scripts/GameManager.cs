@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public static event Action<PlayerState> TransitionEnded;
     public float TransitionProgress { get; private set; }
     private readonly float transitionTime = 0.5f;
+    private readonly List<GameObject> puzzleUIElements = new List<GameObject>();
+
     public PuzzleFlag PuzzleState = 0;
 
     public PlayerState TargetState { get; private set; }
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform loc in puzzleLocationsMiniMap) {
             Debug.Log("Placed UI element");
-            Instantiate(puzzleMiniMapPrefab,loc);
+            puzzleUIElements.Add(Instantiate(puzzleMiniMapPrefab,loc));
         }
     }
 
@@ -84,6 +86,19 @@ public class GameManager : MonoBehaviour
         puzzleCongrats.Value = "Glass shard collected.";
         FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
         shards.Value += 1;
+
+        // ew ew ew
+        int index = 0;
+        switch (puzzleCompleted) {
+            case PuzzleFlag.Glass: index = 0; break;
+            case PuzzleFlag.Deer: index = 1; break;
+            case PuzzleFlag.Scale: index = 2; break;
+            case PuzzleFlag.Corridor: index = 3; break;
+            case PuzzleFlag.Maze: index = 4; break;
+        }
+        puzzleUIElements[index].transform.GetChild(0).gameObject.SetActive(false);
+        puzzleUIElements[index].transform.GetChild(1).gameObject.SetActive(true);
+
         StartCoroutine(RemovePuzzleCongrats());
     }
     IEnumerator RemovePuzzleCongrats()
