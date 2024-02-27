@@ -26,7 +26,7 @@ public class CameraInteractionController : MonoBehaviour
         cc.inputProvider.OnInteract.started -= TryInteract;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         interactTarget = null;
         interactionString.Value = "";

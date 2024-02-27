@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0014785795, g: 0.0013591028, b: 0.0012890887, a: 1}
+  m_IndirectSpecularColor: {r: 0.0014833048, g: 0.0013571114, b: 0.0012931153, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1689,6 +1689,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzleCongrats: {fileID: 11400000, guid: 4e6f7738ddd38ac4a8ee47750b9467bd, type: 2}
   shards: {fileID: 0}
+  puzzleMiniMapPrefab: {fileID: 0}
+  puzzleLocationsMiniMap: []
+  unlock: {fileID: 0}
   puzzleSolvedNoise:
     Guid:
       Data1: 0
@@ -84569,7 +84572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66c2cce04c1f4a21a3287582dde7774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usingPhysicalController: 0
   NotifyData: 0
   SkipFirstLine: 0
   NotifyLines: 1
