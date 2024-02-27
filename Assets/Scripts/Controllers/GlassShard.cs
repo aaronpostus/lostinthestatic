@@ -12,6 +12,10 @@ public class GlassShard : MonoBehaviour, IInteractable
     [SerializeField] bool isHUD;
     public void Interact()
     {
+        if (isHUD) {
+            hud.DisplayMap();
+            return;
+        }
         hud.DisplayShard(sprite);
     }
 }
