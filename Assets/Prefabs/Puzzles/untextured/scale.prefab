@@ -205,10 +205,10 @@ Transform:
   m_GameObject: {fileID: 3275929033529720717}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15671569, y: 0.15671568, z: 1.4167395}
+  m_LocalScale: {x: 1.416739, y: 1.416739, z: 1.4167395}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 528985799541673651}
+  - {fileID: 2222750715665037027}
   m_Father: {fileID: 6442385769472273978}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -288,8 +288,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3599219637637293894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05586509, y: 7.110519, z: -0.2271716}
-  m_LocalScale: {x: 4.555293, y: 4.063435, z: 4.063435}
+  m_LocalPosition: {x: -0.05586509, y: 1.65, z: -0.2271716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4188211520550346398}
@@ -605,8 +605,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4274764718853302018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.058673657, y: -7.048909, z: -0.23686928}
-  m_LocalScale: {x: 4.555293, y: 4.063435, z: 4.063435}
+  m_LocalPosition: {x: -0.058673657, y: -1.65, z: -0.23686928}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5838278903762218088}
@@ -832,6 +832,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5869271802079792571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2222750715665037027}
+  m_Layer: 0
+  m_Name: arm pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2222750715665037027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5869271802079792571}
+  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0, y: -0, z: 3.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 528985799541673651}
+  m_Father: {fileID: 6681428757062158094}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
 --- !u!1 &5897234475658822683
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,14 +889,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5897234475658822683}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.026512474, y: -0.0105307475, z: 2.3025897}
-  m_LocalScale: {x: 1.400784, y: 1.570342, z: 0.17370676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.026510952, y: -0.010530749, z: 0.004589081}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4998047013312423742}
   - {fileID: 6478506148936530379}
-  m_Father: {fileID: 6681428757062158094}
+  m_Father: {fileID: 2222750715665037027}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &108279310225726525
@@ -976,44 +1008,17 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   ItemsPlaced: 0
-  heightPath:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.995
-      value: 0
-      inSlope: -2.020202
-      outSlope: -2.020202
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Items:
   - {fileID: 5271289904896311289}
   - {fileID: 4951249700471270790}
   - {fileID: 1492197995323580119}
   - {fileID: 2878545129184093495}
+  arms:
+  - {fileID: 4998047013312423742}
+  - {fileID: 6478506148936530379}
+  armPivot: {fileID: 2222750715665037027}
+  balanceTime: 0.5
+  timer: 0
 --- !u!1 &7127580707000125613
 GameObject:
   m_ObjectHideFlags: 0

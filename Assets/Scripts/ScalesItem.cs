@@ -44,12 +44,13 @@ public class ScalesItem : MonoBehaviour, IInteractable
 
     public void IncrementPlacement() {
         placementProgress += Time.deltaTime / placementLength;
-        transform.position = Vector3.Lerp(fromPos, toPos, placementProgress)+Vector3.up*heightScalar* heightCurve.Evaluate(placementProgress);
+        transform.position = Vector3.Lerp(fromPos, toPos, placementProgress) + Vector3.up*heightScalar * heightCurve.Evaluate(placementProgress);
         transform.rotation = Quaternion.Slerp(fromRot, toRot, placementProgress);
         if (placementProgress >= 1) {
             
             col.enabled = true;
             onScale = !onScale;
+            transform.parent = onScale ? placementTarget : null;
             OnPlaced?.Invoke(this, onScale);
             UpdateTicker.Unsubscribe(IncrementPlacement);
         }
