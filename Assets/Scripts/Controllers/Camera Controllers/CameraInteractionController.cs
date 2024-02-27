@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 [RequireComponent(typeof(CameraController))]
 public class CameraInteractionController : MonoBehaviour
 {
@@ -8,10 +7,12 @@ public class CameraInteractionController : MonoBehaviour
 
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private float interactionDistance;
-    [SerializeField] private Vector2 screenPivot = new Vector2(0.5f,0.5f);
+    [SerializeField] private Vector2 screenPivot = new Vector2(0.5f, 0.5f);
     [SerializeField] private StringReference interactionString;
+
     private Camera c;
     private Transform interactTarget;
+    private Outline lastInteractedOutline;
 
     private void OnEnable()
     {
@@ -29,11 +30,39 @@ public class CameraInteractionController : MonoBehaviour
     {
         interactTarget = null;
         interactionString.Value = "";
-        //if (interactionString != null) interactionString.Value = interactTarget != null ? "" : ;
-        if (!cc.IsFree || !Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask)) return;
-        
+
+        if (!cc.IsFree || !Physics.Raycast(c.ViewportPointToRay(screenPivot), out RaycastHit hit, interactionDistance, interactMask))
+        {
+            if (lastInteractedOutline != null)
+            {
+                Destroy(lastInteractedOutline);
+                lastInteractedOutline = null;
+            }
+            return;
+        }
+
         interactTarget = hit.collider.transform;
-        if (interactTarget.TryGetComponent(out IInteractable interactableTarget)) interactionString.Value = string.Format("[E] to {0}", interactableTarget.Type.ToString());
+        if (interactTarget.TryGetComponent(out IInteractable interactableTarget))
+        {
+            interactionString.Value = string.Format("[E] to {0}", interactableTarget.Type.ToString());
+
+            if (lastInteractedOutline == null || lastInteractedOutline.transform != interactTarget)
+            {
+                if (lastInteractedOutline != null)
+                {
+                    Destroy(lastInteractedOutline);
+                }
+                lastInteractedOutline = interactTarget.gameObject.AddComponent<Outline>();
+            }
+        }
+        else
+        {
+            if (lastInteractedOutline != null)
+            {
+                Destroy(lastInteractedOutline);
+                lastInteractedOutline = null;
+            }
+        }
     }
 
     private void TryInteract()

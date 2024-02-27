@@ -12,7 +12,7 @@ public enum InteractionType {
     Interact,
     Inspect,
     Open,
-    TapGlass,
+    Tap,
     Close,
     Play,
     Use,

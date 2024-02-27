@@ -5,7 +5,7 @@ using UnityEngine;
 public class Glass : MonoBehaviour, IInteractable
 {
     [SerializeField] EventReference eventRef;
-    public InteractionType Type => InteractionType.TapGlass;
+    public InteractionType Type => InteractionType.Tap;
     public event Action<Glass> OnPlay;
 
     public void Interact()

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Unity.Collections.AllocatorManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ShardNumReference shards;
     [SerializeField] GameObject puzzleMiniMapPrefab;
     [SerializeField] List<Transform> puzzleLocationsMiniMap;
+    [SerializeField] GlassShardHUD unlock;
     public EventReference puzzleSolvedNoise;
     public static GameManager Instance
     {
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
         PuzzleState = puzzleCompleted | PuzzleState;
 
         if (puzzleCongrats == null) return;
-        puzzleCongrats.Value = "Glass shard collected.";
+        //puzzleCongrats.Value = "Glass shard collected.";
         FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
         shards.Value += 1;
 
@@ -99,7 +101,9 @@ public class GameManager : MonoBehaviour
         puzzleUIElements[index].transform.GetChild(0).gameObject.SetActive(false);
         puzzleUIElements[index].transform.GetChild(1).gameObject.SetActive(true);
 
-        StartCoroutine(RemovePuzzleCongrats());
+        unlock.UnlockGlass(puzzleCompleted);
+
+        //StartCoroutine(RemovePuzzleCongrats());
     }
     IEnumerator RemovePuzzleCongrats()
     {
