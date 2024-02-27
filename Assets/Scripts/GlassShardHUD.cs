@@ -114,6 +114,7 @@ public class GlassShardHUD : MonoBehaviour
         // Time elapsed
         float elapsedTime = 0f;
         Color startingColor = rend.material.color;
+        Color startingColor2 = rend.material.GetColor("_EmissionColor");
 
         // Gradually change alpha value
         while (elapsedTime < duration)
@@ -122,24 +123,12 @@ public class GlassShardHUD : MonoBehaviour
             float t = elapsedTime / duration;
             // Interpolate between initial and target colors
             Color newColor = Color.Lerp(initialColor, targetColor, t);
+            rend.material.SetColor("_EmissionColor", startingColor2 * Mathf.Pow(2, t));
+
             Mathf.Lerp(0f, targetIntensity, t);
             // Apply the new color to the material
             rend.material.color = newColor;
             // Increment elapsed time
-            elapsedTime += Time.deltaTime;
-            // Wait for the next frame
-            yield return null;
-        }
-
-        elapsedTime = 0f;
-        startingColor = rend.material.color;
-
-        // Gradually change alpha value
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-            rend.material.SetColor("_EmissionColor", startingColor * Mathf.Pow(2, t));
-            Mathf.Lerp(0f, targetIntensity, t);
             elapsedTime += Time.deltaTime;
             // Wait for the next frame
             yield return null;
