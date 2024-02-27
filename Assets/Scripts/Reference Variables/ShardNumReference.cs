@@ -15,5 +15,5 @@ public class ShardNumReference : ScriptableObject
         } 
     }
 
-    private int value;
+    private int value = 0;
 }

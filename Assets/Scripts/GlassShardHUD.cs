@@ -13,8 +13,7 @@ public class GlassShardHUD : MonoBehaviour
     [SerializeField] GameObject glassShardView;
     [SerializeField] Image shardHUD;
     [SerializeField] TextMeshProUGUI stopViewingShard;
-    [SerializeField] RawImage hud1;
-    [SerializeField] Image hud2;
+    [SerializeField] RawImage hud1, hud2;
     bool displayingShard = false;
     bool displayingImage = false;
     private void Awake()

@@ -653,7 +653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem Ipsum
+  m_text: 0/5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3730b0ff1be337947bcf72eb79de2be4, type: 2}
   m_sharedMaterial: {fileID: -4922512433475778257, guid: 3730b0ff1be337947bcf72eb79de2be4, type: 2}
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 241.66017, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -745,7 +745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6709531389457213789}
   - component: {fileID: 2230593918039207233}
-  - component: {fileID: 6850141650049432460}
+  - component: {fileID: 79012586297973837}
   m_Layer: 5
   m_Name: MiniMapLayer2
   m_TagString: Untagged
@@ -781,7 +781,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6415449379571591262}
   m_CullTransparentMesh: 0
---- !u!114 &6850141650049432460
+--- !u!114 &79012586297973837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6415449379571591262}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -801,16 +801,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4042ef70b413b0d448a2ae8f1efff1e0, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 2800000, guid: dc2b210d1d1ac5745bf9caba8cc41b18, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &7805651811814545412
 GameObject:
   m_ObjectHideFlags: 0
