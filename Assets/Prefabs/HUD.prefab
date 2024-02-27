@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 8457616539309132562}
   - component: {fileID: 3944579213600756462}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: MiniMapLayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,8 +286,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4122527402050799783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -52.789}
-  m_LocalScale: {x: 2.4376407, y: 2.4376407, z: 2.4376407}
+  m_LocalPosition: {x: 0, y: 0, z: -1224.6}
+  m_LocalScale: {x: 8.729192, y: 8.729192, z: 8.729192}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7924432817596306177}
@@ -295,7 +295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 801.00006, y: 384.00003}
+  m_AnchoredPosition: {x: -0.095947266, y: 2.6301575}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8457616539309132562
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 2230593918039207233}
   - component: {fileID: 6850141650049432460}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: MiniMapLayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,8 +660,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6415449379571591262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 855.29}
-  m_LocalScale: {x: 2.627775, y: 2.627775, z: 2.4376407}
+  m_LocalPosition: {x: 0, y: 0, z: 2027.1}
+  m_LocalScale: {x: 9.410063, y: 9.410063, z: 8.729192}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6738747934224712205}
@@ -669,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 801, y: 384.00003}
+  m_AnchoredPosition: {x: -0.09588623, y: 2.6301575}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2230593918039207233
@@ -728,7 +728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4097802938663158891
 RectTransform:
   m_ObjectHideFlags: 0
