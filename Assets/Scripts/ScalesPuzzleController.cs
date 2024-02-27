@@ -44,7 +44,7 @@ public class ScalesPuzzleController : SerializedMonoBehaviour
         timer += Time.deltaTime;
 
         float prog = Mathf.Clamp01(timer / balanceTime);
-        armPivot.localRotation = Quaternion.Euler(Mathf.Lerp(-10 , 10f, prog), 0,0);
+        armPivot.localRotation = Quaternion.Euler(Mathf.Lerp(-10 , 0f, prog), 0,0);
 
 
         if(timer > balanceTime) {
