@@ -6,15 +6,22 @@ using UnityEngine.SceneManagement;
 public class WinScreen : MonoBehaviour
 {
     // The name of the scene to load
-    public string sceneToLoad;
-
+    public string allShards, notAllShards;
+    public ShardNumReference shardCount;
     private void OnTriggerEnter(Collider other)
     {
         // Check if the colliding object has the tag "Player"
         if (other.CompareTag("Player"))
         {
             // Load the scene
-            SceneManager.LoadScene(sceneToLoad);
+            if (shardCount.Value == 5)
+            {
+                SceneManager.LoadScene(allShards);
+            }
+            else {
+                SceneManager.LoadScene(notAllShards);
+            }
+
         }
     }
 }
