@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class ArduinoCommunicationModule : MonoBehaviour
 {
     [SerializeField] Radio radio;
+    bool stopTuningVol = false;
     void OnSerialLine(string line)
     {
         if (!Serial.usingPhysical) return;
@@ -33,11 +34,20 @@ public class ArduinoCommunicationModule : MonoBehaviour
             Debug.Log("Received invalid communication.");
             return;
         }
-        radio.TuneRadio(radioFreq);
-        radio.TuneVolume(radioVol);
+        radio.TuneRadio(radioVol);
+        if (!stopTuningVol)
+        {
+            radio.TuneVolume(radioFreq);
+        }
         for (int i = 0; i < 5; i++) {
             radio.ButtonInteraction(i, buttons[i] == 0);
         }
 
+    }
+    private void Update()
+    {
+        if (Input.GetKey("l") && Serial.usingPhysical) {
+            stopTuningVol = true; radio.TuneVolume(1);
+        }
     }
 }

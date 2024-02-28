@@ -61,7 +61,7 @@ using Unity.VisualScripting;
 public class Serial : MonoBehaviour
 {
     [Tooltip("Are we using the physical controller?")]
-	public static bool usingPhysical = GameStart.isUsingRadio;
+	public static bool usingPhysical;
     /// <summary>
     /// Enable notification of data as it arrives
     /// Sends OnSerialData(string data) message
@@ -163,9 +163,13 @@ public class Serial : MonoBehaviour
 	private static float s_lastDataIn = 0;
 	private static float s_lastDataCheck = 0;
 
-	#endregion
+    private void Awake()
+    {
+		usingPhysical = GameStart.isUsingRadio;
+    }
+    #endregion
 
-	void OnValidate ()
+    void OnValidate ()
 	{
 		if (RememberLines < 0)
 			RememberLines = 0;
@@ -418,6 +422,7 @@ public class Serial : MonoBehaviour
 	public static bool CheckOpen ()
 	{
 		if (!usingPhysical) {
+			Debug.Log("Not Using Physical Controller");
 			return false;
 		}
 		if (s_serial == null) {
