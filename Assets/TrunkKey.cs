@@ -12,7 +12,7 @@ public class TrunkKey : MonoBehaviour, IInteractable
     public void Interact()
     {
         TrunkController.InvokeOpen();
-        Destroy(gameObject);
         RuntimeManager.PlayOneShot(keySound, transform.position);
+        Destroy(gameObject);
     }
 }
