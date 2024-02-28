@@ -574,6 +574,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f309495ee5c82604bae61875ff236356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openDuration: 5
+  trunkSound:
+    Guid:
+      Data1: -1749467403
+      Data2: 1208579357
+      Data3: -400863328
+      Data4: 1998402922
+    Path: event:/TRUNKUNLOCKED
 --- !u!1 &1044605811675125054
 GameObject:
   m_ObjectHideFlags: 0
