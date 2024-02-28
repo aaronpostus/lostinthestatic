@@ -125,11 +125,9 @@ public class CharacterMotor : SerializedMonoBehaviour, IPhysical, ICameraTargeta
 
         if (previouslyGrounded && rb.velocity.magnitude > speedToMakeWalkingSound && GameManager.Instance.ActiveState == PlayerState.OnFoot)
         {
-            Debug.Log("VOLUME ON");
             walking.setVolume(1f);
         }
         else {
-            Debug.Log("VOLUME OFF");
             walking.setVolume(0f);
         }
     }
