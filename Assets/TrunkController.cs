@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using FMODUnity;
 using System;
 using System.Collections;
@@ -27,7 +28,13 @@ public class TrunkController : MonoBehaviour
     private void OpenTrunk() {
         if (opened) return;
         opened = true;
-        RuntimeManager.PlayOneShot(trunkSound, transform.position);
+
+        EventInstance loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(trunkSound);
+        loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+
+        loopEventInstance.setVolume(1.0f);
+        loopEventInstance.start();
+
         UpdateTicker.Subscribe(IncrementTimer);
     }
 

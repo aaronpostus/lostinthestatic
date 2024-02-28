@@ -86,8 +86,7 @@ public class GameManager : MonoBehaviour
 
         if (puzzleCongrats == null) return;
         //puzzleCongrats.Value = "Glass shard collected.";
-        FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
-        shards.Value += 1;
+
 
         // ew ew ew
         int index = 0;
@@ -97,7 +96,11 @@ public class GameManager : MonoBehaviour
             case PuzzleFlag.Scale: index = 2; break;
             case PuzzleFlag.Corridor: index = 3; break;
             case PuzzleFlag.Maze: index = 4; break;
+
         }
+
+        shards.Value += 1;
+        FMODUnity.RuntimeManager.PlayOneShot(puzzleSolvedNoise, Player.position);
         puzzleUIElements[index].transform.GetChild(0).gameObject.SetActive(false);
         puzzleUIElements[index].transform.GetChild(1).gameObject.SetActive(true);
 
