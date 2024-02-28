@@ -66,7 +66,7 @@ public class GlassShardHUD : MonoBehaviour
     IEnumerator FadeIn()
     {
         float elapsedTime = 0f;
-        float duration = 0.5f;
+        float duration = 1.5f;
         Color startColor = stopViewingShard.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 1f); // Target color with alpha 1
 
@@ -90,7 +90,7 @@ public class GlassShardHUD : MonoBehaviour
     IEnumerator FadeOut()
     {
         float elapsedTime = 0f;
-        float duration = 0.5f;
+        float duration = 1.5f;
         Color startColor = stopViewingShard.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f); // Target color with alpha 0
 
