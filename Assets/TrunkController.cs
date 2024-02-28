@@ -29,11 +29,7 @@ public class TrunkController : MonoBehaviour
         if (opened) return;
         opened = true;
 
-        EventInstance loopEventInstance = FMODUnity.RuntimeManager.CreateInstance(trunkSound);
-        loopEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
-
-        loopEventInstance.setVolume(1.0f);
-        loopEventInstance.start();
+        RuntimeManager.PlayOneShotAttached(trunkSound, gameObject);
 
         UpdateTicker.Subscribe(IncrementTimer);
     }
