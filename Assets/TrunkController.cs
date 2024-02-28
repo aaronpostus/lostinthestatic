@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ public class TrunkController : MonoBehaviour
     private float timer;
     private static event Action Open;
     private bool opened;
-
+    public EventReference trunkSound;
 
     public static void InvokeOpen() {
         Open?.Invoke();
@@ -26,6 +27,7 @@ public class TrunkController : MonoBehaviour
     private void OpenTrunk() {
         if (opened) return;
         opened = true;
+        RuntimeManager.PlayOneShot(trunkSound, transform.position);
         UpdateTicker.Subscribe(IncrementTimer);
     }
 
