@@ -24,9 +24,9 @@ public class Radio : MonoBehaviour
     // constants calculated at runtime
     private int freqRange, volRange;
     // raw floating point numbers that wont look how the user wants
-    private float rawFrequency = 99, rawVolume = 15;
+    private float rawFrequency = 97.5f, rawVolume = 15;
     // the actual numbers required for functionality and visual components
-    private float prettyFrequency = 99, prettyVolume = 15;
+    private float prettyFrequency = 97.5f, prettyVolume = 15;
     // timer for save state to expire
     private float remainingSaveStateTime;
 

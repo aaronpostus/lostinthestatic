@@ -24,6 +24,8 @@
 		</relationship>
 		<relationship name="markerTracks">
 			<destination>{7176038c-4539-4c14-a924-07f50c40330e}</destination>
+			<destination>{11726be8-4504-49b1-8c53-f7108cbea306}</destination>
+			<destination>{bfad38c7-5771-49d6-8aaa-287251d4f670}</destination>
 		</relationship>
 		<relationship name="timeline">
 			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
@@ -58,9 +60,21 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{542494e8-269e-4f8c-af2e-b8b6722d9dbf}" />
 	<object class="MarkerTrack" id="{7176038c-4539-4c14-a924-07f50c40330e}" />
+	<object class="MarkerTrack" id="{11726be8-4504-49b1-8c53-f7108cbea306}" />
+	<object class="MarkerTrack" id="{bfad38c7-5771-49d6-8aaa-287251d4f670}" />
 	<object class="Timeline" id="{2ad8efa3-4fee-4568-b532-a26763a74e82}">
 		<relationship name="modules">
 			<destination>{31bb8a03-92ca-4def-aff4-05c77df24503}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{3d99f595-86f5-4f84-84fc-9d1dea3da9c4}</destination>
+			<destination>{9c8c9c9a-1a95-4d34-84d0-d1a554de220e}</destination>
+			<destination>{da23de7b-6b32-4adb-a124-99733a9b074f}</destination>
+			<destination>{8b7dbcf8-d6e4-4391-9233-ad967a1d1569}</destination>
+			<destination>{6a10fb56-545f-4767-9d18-c11217050cb5}</destination>
+			<destination>{eb4879c4-d227-4c24-99b5-226f60b2dd8e}</destination>
+			<destination>{3c3e17d4-3dd0-4fdd-8201-08a5a2220551}</destination>
+			<destination>{3f368cf6-335d-4480-a662-8ab88ce4eeb4}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{7038081a-66bc-4286-b36a-445e74175383}">
@@ -91,6 +105,118 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{fdd8527c-195a-42c2-8cee-a6c0b4c41102}" />
+	<object class="NamedMarker" id="{3d99f595-86f5-4f84-84fc-9d1dea3da9c4}">
+		<property name="position">
+			<value>1.000148243316697</value>
+		</property>
+		<property name="name">
+			<value>We are coming to you live with breaking news on last week's car crash involving two ---</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{7176038c-4539-4c14-a924-07f50c40330e}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{9c8c9c9a-1a95-4d34-84d0-d1a554de220e}">
+		<property name="position">
+			<value>7.36472797351386</value>
+		</property>
+		<property name="name">
+			<value>The perpetrator has recently been identified as ---</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{7176038c-4539-4c14-a924-07f50c40330e}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{da23de7b-6b32-4adb-a124-99733a9b074f}">
+		<property name="position">
+			<value>12</value>
+		</property>
+		<property name="name">
+			<value>--- and under police custody</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{7176038c-4539-4c14-a924-07f50c40330e}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{8b7dbcf8-d6e4-4391-9233-ad967a1d1569}">
+		<property name="position">
+			<value>14.5</value>
+		</property>
+		<property name="name">
+			<value>--- a statement from Officer Wrighton reveals that ---</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{11726be8-4504-49b1-8c53-f7108cbea306}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{6a10fb56-545f-4767-9d18-c11217050cb5}">
+		<property name="position">
+			<value>18.593665068933142</value>
+		</property>
+		<property name="name">
+			<value>--- trunk of their car --- and a rotting corpse ---</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{bfad38c7-5771-49d6-8aaa-287251d4f670}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{eb4879c4-d227-4c24-99b5-226f60b2dd8e}">
+		<property name="position">
+			<value>22.230567771902948</value>
+		</property>
+		<property name="name">
+			<value>Currently, we have no response from the family---</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{7176038c-4539-4c14-a924-07f50c40330e}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{3c3e17d4-3dd0-4fdd-8201-08a5a2220551}">
+		<property name="position">
+			<value>24.549093245046201</value>
+		</property>
+		<property name="name">
+			<value>--- and will be awaiting trial and is predicted to plead guilty.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{bfad38c7-5771-49d6-8aaa-287251d4f670}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{3f368cf6-335d-4480-a662-8ab88ce4eeb4}">
+		<property name="position">
+			<value>28.095073380441764</value>
+		</property>
+		<property name="name">
+			<value>That's all for tonight, I'm Kenny Wonder. Good night.</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{2ad8efa3-4fee-4568-b532-a26763a74e82}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{11726be8-4504-49b1-8c53-f7108cbea306}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{fa2ef530-83c7-4850-a68c-bc27fb2cab7f}">
 		<relationship name="effects">
 			<destination>{a0561da9-6904-43c9-84eb-b8f121a336f2}</destination>

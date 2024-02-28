@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{273d5ca2-4de0-45d4-b752-54de590d7d1d}">
+		<property name="assetPath">
+			<value>soft_music_box_GOLD.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>127.72799999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{094ab35d-17fa-4645-b4da-0ad9f83c9a79}</destination>
+		</relationship>
+	</object>
+</objects>
