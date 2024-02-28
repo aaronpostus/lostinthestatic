@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9332dbb1-9ba4-4d05-9b1d-5a6db77b5d64}">
+		<property name="assetPath">
+			<value>Sobbing_GOLD.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>87.024000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{094ab35d-17fa-4645-b4da-0ad9f83c9a79}</destination>
+		</relationship>
+	</object>
+</objects>

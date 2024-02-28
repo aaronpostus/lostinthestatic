@@ -13,15 +13,27 @@ MonoBehaviour:
   m_Name: ChannelData
   m_EditorClassIdentifier: 
   channels:
-  - channelName: Shotgun!
-    channelFrequency: 99.7
+  - channelName: Random Station 1
+    channelFrequency: 97.1
     FMODEventRef:
       Guid:
-        Data1: 601018704
-        Data2: 1213103099
-        Data3: -1509056101
-        Data4: 1317793662
-      Path: event:/RADIO_CHANNEL_99.7
+        Data1: 2070910476
+        Data2: 1242813885
+        Data3: -968619847
+        Data4: -156435966
+      Path: event:/RADIO_CHANNEL_97.1
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Locked In Trunk
+    channelFrequency: 97.3
+    FMODEventRef:
+      Guid:
+        Data1: 1435774701
+        Data2: 1074085882
+        Data3: -1770489186
+        Data4: -640821125
+      Path: event:/RADIO_CHANNEL_97.3
     channelType: 0
     trigger: {fileID: 0}
     hasAudioTrigger: 0
@@ -37,6 +49,30 @@ MonoBehaviour:
     channelType: 1
     trigger: {fileID: 0}
     hasAudioTrigger: 1
+  - channelName: Reverse
+    channelFrequency: 97.8
+    FMODEventRef:
+      Guid:
+        Data1: -11618523
+        Data2: 1198898209
+        Data3: 1532752310
+        Data4: -1143445292
+      Path: event:/RADIO_CHANNEL_97.8
+    channelType: 0
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Sobbing
+    channelFrequency: 98
+    FMODEventRef:
+      Guid:
+        Data1: -24610314
+        Data2: 1294780685
+        Data3: -2092940103
+        Data4: -1409473253
+      Path: event:/RADIO_CHANNEL_98
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
   - channelName: Invisible Maze
     channelFrequency: 98.3
     FMODEventRef:
@@ -49,42 +85,6 @@ MonoBehaviour:
     channelType: 3
     trigger: {fileID: 0}
     hasAudioTrigger: 1
-  - channelName: Random Station 1
-    channelFrequency: 97.1
-    FMODEventRef:
-      Guid:
-        Data1: 2070910476
-        Data2: 1242813885
-        Data3: -968619847
-        Data4: -156435966
-      Path: event:/RADIO_CHANNEL_97.1
-    channelType: 1
-    trigger: {fileID: 0}
-    hasAudioTrigger: 0
-  - channelName: Random Station 3
-    channelFrequency: 98.8
-    FMODEventRef:
-      Guid:
-        Data1: -1560012718
-        Data2: 1124565492
-        Data3: 995839927
-        Data4: 1538400559
-      Path: event:/RADIO_CHANNEL_98.8
-    channelType: 1
-    trigger: {fileID: 0}
-    hasAudioTrigger: 0
-  - channelName: MASS
-    channelFrequency: 99.2
-    FMODEventRef:
-      Guid:
-        Data1: 561711595
-        Data2: 1179691549
-        Data3: -2143916877
-        Data4: 225391285
-      Path: event:/RADIO_CHANNEL_99.2
-    channelType: 0
-    trigger: {fileID: 0}
-    hasAudioTrigger: 0
   - channelName: Random Station 2
     channelFrequency: 98.5
     FMODEventRef:
@@ -106,6 +106,66 @@ MonoBehaviour:
         Data3: -1732429934
         Data4: -2074489271
       Path: event:/RADIO_CHANNEL_98.7
+    channelType: 0
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Random Station 3
+    channelFrequency: 98.8
+    FMODEventRef:
+      Guid:
+        Data1: -1560012718
+        Data2: 1124565492
+        Data3: 995839927
+        Data4: 1538400559
+      Path: event:/RADIO_CHANNEL_98.8
+    channelType: 0
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Rickroll static
+    channelFrequency: 99
+    FMODEventRef:
+      Guid:
+        Data1: -1633242045
+        Data2: 1089408404
+        Data3: 1284495269
+        Data4: 252690532
+      Path: event:/RADIO_CHANNEL_99
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: MASS
+    channelFrequency: 99.2
+    FMODEventRef:
+      Guid:
+        Data1: 561711595
+        Data2: 1179691549
+        Data3: -2143916877
+        Data4: 225391285
+      Path: event:/RADIO_CHANNEL_99.2
+    channelType: 0
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: soft music box
+    channelFrequency: 99.5
+    FMODEventRef:
+      Guid:
+        Data1: -930047527
+        Data2: 1272540632
+        Data3: 419760801
+        Data4: 1080621700
+      Path: event:/RADIO_CHANNEL_99.5
+    channelType: 1
+    trigger: {fileID: 0}
+    hasAudioTrigger: 0
+  - channelName: Shotgun!
+    channelFrequency: 99.7
+    FMODEventRef:
+      Guid:
+        Data1: 601018704
+        Data2: 1213103099
+        Data3: -1509056101
+        Data4: 1317793662
+      Path: event:/RADIO_CHANNEL_99.7
     channelType: 0
     trigger: {fileID: 0}
     hasAudioTrigger: 0
