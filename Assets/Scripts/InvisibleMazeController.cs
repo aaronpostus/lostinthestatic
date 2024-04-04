@@ -23,6 +23,10 @@ public class InvisibleMazeController : MonoBehaviour
     {
         if (!trackPlayer) return;
 
+        if (radio.GetFrequency() != 98.3f) {
+            radio.JumpToPreset(98.3f);
+        }
+
         SplineSample sample = new SplineSample();
         Vector3 playerPos = player.transform.position;
         spline.Project(playerPos, ref sample);
@@ -44,7 +48,7 @@ public class InvisibleMazeController : MonoBehaviour
     public void StartTrackingPlayer() {
         trackPlayer = true;
         splineFollower.gameObject.SetActive(true);
-        radio.SetFrequency(98.3f);
+        radio.JumpToPreset(98.3f);
     }
 
     public void StopTrackingPlayer() {

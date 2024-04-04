@@ -44,9 +44,9 @@ public class ArduinoCommunicationModule : MonoBehaviour
         }
 
     }
-    private void Update()
+    void Start()
     {
-        if (Input.GetKey("l") && Serial.usingPhysical) {
+        if (Serial.usingPhysical) {
             stopTuningVol = true; radio.TuneVolume(1);
         }
     }
