@@ -1,6 +1,9 @@
-﻿using System;
+﻿using FMODUnity;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -33,8 +36,32 @@ public class RadioInput : MonoBehaviour
             { KeyCode.Alpha5, radio.ButtonInteraction } 
         };
     }
-    void Restart(float throwaway) {
-        SceneManager.LoadScene("Level");
+    public void Restart(float throwaway) {
+        StartCoroutine(nameof(Finish));
+    }
+    protected IEnumerator Finish()
+    {
+        var go = GameObject.Find("FMOD.UnityItegration.RuntimeManager");
+        Destroy(go);
+
+        // Skip a frame to allow full destruction
+        yield return null;
+
+        // Manually wipe isQuitting to prevent false positive errors from firing
+        // This allows the RuntimeManager to perform a full initialization next time it's called
+        var field = typeof(RuntimeManager).GetField("isQuitting",
+            BindingFlags.Static |
+            BindingFlags.NonPublic);
+
+        if (field != null)
+        {
+            field.SetValue(null, false);
+        }
+        else
+        {
+            Debug.LogWarning("Could not find RuntimeManager.isQuitting");
+        }
+        SceneManager.LoadScene("Physics Testing");
     }
     private void Update()
     {
