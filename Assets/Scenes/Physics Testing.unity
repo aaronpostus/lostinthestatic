@@ -83646,18 +83646,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 0b010d00000069006e00700075007400500072006f007600690064006500720000000000
     ReferencedUnityObjects:
     - {fileID: 705369644214738134}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: inputProvider
-      Entry: 10
-      Data: 0
+    SerializationNodes: []
   cameraTarget: {fileID: 705369644919929875}
   radioTarget: {fileID: 5318734511194736831}
   gravity: 9.81
@@ -83716,8 +83713,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 01010a00000069006e0070007500740043006800610069006e002f00000000014e000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004c00690073007400600031005b005b00490049006e007000750074004d006f006400690066006900650072002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c0020006d00730063006f0072006c0069006200000000000601000000000000000c0000000007050b010d00000069006e00700075007400500072006f007600690064006500720001000000
     ReferencedUnityObjects:
     - {fileID: 4052654094765414061}
     - {fileID: 729441985}
@@ -83725,26 +83722,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: inputChain
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[IInputModifier, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: inputProvider
-      Entry: 10
-      Data: 1
+    SerializationNodes: []
 --- !u!54 &705369644214738135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -86359,18 +86337,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 0b010d00000069006e00700075007400500072006f007600690064006500720000000000
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 37aece8534e9af647bd4a8079898b49f, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: inputProvider
-      Entry: 10
-      Data: 0
+    SerializationNodes: []
   inputState:
     moveDirection: {x: 0, y: 0, z: 0}
     shouldLookAtAim: 0
@@ -87508,8 +87483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 0b010d00000069006e00700075007400500072006f00760069006400650072000000000003010a000000670072006f0075006e0064004d00610073006b002f00000000012d00000055006e0069007400790045006e00670069006e0065002e004c0061007900650072004d00610073006b002c00200055006e0069007400790045006e00670069006e0065002e0043006f00720065004d006f00640075006c00650018010000000501010600000077006800650065006c0073002f01000000011800000057006800650065006c005b005d002c00200041007300730065006d0062006c0079002d00430053006800610072007000000000000604000000000000000c010000000c020000000c030000000c0400000007051f0112000000730075007300700065006e00730069006f006e00520065007300740044006900730074000000403f1f010b00000073007000720069006e00670043006f006e007300740000606a461f010a00000073007000720069006e006700440061006d00700000409c46
     ReferencedUnityObjects:
     - {fileID: 729441985}
     - {fileID: 5849206218705185669}
@@ -87520,52 +87495,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: inputProvider
-      Entry: 10
-      Data: 0
-    - Name: groundMask
-      Entry: 7
-      Data: UnityEngine.LayerMask, UnityEngine.CoreModule
-    - Name: 
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: wheels
-      Entry: 7
-      Data: 0|Wheel[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 3
-    - Name: 
-      Entry: 10
-      Data: 4
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: suspensionRestDist
-      Entry: 4
-      Data: 0.75
-    - Name: springConst
-      Entry: 4
-      Data: 15000
-    - Name: springDamp
-      Entry: 4
-      Data: 20000
+    SerializationNodes: []
   cameraTarget: {fileID: 4152370828690690542}
   radioTarget: {fileID: 1466744032676703929}
   ExitPosition: {fileID: 6186429216522276629}

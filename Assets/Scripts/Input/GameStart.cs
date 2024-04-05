@@ -13,6 +13,10 @@ public class GameStart : MonoBehaviour
     [SerializeField] ParticleSystem system;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite enabled, disabled;
+    private void Awake()
+    {
+        isUsingRadio = false;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
