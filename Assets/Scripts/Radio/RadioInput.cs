@@ -41,6 +41,7 @@ public class RadioInput : MonoBehaviour
     }
     protected IEnumerator Finish()
     {
+        FMODUnity.RuntimeManager.GetBus("Bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
         var go = GameObject.Find("FMOD.UnityItegration.RuntimeManager");
         Destroy(go);
 
